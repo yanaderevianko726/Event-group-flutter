@@ -12,6 +12,7 @@ import '../../../utils/functions.dart';
 import '../../../utils/my_colors.dart';
 import '../../../utils/widgets.dart';
 import '../../wizards/usertype_wizard.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -24,7 +25,6 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPage extends State<SignInPage> {
   SignInController sController = Get.put(SignInController());
-  final loginForm = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,207 +36,311 @@ class _SignInPage extends State<SignInPage> {
           body: SafeArea(
             child: Stack(
               children: [
-                SizedBox(
+                Container(
                   width: double.infinity,
                   height: double.infinity,
-                  child: Form(
-                    key: loginForm,
-                    child: Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 28.w),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 64.h,
+                        ),
+                        Image.asset(
+                          '${Constants.assetsImagePath}logo.png',
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          fit: BoxFit.fitWidth,
+                        ),
+                        SizedBox(
+                          height: 56.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(1.h),
+                          child: ConstantWidget.getDefaultTextFiledWithLabel(
+                            context,
+                            "abc@email.com",
+                            signInController.emailController,
+                            isEnable: false,
+                            withPrefix: true,
+                            image: "mail.svg",
+                            validator: (email) {
+                              if (email == null || email.isEmpty) {
+                                return 'Please enter email';
+                              } else {
+                                return '';
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(1.h),
+                          child: ConstantWidget.getDefaultTextFiledWithLabel(
+                            context,
+                            "Your password",
+                            signInController.passwordController,
+                            isEnable: false,
+                            isPass: true,
+                            withPrefix: true,
+                            image: "eye.svg",
+                            validator: (password) {
+                              if (password == null || password.isEmpty) {
+                                return 'Please enter password';
+                              } else {
+                                return '';
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
                           children: [
-                            SizedBox(
-                              height: 92.h,
-                            ),
-                            ConstantWidget.getTextWidget(
-                              "Welcome back to",
-                              primaryColor,
-                              TextAlign.center,
-                              FontWeight.w600,
-                              32.sp,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            Image.asset(
-                              '${Constants.assetsImagePath}title_splash.png',
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              fit: BoxFit.fitWidth,
-                            ),
-                            SizedBox(
-                              height: 148.h,
+                            FlutterSwitch(
+                              width: 44.0,
+                              height: 22.0,
+                              padding: 2.0,
+                              toggleSize: 20.0,
+                              borderRadius: 15.0,
+                              activeColor: primaryColor,
+                              value: signInController.isRemember,
+                              onToggle: (val) {
+                                setState(() {
+                                  signInController.setRemember(val);
+                                });
+                              },
                             ),
                             Padding(
-                              padding: EdgeInsets.all(1.h),
-                              child:
-                                  ConstantWidget.getDefaultTextFiledWithLabel(
-                                context,
-                                "Email",
-                                signInController.emailController,
-                                isEnable: false,
-                                withPrefix: true,
-                                image: "mail.svg",
-                                validator: (email) {
-                                  if (email == null || email.isEmpty) {
-                                    return 'Please enter email';
-                                  } else {
-                                    return '';
-                                  }
-                                },
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: ConstantWidget.getTextWidget(
+                                'Remember Me',
+                                Colors.black54,
+                                TextAlign.start,
+                                FontWeight.w500,
+                                17.sp,
                               ),
                             ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(1.h),
-                              child:
-                                  ConstantWidget.getDefaultTextFiledWithLabel(
-                                context,
-                                "Password",
-                                signInController.passwordController,
-                                isEnable: false,
-                                isPass: true,
-                                withPrefix: true,
-                                image: "eye.svg",
-                                validator: (password) {
-                                  if (password == null || password.isEmpty) {
-                                    return 'Please enter password';
-                                  } else {
-                                    return '';
-                                  }
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            Row(children: [
-                              InkWell(
+                            Expanded(
+                              child: InkWell(
                                 child: ConstantWidget.getTextWidget(
                                   'Forgot Password ?',
-                                  primaryColor,
+                                  Colors.black54,
                                   TextAlign.end,
                                   FontWeight.w500,
                                   17.sp,
                                 ),
                                 onTap: () {},
                               ),
-                            ]),
-                            SizedBox(
-                              height: 100.h,
                             ),
-                            getButton(
-                              context,
-                              primaryColor,
-                              "Sign In",
-                              Colors.white,
-                              () async {
-                                bool isNetwork = await Functions.getNetwork();
-                                if (isNetwork) {
-                                  signInController.onClickSignIn((val) {
-                                    if (val) {
-                                      Get.offAndToNamed(AppRoutes.homeRoute);
-                                    }
-                                  });
-                                } else {
-                                  Functions.showToast(
-                                    "Please turn on Internet",
-                                  );
+                          ],
+                        ),
+                        SizedBox(
+                          height: 72.h,
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            bool isNetwork = await Functions.getNetwork();
+                            if (isNetwork) {
+                              signInController.onClickSignIn((val) {
+                                if (val) {
+                                  Get.offAndToNamed(AppRoutes.homeRoute);
                                 }
-                              },
-                              20.sp,
-                              weight: FontWeight.w700,
-                              buttonHeight: 58.h,
-                              borderRadius: BorderRadius.circular(25),
+                              });
+                            } else {
+                              Functions.showToast(
+                                "Please turn on Internet",
+                              );
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 60.h,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(15)),
+                              color: primaryColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: "#0F000000".toColor(),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
                             ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            InkWell(
-                              child: Container(
-                                width: double.infinity,
-                                height: 56.h,
-                                margin: EdgeInsets.all(1.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: "#0F000000".toColor(),
-                                      blurRadius: 6,
-                                      offset: const Offset(0, 2),
-                                    )
-                                  ],
+                            child: Stack(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  height: 60.h,
+                                  child: Center(
+                                    child: ConstantWidget.getTextWidget(
+                                      'SIGN IN',
+                                      Colors.white,
+                                      TextAlign.end,
+                                      FontWeight.w500,
+                                      20.sp,
+                                    ),
+                                  ),
                                 ),
-                                child: Center(
+                                SizedBox(
+                                  width: double.infinity,
+                                  height: 60.h,
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        margin: EdgeInsets.only(right: 16.w),
-                                        child: SvgPicture.asset(
-                                          '${Constants.iconsImagePath}google.svg',
-                                          height: 22,
-                                          fit: BoxFit.fitWidth,
-                                        ),
-                                      ),
-                                      getCustomText(
-                                        "SignIn with Google",
-                                        textColor,
-                                        1,
-                                        TextAlign.center,
-                                        FontWeight.normal,
-                                        20.sp,
+                                    children: [
+                                      const Spacer(),
+                                      Image.asset(
+                                        '${Constants.assetsImagePath}ic_blue_right.png',
+                                        height: 24,
+                                        fit: BoxFit.fitWidth,
                                       ),
                                     ],
                                   ),
                                 ),
-                              ),
-                              onTap: () async {
-                                checkNetworkForGoogleSignIn(signInController);
-                              },
-                            ),
-                            SizedBox(
-                              height: 48.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ConstantWidget.getTextWidget(
-                                  'Don\'t you have an account?',
-                                  Colors.black,
-                                  TextAlign.center,
-                                  FontWeight.w500,
-                                  17.sp,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.toNamed(AppRoutes.signUpRoute);
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 12.w),
-                                    child: ConstantWidget.getTextWidget(
-                                      'SignUp',
-                                      primaryColor,
-                                      TextAlign.center,
-                                      FontWeight.w500,
-                                      18.sp,
-                                    ),
-                                  ),
-                                ),
                               ],
                             ),
-                            SizedBox(
-                              height: 20.h,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        ConstantWidget.getTextWidget(
+                          'OR',
+                          Colors.black38,
+                          TextAlign.end,
+                          FontWeight.w500,
+                          18.sp,
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        InkWell(
+                          child: Container(
+                            width: double.infinity,
+                            height: 60.h,
+                            margin: EdgeInsets.all(1.h),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: "#0F000000".toColor(),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(right: 16.w),
+                                    child: Image.asset(
+                                      '${Constants.assetsImagePath}ic_google.png',
+                                      height: 24,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                  getCustomText(
+                                    "SignIn with Google",
+                                    textColor,
+                                    1,
+                                    TextAlign.center,
+                                    FontWeight.normal,
+                                    18.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          onTap: () async {
+                            checkNetworkForGoogleSignIn(signInController);
+                          },
+                        ),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                        InkWell(
+                          child: Container(
+                            width: double.infinity,
+                            height: 60.h,
+                            margin: EdgeInsets.all(1.h),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: "#0F000000".toColor(),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(right: 16.w),
+                                    child: Image.asset(
+                                      '${Constants.assetsImagePath}ic_facebook.png',
+                                      height: 26,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                  getCustomText(
+                                    "SignIn with Facebook",
+                                    textColor,
+                                    1,
+                                    TextAlign.center,
+                                    FontWeight.normal,
+                                    18.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          onTap: () async {
+                            checkNetworkForGoogleSignIn(signInController);
+                          },
+                        ),
+                        SizedBox(
+                          height: 32.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ConstantWidget.getTextWidget(
+                              'Don\'t have an account?',
+                              Colors.black,
+                              TextAlign.center,
+                              FontWeight.w500,
+                              20.sp,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.signUpRoute);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 12.w),
+                                child: ConstantWidget.getTextWidget(
+                                  'Sign Up',
+                                  primaryColor,
+                                  TextAlign.center,
+                                  FontWeight.w500,
+                                  20.sp,
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -269,10 +373,10 @@ class _SignInPage extends State<SignInPage> {
     if (isNetwork) {
       await signInController.signInWithGoogle((retVal) {
         if (retVal) {
-          signInController.checkVendorProfile((val){
-            if(val){
+          signInController.checkVendorProfile((val) {
+            if (val) {
               Get.offAndToNamed(AppRoutes.homeRoute);
-            }else{
+            } else {
               Get.to(() => const UserTypesWizard());
             }
           });

@@ -54,6 +54,7 @@ dependencies:
   provider: any
   flutter_time_picker_spinner: ^2.0.0
   need_resume: ^1.0.7+1
+  flutter_switch: ^0.3.2
 
   intl: any
   flutter_localizations:

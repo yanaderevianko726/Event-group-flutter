@@ -22,6 +22,7 @@ class SignInController extends GetxController {
 
   bool isLoading = false;
   String cUserId = '';
+  bool isRemember = true;
 
   @override
   void onInit() {
@@ -32,6 +33,11 @@ class SignInController extends GetxController {
   initController(){
     emailController.text = '';
     passwordController.text = '';
+  }
+
+  setRemember(bool val) {
+    isRemember = val;
+    update();
   }
 
   getUserWithUserId(userId, Function callback) async {

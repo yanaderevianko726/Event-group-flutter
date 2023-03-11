@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "653468750345",
+    "firebase_url": "https://people-olyvia-default-rtdb.firebaseio.com",
     "project_id": "people-olyvia",
     "storage_bucket": "people-olyvia.appspot.com"
   },
@@ -14,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "653468750345-rou3e2bd975cb31b2gd2sgd5er5ul2p0.apps.googleusercontent.com",
+          "client_id": "653468750345-j2jt6qksv9ko241rl3k1a85m3u1udsjf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +28,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "653468750345-rou3e2bd975cb31b2gd2sgd5er5ul2p0.apps.googleusercontent.com",
+              "client_id": "653468750345-j2jt6qksv9ko241rl3k1a85m3u1udsjf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
