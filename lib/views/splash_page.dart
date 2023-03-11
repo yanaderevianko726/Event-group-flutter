@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/controllers/splash_controller.dart';
 import 'package:popuppros/routes/app_routes.dart';
@@ -39,7 +38,7 @@ class _SplashPage extends State<SplashPage> {
           child: Center(
             child: Image.asset(
               '${Constants.assetsImagePath}logo.png',
-              width: MediaQuery.of(context).size.width * 0.5,
+              width: MediaQuery.of(context).size.width * 0.7,
               fit: BoxFit.fitWidth,
             ),
           ),
@@ -53,7 +52,8 @@ class _SplashPage extends State<SplashPage> {
     if (isNetwork) {
       await splashController.checkLogInStatus((signInStatus) {
         Get.offAndToNamed(
-            signInStatus ? AppRoutes.homeRoute : AppRoutes.welcomeRoute);
+          signInStatus ? AppRoutes.homeRoute : AppRoutes.welcomeRoute,
+        );
       });
     } else {
       Functions.showToast("Please turn on Internet");

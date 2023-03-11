@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../utils/pref_data.dart';
 
 class SplashController extends GetxController {
-  late User firebaseUser;
   bool isSignIn = false;
 
   checkLogInStatus(Function callback) async {
