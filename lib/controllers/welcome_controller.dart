@@ -1,11 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import '../utils/pref_data.dart';
 import 'package:geolocator/geolocator.dart' as geo;
 
 class WelcomeController extends GetxController {
-  late User firebaseUser;
   bool isSignIn = false;
 
   @override
@@ -23,8 +19,6 @@ class WelcomeController extends GetxController {
     if (permission == geo.LocationPermission.denied ||
         permission == geo.LocationPermission.deniedForever) {
       await geo.Geolocator.requestPermission();
-    }else{
-
     }
   }
 }
