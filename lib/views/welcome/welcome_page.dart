@@ -66,20 +66,28 @@ class _WelcomePage extends State<WelcomePage> {
               const Spacer(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 36.w),
-                child: getButton(context, primaryColor, "Sign In", Colors.white,
-                    () {
-                  Get.toNamed(AppRoutes.signInRoute);
-                }, 22.sp,
-                    weight: FontWeight.w700,
-                    buttonHeight: 60.h,
-                    borderRadius: BorderRadius.circular(15)),
+                child: getButton(
+                  context,
+                  primaryColor,
+                  "SIGN IN",
+                  Colors.white,
+                  () {
+                    Get.toNamed(AppRoutes.signInRoute);
+                  },
+                  22.sp,
+                  weight: FontWeight.w700,
+                  buttonHeight: 60.h,
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
-              SizedBox(height: 88.h,),
+              SizedBox(
+                height: 88.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ConstantWidget.getTextWidget('Don\'t you have an account?',
-                      Colors.black, TextAlign.center, FontWeight.w500, 18.sp),
+                  ConstantWidget.getTextWidget('Don\'t have an account?',
+                      Colors.black, TextAlign.center, FontWeight.w500, 20.sp),
                   InkWell(
                     onTap: () {
                       Get.toNamed(AppRoutes.signUpRoute);
@@ -87,17 +95,18 @@ class _WelcomePage extends State<WelcomePage> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 12.w),
                       child: ConstantWidget.getTextWidget(
-                          'Register',
-                          primaryColor,
-                          TextAlign.center,
-                          FontWeight.w500,
-                          18.sp),
+                        'Sign Up',
+                        primaryColor,
+                        TextAlign.center,
+                        FontWeight.w500,
+                        20.sp,
+                      ),
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 18.h,
+                height: 24.h,
               ),
             ],
           ),
