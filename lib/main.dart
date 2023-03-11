@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'PopUpPros',
+      title: 'EventHub',
       theme: themeData,
       initialRoute: AppPages.initialRoute,
       routes: AppPages.routes,
