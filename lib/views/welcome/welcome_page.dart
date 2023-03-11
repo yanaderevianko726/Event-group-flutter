@@ -35,7 +35,7 @@ class _WelcomePage extends State<WelcomePage> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 52.h),
+                margin: EdgeInsets.only(top: 100.h),
                 child: Stack(
                   children: [
                     SizedBox(
@@ -63,28 +63,23 @@ class _WelcomePage extends State<WelcomePage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 28.h),
-                child: ConstantWidget.getTextWidget("Welcome to \n Pop Up Pros",
-                    primaryColor, TextAlign.center, FontWeight.w600, 32.sp),
-              ),
               const Spacer(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 36.w),
                 child: getButton(context, primaryColor, "Sign In", Colors.white,
                     () {
                   Get.toNamed(AppRoutes.signInRoute);
-                }, 20.sp,
+                }, 22.sp,
                     weight: FontWeight.w700,
-                    buttonHeight: 58.h,
-                    borderRadius: BorderRadius.circular(25)),
+                    buttonHeight: 60.h,
+                    borderRadius: BorderRadius.circular(15)),
               ),
-              const Spacer(),
+              SizedBox(height: 88.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ConstantWidget.getTextWidget('Don\'t you have an account?',
-                      Colors.black, TextAlign.center, FontWeight.w500, 17.sp),
+                      Colors.black, TextAlign.center, FontWeight.w500, 18.sp),
                   InkWell(
                     onTap: () {
                       Get.toNamed(AppRoutes.signUpRoute);
