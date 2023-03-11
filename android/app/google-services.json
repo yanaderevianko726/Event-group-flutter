@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653468750345",
+    "project_id": "people-olyvia",
+    "storage_bucket": "people-olyvia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653468750345:android:c303dab63623b682405ed8",
+        "android_client_info": {
+          "package_name": "com.events.meetoutpeople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653468750345-rou3e2bd975cb31b2gd2sgd5er5ul2p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEjdM6jtzzeLp-aCpmOfQAq3Sve2XUBDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653468750345-rou3e2bd975cb31b2gd2sgd5er5ul2p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

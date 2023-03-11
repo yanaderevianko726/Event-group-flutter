@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>238824124023-o0hv3fgqdjqgo4pl0h36pqm0pvueum8l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.238824124023-o0hv3fgqdjqgo4pl0h36pqm0pvueum8l</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>238824124023-0v0p8jab6j03qcbtv5ehglmlh9jnlbu0.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB4bPCsNusePpowjVoBTauC9OFNRdN9Sbc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>238824124023</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.popupprops.hostapp</string>
+	<key>PROJECT_ID</key>
+	<string>popuppros-d9cba</string>
+	<key>STORAGE_BUCKET</key>
+	<string>popuppros-d9cba.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:238824124023:ios:e0ed6c48f36b9acdb22072</string>
+	<key>DATABASE_URL</key>
+	<string>https://popuppros-d9cba-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
