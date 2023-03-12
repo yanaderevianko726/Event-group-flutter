@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -48,6 +49,16 @@ class Constants {
   static DateFormat timeFormats = DateFormat("mm:ss", "en-US");
   static DateFormat historyTitleDateFormat = DateFormat("MMMM dd, yyyy", "en-US");
   static const String defTimeZoneName = "America/Detroit";
+
+  static double featuredEventHeight = 300.h;
+  static double eventHeight = 180.h;
+
+  static final eventIcons = [
+    'sports',
+    'musics',
+    'foods',
+    'arts',
+  ];
 
   static List<String> typeList = [
     'Food Tent',

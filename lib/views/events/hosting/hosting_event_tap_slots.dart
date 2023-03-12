@@ -39,13 +39,6 @@ class _EventHostingSlotsView extends State<HostingEventTapSlots> {
                 20.sp,
               ),
               SizedBox(
-                height: 12.h,
-              ),
-              for (var i = 0; i < eventController.tentModels.length; i++)
-                slotCellUI(
-                  tentModel: eventController.tentModels[i],
-                ),
-              SizedBox(
                 height: 24.h,
               ),
               Row(

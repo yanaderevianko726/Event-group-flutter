@@ -85,7 +85,7 @@ class _ApprovedEventTapDetails extends State<ApprovedEventTapDetails> {
                     ),
                     SizedBox(width: 12.h,),
                     getCustomText(
-                      '${eventController.approvedEventModel.eventModel!.setupTime}',
+                      '${eventController.approvedEventModel.eventModel!.createdAt}',
                       textColor,
                       1,
                       TextAlign.start,
@@ -123,7 +123,7 @@ class _ApprovedEventTapDetails extends State<ApprovedEventTapDetails> {
                               ),
                               SizedBox(width: 12.h,),
                               getCustomText(
-                                '${eventController.approvedEventModel.eventModel!.startTime}',
+                                '${eventController.approvedEventModel.eventModel!.createdAt}',
                                 textColor,
                                 1,
                                 TextAlign.start,
@@ -136,42 +136,6 @@ class _ApprovedEventTapDetails extends State<ApprovedEventTapDetails> {
                       ),
                     ),
                     const Spacer(),
-                    SizedBox(
-                      width: pieceWidth,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          getCustomText(
-                            'Finish Time',
-                            Colors.black87,
-                            1,
-                            TextAlign.start,
-                            FontWeight.w400,
-                            18.sp,
-                          ),
-                          SizedBox(height: 12.h,),
-                          Row(
-                            children: [
-                              SizedBox(width: 12.h,),
-                              Image.asset(
-                                '${Constants.assetsImagePath}ic_calendar_black.png',
-                                width: 22.h,
-                                fit: BoxFit.fitWidth,
-                              ),
-                              SizedBox(width: 12.h,),
-                              getCustomText(
-                                '${eventController.approvedEventModel.eventModel!.finishTime}',
-                                textColor,
-                                1,
-                                TextAlign.start,
-                                FontWeight.w400,
-                                18.sp,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),

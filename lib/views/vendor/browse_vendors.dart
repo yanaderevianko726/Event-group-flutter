@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +7,7 @@ import 'package:popuppros/controllers/vendors/browse_vendors_controller.dart';
 import 'package:popuppros/utils/constants.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
-import '../../models/event_model.dart';
-import '../../models/tent_model.dart';
 import '../../utils/constant_widgets.dart';
-import '../../utils/functions.dart';
 import '../../utils/my_colors.dart';
 import '../../utils/widgets.dart';
 
@@ -206,7 +202,6 @@ class _BrowseVendorsPageState extends State<BrowseVendorsPage> {
   showTentAlertSheet(
     BrowseVendorsController browseController,
   ) async {
-    double screenWidth = MediaQuery.of(context).size.width;
     showModalBottomSheet<void>(
       enableDrag: true,
       isScrollControlled: true,
@@ -267,20 +262,6 @@ class _BrowseVendorsPageState extends State<BrowseVendorsPage> {
                     ),
                     const Spacer(),
                   ],
-                ),
-              ),
-              ConstantWidget.getVerSpace(12.h),
-              SizedBox(
-                width: screenWidth * 0.82,
-                child: dropdownMenu(
-                  items: browseController.tentSizes,
-                  selectedValue: browseController.selectedSize,
-                  buttonWidth: screenWidth * 0.82,
-                  buttonPadding: 20,
-                  onChanged: (val) {
-                    final index = browseController.tentSizes.indexOf(val);
-                    browseController.setSelectedSize(val, index);
-                  },
                 ),
               ),
               ConstantWidget.getVerSpace(48.h),

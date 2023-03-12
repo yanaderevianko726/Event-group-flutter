@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:popuppros/models/approved_event_model.dart';
 import 'package:popuppros/models/message_channel_model.dart';
 import '../../../models/model.dart';
-import '../../../models/tent_model.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/pref_data.dart';
 
@@ -14,8 +13,6 @@ class ApprovedEventViewController extends GetxController {
   UserDetail userDetail = UserDetail();
   ApprovedEventModel approvedEventModel =
       ApprovedEventModel(eventModel: EventModel());
-
-  List<TentModel> tentModels = [];
   List<MessageChannelModel> channels = [];
 
   @override
@@ -44,27 +41,6 @@ class ApprovedEventViewController extends GetxController {
   loadEventModel() async {
     if (Get.arguments != null) {
       approvedEventModel = Get.arguments[0] as ApprovedEventModel;
-
-      tentModels.clear();
-      final eventId = approvedEventModel.eventModel!.eventId;
-      final snapshot =
-          await dbRef.child(Constants.allEventsRef).child('$eventId').get();
-      if (snapshot.exists) {
-        Map<String, dynamic> eventMap = <String, dynamic>{};
-        final objectMap = snapshot.value as Map<Object?, Object?>;
-        objectMap.forEach((key, value) {
-          eventMap['$key'] = value;
-        });
-        approvedEventModel.eventModel = EventModel.fromJson(eventMap);
-
-        List<dynamic> tentMap =
-            jsonDecode(approvedEventModel.eventModel!.tentSlots!)
-                as List<dynamic>;
-        for (var element in tentMap) {
-          Map<String, dynamic> eleMap = element;
-          tentModels.add(TentModel.fromJson(eleMap));
-        }
-      }
     }
     update();
   }

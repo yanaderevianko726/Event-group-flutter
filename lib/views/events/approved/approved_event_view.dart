@@ -82,7 +82,7 @@ class _ApprovedEventView extends State<ApprovedEventView>
                       forceElevated: true,
                       elevation: 1,
                       title: Text(
-                        '${eventViewController.approvedEventModel.eventModel!.venueName}',
+                        '${eventViewController.approvedEventModel.eventModel!.eventName}',
                         style: const TextStyle(color: Colors.white),
                       ),
                       actions: <Widget>[
@@ -134,9 +134,9 @@ class _ApprovedEventView extends State<ApprovedEventView>
                               width: double.infinity,
                               height: topImgHeight,
                               child: eventViewController.approvedEventModel
-                                      .eventModel!.image!.isNotEmpty
+                                      .eventModel!.eventImage!.isNotEmpty
                                   ? Image.network(
-                                      '${eventViewController.approvedEventModel.eventModel!.image}',
+                                      '${eventViewController.approvedEventModel.eventModel!.eventImage}',
                                       width: screenWidth,
                                       height: topImgHeight,
                                       fit: BoxFit.cover,

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/models/model.dart';
 import '../../models/tent_model.dart';
@@ -61,22 +60,6 @@ class NotiEventController extends GetxController {
   ) async {
     isLoading = true;
     update();
-
-    List<TentModel> tentModels = [];
-    List<dynamic> tentMap = jsonDecode(eventModel.tentSlots!) as List<dynamic>;
-    for (var element in tentMap) {
-      Map<String, dynamic> eleMap = element;
-      TentModel tentModel = TentModel.fromJson(eleMap);
-      tentModels.add(tentModel);
-    }
-
-    final slotIndex = notificationModel.slotIndex ?? '0';
-    String cc = tentModels[int.parse(slotIndex)].curTents ?? '0';
-    var curCount = int.parse(cc);
-    curCount++;
-    tentModels[int.parse(slotIndex)].curTents = '$curCount';
-    String encodedTentSlots = jsonEncode(tentModels);
-    eventModel.tentSlots = encodedTentSlots;
 
     final vStatus =
         '${vendorModel.status}___${Constants.approvedBy}${eventModel.eventId}';

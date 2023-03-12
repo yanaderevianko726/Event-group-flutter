@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:popuppros/models/invite_event_model.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 import '../../models/model.dart';
-import '../../models/tent_model.dart';
 import '../../utils/constants.dart';
 import '../../utils/pref_data.dart';
 
@@ -14,9 +13,6 @@ class BrowseVendorsController extends GetxController {
 
   UserDetail userDetail = UserDetail();
   EventModel eventModel = EventModel();
-
-  List<TentModel> tentModels = [];
-  List<String> tentSizes = [];
 
   List<SwipeItem> swipeItems = <SwipeItem>[];
   MatchEngine? matchEngine;
@@ -52,21 +48,6 @@ class BrowseVendorsController extends GetxController {
     referVendors = '';
     if (Get.arguments != null) {
       eventModel = Get.arguments[0] as EventModel;
-
-      tentModels = [];
-      tentSizes = [];
-      List<dynamic> tentMap =
-          jsonDecode(eventModel.tentSlots!) as List<dynamic>;
-      for (var element in tentMap) {
-        Map<String, dynamic> eleMap = element;
-        TentModel tentModel = TentModel.fromJson(eleMap);
-        tentModels.add(tentModel);
-        tentSizes.add(
-            '\$ ${tentModel.price} ${tentModel.size1}x${tentModel.size2} ${tentModel.curTents}/${tentModel.totalTents}');
-      }
-      if (tentSizes.isNotEmpty) {
-        setSelectedSize(tentSizes[0], 0);
-      }
 
       final snapshot = await dbRef
           .child(Constants.referredVendorsRef)

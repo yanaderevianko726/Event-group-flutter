@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../../controllers/events/approved/approved_event_view_controller.dart';
-import '../../../utils/my_colors.dart';
 import '../../../utils/widgets.dart';
 
 class ApprovedEventTapSlots extends StatefulWidget {
@@ -36,11 +35,6 @@ class _ApprovedEventTapSlots extends State<ApprovedEventTapSlots> {
                 FontWeight.w400,
                 20.sp,
               ),
-              SizedBox(height: 12.h,),
-              for (var i = 0; i < eventController.tentModels.length; i++)
-                slotCellUI(
-                  tentModel: eventController.tentModels[i],
-                ),
               SizedBox(height: 24.h,),
             ],
           ),

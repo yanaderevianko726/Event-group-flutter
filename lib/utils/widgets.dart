@@ -287,9 +287,9 @@ Widget upcomingSwipeCell({
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: eventModel!.image!.isNotEmpty
+              child: eventModel!.eventImage!.isNotEmpty
                   ? Image.network(
-                      '${eventModel.image}',
+                      '${eventModel.eventImage}',
                       width: 44.h,
                       height: 44.h,
                       fit: BoxFit.cover,
@@ -304,7 +304,7 @@ Widget upcomingSwipeCell({
             ),
             Expanded(
               child: ConstantWidget.getTextWidget(
-                '${eventModel.firstName} ${eventModel.lastName}',
+                '${eventModel.username}',
                 textColor,
                 TextAlign.left,
                 FontWeight.w500,
@@ -333,9 +333,9 @@ Widget upcomingSwipeCell({
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
-              child: eventModel.image!.isNotEmpty
+              child: eventModel.eventImage!.isNotEmpty
                   ? Image.network(
-                      '${eventModel.image}',
+                      '${eventModel.eventImage}',
                       width: double.infinity,
                       height: double.infinity,
                       fit: BoxFit.cover,
@@ -509,7 +509,7 @@ Widget upcomingSwipeCell({
         width: screenWidth,
         padding: EdgeInsets.symmetric(horizontal: 8.h),
         child: ConstantWidget.getTextWidget(
-          '${eventModel.venueName}',
+          '${eventModel.eventName}',
           Colors.black87,
           TextAlign.left,
           FontWeight.w600,
@@ -821,7 +821,7 @@ Widget eventsCell({
                     topRight: Radius.circular(radius),
                   ),
                   child: Image.network(
-                    '${eventModel!.image}',
+                    '${eventModel!.eventImage}',
                     width: screenWidth,
                     height: 200.h,
                     fit: BoxFit.cover,
@@ -835,7 +835,7 @@ Widget eventsCell({
             width: screenWidth,
             padding: EdgeInsets.symmetric(horizontal: 16.h),
             child: ConstantWidget.getTextWidget(
-              '${eventModel.firstName} ${eventModel.lastName}',
+              '${eventModel.username}',
               Colors.black87,
               TextAlign.left,
               FontWeight.w600,
@@ -1290,7 +1290,7 @@ Widget eventCell(
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: Image.network(
-                  '${eventModel.image}',
+                  '${eventModel.eventImage}',
                   width: 88.h,
                   height: 88.h,
                   fit: BoxFit.cover,
@@ -1304,7 +1304,7 @@ Widget eventCell(
                       SizedBox(
                         width: double.infinity,
                         child: ConstantWidget.getTextWidget(
-                          '${eventModel.venueName}',
+                          '${eventModel.eventName}',
                           Colors.black87,
                           TextAlign.left,
                           FontWeight.w500,
@@ -1316,7 +1316,7 @@ Widget eventCell(
                         width: double.infinity,
                         margin: EdgeInsets.only(top: 5.h),
                         child: ConstantWidget.getTextWidget(
-                          'Start: ${eventModel.startTime}, Finish: ${eventModel.finishTime}',
+                          'Start: ${eventModel.createdAt}',
                           textColor,
                           TextAlign.left,
                           FontWeight.w500,

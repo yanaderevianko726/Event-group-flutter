@@ -73,7 +73,7 @@ class _EventHostingViewWidget extends State<HostingEventView>
                       forceElevated: true,
                       elevation: 1,
                       title: Text(
-                        '${eventViewController.eventModel.venueName}',
+                        '${eventViewController.eventModel.eventName}',
                         style: const TextStyle(color: Colors.white),
                       ),
                       actions: <Widget>[
@@ -126,9 +126,9 @@ class _EventHostingViewWidget extends State<HostingEventView>
                               width: double.infinity,
                               height: topImgHeight,
                               child: eventViewController
-                                      .eventModel.image!.isNotEmpty
+                                      .eventModel.eventImage!.isNotEmpty
                                   ? Image.network(
-                                      '${eventViewController.eventModel.image}',
+                                      '${eventViewController.eventModel.eventImage}',
                                       width: screenWidth,
                                       height: topImgHeight,
                                       fit: BoxFit.cover,

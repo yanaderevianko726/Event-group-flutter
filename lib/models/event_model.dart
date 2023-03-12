@@ -1,79 +1,190 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../utils/constant_widgets.dart';
+import '../utils/constants.dart';
+import '../utils/my_colors.dart';
+
 class EventModel {
   String? eventId;
-  String? venueName;
-  String? userId;
-  String? firstName;
-  String? lastName;
+  String? eventName;
+  String? eventImage;
   String? description;
+  String? userId;
+  String? username;
   String? userImage;
-  String? image;
   String? location;
-  String? type;
   String? lat;
   String? lang;
-  String? setupTime;
-  String? startTime;
-  String? finishTime;
-  String? tentSlots;
-  String? isFull;
+  String? interestedIn;
+  String? featured;
+  String? bookMark;
+  String? createdAt;
 
   EventModel({
     this.eventId = '',
     this.userId = '',
-    this.firstName = '',
-    this.lastName = '',
-    this.venueName = '',
+    this.username = '',
+    this.eventName = '',
     this.description = '',
     this.userImage = '',
-    this.image = '',
+    this.eventImage = '',
     this.location = '',
-    this.type = '',
     this.lat = '',
     this.lang = '',
-    this.setupTime = '',
-    this.startTime = '',
-    this.finishTime = '',
-    this.tentSlots = '',
-    this.isFull = 'Not',
+    this.interestedIn = '',
+    this.featured = 'Not',
+    this.bookMark = 'Not',
+    this.createdAt = '',
   });
 
   factory EventModel.fromJson(Map<String, dynamic> json) => EventModel(
         eventId: json["eventId"] ?? '',
-        userId: json["userId"] ?? '',
-        firstName: json["firstName"] ?? '',
-        lastName: json["lastName"] ?? '',
-        venueName: json["title"] ?? '',
+        eventName: json["eventName"] ?? '',
         description: json["description"] ?? '',
+        eventImage: json["eventImage"] ?? '',
+        userId: json["userId"] ?? '',
+        username: json["username"] ?? '',
         userImage: json["userImage"] ?? '',
-        image: json["image"] ?? '',
         location: json["location"] ?? '',
-        type: json["type"] ?? '',
         lat: json["lat"] ?? '',
         lang: json["lang"] ?? '',
-        setupTime: json["setupTime"] ?? '',
-        startTime: json["startTime"] ?? '',
-        finishTime: json["finishTime"] ?? '',
-        tentSlots: json["tentSlots"] ?? '',
-        isFull: json["isFull"] ?? 'Not',
+        interestedIn: json["interestedIn"] ?? '',
+        featured: json["featured"] ?? 'Not',
+        bookMark: json["bookMark"] ?? 'Not',
+        createdAt: json["createdAt"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
         "eventId": eventId,
-        "userId": userId,
-        "firstName": firstName,
-        "lastName": lastName,
-        "title": venueName,
+        "eventName": eventName,
         "description": description,
+        "eventImage": eventImage,
+        "userId": userId,
+        "username": username,
         "userImage": userImage,
-        "image": image,
         "location": location,
-        "type": type,
         "lat": lat,
         "lang": lang,
-        "setupTime": setupTime,
-        "startTime": startTime,
-        "finishTime": finishTime,
-        "tentSlots": tentSlots,
-        "isFull": isFull,
+        "interestedIn": interestedIn,
+        "featured": featured,
+        "bookMark": bookMark,
+        "createdAt": createdAt,
       };
+
+  Widget featuredWidget(BuildContext context, Function callback) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double borderRadius = 15;
+    return InkWell(
+      onTap: () {
+        callback();
+      },
+      child: Container(
+        width: screenWidth * 0.6,
+        height: Constants.featuredEventHeight,
+        margin: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(borderRadius),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 3,
+              offset: const Offset(0, 1),
+            )
+          ],
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.all(
+                Radius.circular(borderRadius),
+              ),
+              child: Image.network(
+                '$eventImage',
+                width: double.infinity,
+                height: Constants.featuredEventHeight * 0.56,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+              child: ConstantWidget.getTextWidget(
+                '$eventName',
+                textColor,
+                TextAlign.start,
+                FontWeight.w400,
+                22.sp,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                    color: Colors.grey,
+                    size: 20,
+                  ),
+                  Expanded(
+                    child: ConstantWidget.getTextWidget(
+                      '$location',
+                      descriptionColor,
+                      TextAlign.start,
+                      FontWeight.w400,
+                      16.sp,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2),
+              child: ConstantWidget.getTextWidget(
+                '$description',
+                descriptionColor,
+                TextAlign.start,
+                FontWeight.w400,
+                16.sp,
+                maxLines: 1,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget eventWidget(BuildContext context, Function callback) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    return InkWell(
+      onTap: () {
+        callback();
+      },
+      child: Container(
+        width: double.infinity,
+        height: Constants.eventHeight,
+        margin: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(15),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 3,
+              offset: const Offset(0, 1),
+            )
+          ],
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
 }

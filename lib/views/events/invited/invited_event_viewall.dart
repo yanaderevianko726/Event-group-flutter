@@ -127,7 +127,7 @@ class _EventsInvitedWidget extends State<InvitedEventsViewAll> {
                           itemChanged: (SwipeItem item, int index) {
                             if (kDebugMode) {
                               print(
-                                  "item: ${item.content.firstName}, index: $index");
+                                  "item: ${item.content.username}, index: $index");
                             }
                           },
                           leftSwipeAllowed: true,

@@ -57,15 +57,6 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
       objectMap.forEach((key, value) {
         eventMap['$key'] = value;
       });
-      setState(() {
-        eventModel = EventModel.fromJson(eventMap);
-        List<dynamic> tentMap =
-            jsonDecode(eventModel.tentSlots!) as List<dynamic>;
-        for (var element in tentMap) {
-          Map<String, dynamic> eleMap = element;
-          tentModel = TentModel.fromJson(eleMap);
-        }
-      });
     }
   }
 
@@ -139,7 +130,7 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
                                 width: double.infinity,
                                 margin: EdgeInsets.only(left: 12.h),
                                 child: ConstantWidget.getTextWidget(
-                                  '${eventModel.venueName}',
+                                  '${eventModel.eventName}',
                                   Colors.black87.withOpacity(0.7),
                                   TextAlign.start,
                                   FontWeight.w400,

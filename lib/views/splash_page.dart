@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:popuppros/controllers/splash_controller.dart';
 import 'package:popuppros/routes/app_routes.dart';
 import 'package:popuppros/utils/constants.dart';
+import '../utils/constant_widgets.dart';
 import '../utils/functions.dart';
 import '../utils/my_colors.dart';
 
@@ -26,6 +27,7 @@ class _SplashPage extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    initializeScreenSize(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: bgDarkWhite,

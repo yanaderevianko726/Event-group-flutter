@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/models/message_channel_model.dart';
-import 'package:popuppros/models/tent_model.dart';
 import '../../../models/model.dart';
-import '../../../models/tent_vendor_viewmodel.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/pref_data.dart';
 
@@ -15,8 +13,6 @@ class HostingEventViewController extends GetxController {
   EventModel eventModel = EventModel();
 
   List<MessageChannelModel> channels = [];
-  List<TentModel> tentModels = [];
-  List<TentVendorViewModel> tentVendors = [];
 
   @override
   void onInit() {
@@ -44,56 +40,6 @@ class HostingEventViewController extends GetxController {
   loadEventModel() async {
     if (Get.arguments != null) {
       eventModel = Get.arguments[0] as EventModel;
-
-      tentModels = [];
-      tentVendors = [];
-      final eventId = eventModel.eventId;
-      final snapshot =
-      await dbRef.child(Constants.allEventsRef).child('$eventId').get();
-      if (snapshot.exists) {
-        Map<String, dynamic> eventMap = <String, dynamic>{};
-        final objectMap = snapshot.value as Map<Object?, Object?>;
-        objectMap.forEach((key, value) {
-          eventMap['$key'] = value;
-        });
-        eventModel = EventModel.fromJson(eventMap);
-
-        List<dynamic> tentMap =
-        jsonDecode(eventModel.tentSlots!)
-        as List<dynamic>;
-        for (var element in tentMap) {
-          Map<String, dynamic> eleMap = element;
-          TentModel tentModel = TentModel.fromJson(eleMap);
-          tentModels.add(tentModel);
-
-          TentVendorViewModel tentVendorViewModel =
-          TentVendorViewModel(vendors: []);
-          tentVendorViewModel.tentIndex = int.parse('${tentModel.tentId}');
-          tentVendors.add(tentVendorViewModel);
-        }
-
-        final snapshot1 = await dbRef
-            .child(Constants.approvedVendorsRef)
-            .child('${userDetail.userId}')
-            .child('$eventId')
-            .get();
-        if (snapshot1.exists) {
-          final objectMap = snapshot1.value as Map<Object?, Object?>;
-          objectMap.forEach((key, value) {
-            final tentIndex = '$key'.split('--')[1];
-            int tentInt = int.parse(tentIndex);
-            Map<Object?, Object?> objectMap1 = value as Map<Object?, Object?>;
-            objectMap1.forEach((key1, value1) {
-              Map<Object?, Object?> objectMap2 = value1 as Map<Object?, Object?>;
-              Map<String, dynamic> vendorMap = <String, dynamic>{};
-              objectMap2.forEach((key2, value2) {
-                vendorMap['$key2'] = value2;
-              });
-              tentVendors[tentInt].vendors.add(VendorModel.fromJson(vendorMap));
-            });
-          });
-        }
-      }
     }
     update();
   }

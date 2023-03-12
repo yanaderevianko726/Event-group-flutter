@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/controllers/events/create_event_controller.dart';
-import 'package:popuppros/routes/app_routes.dart';
 
 import '../../models/tent_model.dart';
 import '../../utils/constant_widgets.dart';
@@ -352,7 +351,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               ),
                                               color: Colors.white),
                                           child: ConstantWidget.getTextWidget(
-                                            '${createEventController.eventModel.setupTime}',
+                                            '${createEventController.eventModel.createdAt}',
                                             textColor,
                                             TextAlign.start,
                                             FontWeight.w500,
@@ -418,7 +417,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               ),
                                               color: Colors.white),
                                           child: ConstantWidget.getTextWidget(
-                                            '${createEventController.eventModel.startTime}',
+                                            '${createEventController.eventModel.createdAt}',
                                             textColor,
                                             TextAlign.start,
                                             FontWeight.w500,
@@ -467,44 +466,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                       ],
                                     ),
                                     SizedBox(height: 12.h),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.h),
-                                      child: InkWell(
-                                        onTap: () {
-                                          showEventTimePicker(
-                                            context,
-                                            2,
-                                            createEventController,
-                                          );
-                                        },
-                                        child: Container(
-                                          width: halfWidth,
-                                          height: 48.h,
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 12.h,
-                                            vertical: 12.h,
-                                          ),
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                width: 0.8,
-                                                color: borderColor,
-                                              ),
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                Radius.circular(12),
-                                              ),
-                                              color: Colors.white),
-                                          child: ConstantWidget.getTextWidget(
-                                            '${createEventController.eventModel.finishTime}',
-                                            textColor,
-                                            TextAlign.start,
-                                            FontWeight.w500,
-                                            18.sp,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -537,13 +498,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
                             ],
                           ),
                         ),
-                        if (createEventController.tentSlots.isNotEmpty)
-                          for (var i = 0;
-                              i < createEventController.tentSlots.length;
-                              i++)
-                            slotCell(
-                              tentSlot: createEventController.tentSlots[i],
-                            ),
                         Padding(
                           padding: EdgeInsets.only(
                             top: 16.h,
@@ -872,13 +826,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
                             tentModel.totalTents = tentsController.text;
                             tentModel.size1 = size1Controller.text;
                             tentModel.size2 = size2Controller.text;
-                            createEventController.addTentSlot(tentModel, (val) {
-                              if (kDebugMode) {
-                                print(
-                                    'tentModel.price----->${tentModel.price}');
-                              }
-                              Navigator.of(context).pop();
-                            });
                           } else {
                             showDialog1(context, 'Please enter size 2 value');
                           }

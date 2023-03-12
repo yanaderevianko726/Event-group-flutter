@@ -1,6 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:figma_squircle/figma_squircle.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +11,21 @@ import '../controllers/auth/country_controller.dart';
 import 'constants.dart';
 import 'my_colors.dart';
 import 'widgets.dart';
+
+initializeScreenSize(BuildContext context,
+    {double width = 414, double height = 896,}) {
+  ScreenUtil.init(context, designSize: Size(width, height), minTextAdapt: true);
+}
+
+Widget eventTypeImage({icon}){
+  final iconTitle = 'assets/images/ic_$icon.png';
+  return Image.asset(
+    iconTitle,
+    width: 24,
+      height: 24,
+    color: Colors.white,
+  );
+}
 
 void showCustomToast(
   String texts,

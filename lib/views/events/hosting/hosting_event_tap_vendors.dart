@@ -42,37 +42,6 @@ class _HostingEventTapVendors extends State<HostingEventTapVendors> {
                 ),
               ),
               SizedBox(
-                height: 12.h,
-              ),
-              if (eventController.tentVendors.isNotEmpty)
-                for (var j = 0; j < eventController.tentVendors.length; j++)
-                  SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        if (eventController.tentVendors[j].vendors.isNotEmpty)
-                          for (var i = 0;
-                              i < eventController.tentVendors[j].vendors.length;
-                              i++)
-                            InkWell(
-                              onTap: () {
-                                Get.toNamed(AppRoutes.appliedVendorViewRoute,
-                                    arguments: [
-                                      eventController.tentVendors[j].vendors[i],
-                                      eventController.eventModel,
-                                    ]);
-                              },
-                              child: approvedVendorWidget(
-                                userDetail: eventController.userDetail,
-                                vendorModel:
-                                    eventController.tentVendors[j].vendors[i],
-                                eventModel: eventController.eventModel,
-                              ),
-                            ),
-                      ],
-                    ),
-                  ),
-              SizedBox(
                 height: 16.h,
               ),
               Row(
