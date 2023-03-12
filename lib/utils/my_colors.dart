@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 Color primaryColor = const Color(0xFF3D56F0);
-Color accentColor = const Color(0xFF5994FF);
+Color accentColor = const Color(0xFF5669FF);
 Color primaryLightColor = const Color(0xFF4A43EC);
 Color pinkColor = const Color(0xFFFFE3DC);
+Color purpleColor = const Color(0xFF615BC9);
 Color bgDark = const Color(0xFFFCFCFC);
 Color bgDarkWhite = const Color(0xFFFFFFFF);
 Color textColor = const Color(0xff72777A);
 Color bottomBarInActive = const Color(0xFF6C7072);
 Color borderColor = const Color(0xFFE4DFDF);
 Color subTextColor = const Color(0xFFB3B3B3);
+Color diabledColor = const Color(0xFFB8B7C7);
 Color descriptionColor = const Color(0xFF6C7072);
 Color containerShadow = "#33ACB6B5".toColor();
 

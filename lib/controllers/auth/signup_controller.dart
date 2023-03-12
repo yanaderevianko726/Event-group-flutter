@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:country_code_picker/country_code.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -19,15 +18,10 @@ class SignUpController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   UserDetail userDetail = UserDetail();
 
-  String cCode = "+1";
-  String codeName = "US";
-
   TextEditingController fNameController = TextEditingController();
-  TextEditingController lNameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController countryCodeController = TextEditingController();
+  TextEditingController confirmController = TextEditingController();
 
   bool isLoading = false;
   String cUserId = '';
@@ -36,11 +30,9 @@ class SignUpController extends GetxController {
   void onInit() {
     super.onInit();
     fNameController.text = '';
-    lNameController.text = '';
-    phoneController.text = '';
-    countryCodeController.text = '';
     emailController.text = '';
     passwordController.text = '';
+    confirmController.text = '';
   }
 
   getUserWithUserId(userId, Function callback) async {
@@ -67,12 +59,6 @@ class SignUpController extends GetxController {
     }
   }
 
-  setCountryCode(CountryCode cc){
-    cCode = cc.dialCode!;
-    codeName = cc.name!;
-    update();
-  }
-
   signUpWithEmailAndPassword(emailAddress, password, Function callback) async {
     isLoading = true;
     update();
@@ -88,8 +74,6 @@ class SignUpController extends GetxController {
         cUserId = userDetail.userId!;
         userDetail.userId = user!.uid;
         userDetail.firstName = fNameController.text;
-        userDetail.lastName = lNameController.text;
-        userDetail.mobile = '$cCode${phoneController.text}';
         userDetail.email = emailAddress;
         userDetail.password = password;
         userDetail.phoneVerified = "Not";
@@ -177,52 +161,33 @@ class SignUpController extends GetxController {
     }
   }
 
-  checkVendorProfile(Function callback) async {
-    final snapshot = await dbRef.child('${Constants.vendorsRef}/$cUserId').get();
-    if (snapshot.exists) {
-      callback(true);
-    }else{
-      callback(false);
-    }
-  }
-
   onClickSignup(Function callback) {
     if(fNameController.text.isNotEmpty){
-      if(lNameController.text.isNotEmpty){
-        if(emailController.text.isNotEmpty){
-          if(phoneController.text.isNotEmpty){
-            if(passwordController.text.isNotEmpty){
-              if(passwordController.text.length>=6){
-                signUpWithEmailAndPassword(emailController.text, passwordController.text, (retVal){
-                  if(retVal){
-                    callback(7);
-                  }else{
-                    Functions.showToast("Signup failed, please try again.");
-                    callback(6);
-                  }
-                });
+      if(emailController.text.isNotEmpty){
+        if(passwordController.text.isNotEmpty){
+          if(confirmController.text.length>=6){
+            signUpWithEmailAndPassword(emailController.text, passwordController.text, (retVal){
+              if(retVal){
+                callback(7);
               }else{
-                Functions.showToast("Please enter more 6 characters for password.");
-                callback(5);
+                Functions.showToast("Signup failed, please try again.");
+                callback(6);
               }
-            }else{
-              Functions.showToast("Please enter password.");
-              callback(4);
-            }
+            });
           }else{
-            Functions.showToast("Please enter phone number.");
-            callback(3);
+            Functions.showToast("Please confirm password.");
+            callback(5);
           }
         }else{
-          Functions.showToast("Please enter email.");
-          callback(2);
+          Functions.showToast("Please enter password.");
+          callback(4);
         }
       }else{
-        Functions.showToast("Please enter lastname.");
-        callback(1);
+        Functions.showToast("Please enter email.");
+        callback(2);
       }
     }else{
-      Functions.showToast("Please enter firstname.");
+      Functions.showToast("Please enter full name.");
       callback(0);
     }
   }

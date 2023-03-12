@@ -1,7 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/controllers/auth/signin_controller.dart';
 
@@ -11,7 +10,6 @@ import '../../../utils/constants.dart';
 import '../../../utils/functions.dart';
 import '../../../utils/my_colors.dart';
 import '../../../utils/widgets.dart';
-import '../../wizards/usertype_wizard.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 class SignInPage extends StatefulWidget {
@@ -45,7 +43,7 @@ class _SignInPage extends State<SignInPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 64.h,
+                          height: 40.h,
                         ),
                         Image.asset(
                           '${Constants.assetsImagePath}logo.png',
@@ -53,7 +51,7 @@ class _SignInPage extends State<SignInPage> {
                           fit: BoxFit.fitWidth,
                         ),
                         SizedBox(
-                          height: 56.h,
+                          height: 36.h,
                         ),
                         Padding(
                           padding: EdgeInsets.all(1.h),
@@ -145,11 +143,12 @@ class _SignInPage extends State<SignInPage> {
                           onTap: () async {
                             bool isNetwork = await Functions.getNetwork();
                             if (isNetwork) {
-                              signInController.onClickSignIn((val) {
-                                if (val) {
-                                  Get.offAndToNamed(AppRoutes.homeRoute);
-                                }
-                              });
+                              Get.offAndToNamed(AppRoutes.homeRoute);
+                              // signInController.onClickSignIn((val) {
+                              //   if (val) {
+                              //     Get.offAndToNamed(AppRoutes.homeRoute);
+                              //   }
+                              // });
                             } else {
                               Functions.showToast(
                                 "Please turn on Internet",
@@ -161,7 +160,7 @@ class _SignInPage extends State<SignInPage> {
                             height: 60.h,
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.all(Radius.circular(15)),
-                              color: primaryColor,
+                              color: accentColor,
                               boxShadow: [
                                 BoxShadow(
                                   color: "#0F000000".toColor(),
@@ -193,9 +192,10 @@ class _SignInPage extends State<SignInPage> {
                                       const Spacer(),
                                       Image.asset(
                                         '${Constants.assetsImagePath}ic_blue_right.png',
-                                        height: 24,
+                                        height: 26,
                                         fit: BoxFit.fitWidth,
                                       ),
+                                      const SizedBox(width: 12,),
                                     ],
                                   ),
                                 ),
@@ -204,7 +204,7 @@ class _SignInPage extends State<SignInPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 16.h,
                         ),
                         ConstantWidget.getTextWidget(
                           'OR',
@@ -214,9 +214,12 @@ class _SignInPage extends State<SignInPage> {
                           18.sp,
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 16.h,
                         ),
                         InkWell(
+                          onTap: () async {
+                            checkNetworkForGoogleSignIn(signInController);
+                          },
                           child: Container(
                             width: double.infinity,
                             height: 60.h,
@@ -256,14 +259,14 @@ class _SignInPage extends State<SignInPage> {
                               ),
                             ),
                           ),
-                          onTap: () async {
-                            checkNetworkForGoogleSignIn(signInController);
-                          },
                         ),
                         SizedBox(
                           height: 12.h,
                         ),
                         InkWell(
+                          onTap: () async {
+                            checkNetworkForGoogleSignIn(signInController);
+                          },
                           child: Container(
                             width: double.infinity,
                             height: 60.h,
@@ -303,9 +306,6 @@ class _SignInPage extends State<SignInPage> {
                               ),
                             ),
                           ),
-                          onTap: () async {
-                            checkNetworkForGoogleSignIn(signInController);
-                          },
                         ),
                         SizedBox(
                           height: 32.h,
@@ -371,19 +371,20 @@ class _SignInPage extends State<SignInPage> {
   checkNetworkForGoogleSignIn(SignInController signInController) async {
     bool isNetwork = await Functions.getNetwork();
     if (isNetwork) {
-      await signInController.signInWithGoogle((retVal) {
-        if (retVal) {
-          signInController.checkVendorProfile((val) {
-            if (val) {
-              Get.offAndToNamed(AppRoutes.homeRoute);
-            } else {
-              Get.to(() => const UserTypesWizard());
-            }
-          });
-        } else {
-          Functions.showToast("Failed to login with google.");
-        }
-      });
+      Get.offAndToNamed(AppRoutes.homeRoute);
+      // await signInController.signInWithGoogle((retVal) {
+      //   if (retVal) {
+      //     signInController.checkVendorProfile((val) {
+      //       if (val) {
+      //         Get.offAndToNamed(AppRoutes.homeRoute);
+      //       } else {
+      //         Get.to(() => const UserTypesWizard());
+      //       }
+      //     });
+      //   } else {
+      //     Functions.showToast("Failed to login with google.");
+      //   }
+      // });
     } else {
       Functions.showToast("Please turn on Internet");
     }

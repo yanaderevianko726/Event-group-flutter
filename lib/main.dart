@@ -42,7 +42,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   ThemeData themeData = ThemeData(
-    primaryColor: primaryColor,
+    primaryColor: accentColor,
     hoverColor: Colors.transparent,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,

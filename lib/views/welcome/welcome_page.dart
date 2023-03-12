@@ -68,7 +68,7 @@ class _WelcomePage extends State<WelcomePage> {
                 padding: EdgeInsets.symmetric(horizontal: 36.w),
                 child: getButton(
                   context,
-                  primaryColor,
+                  accentColor,
                   "SIGN IN",
                   Colors.white,
                   () {

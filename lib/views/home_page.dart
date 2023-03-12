@@ -17,23 +17,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+  HomePageController hController = Get.put(HomePageController());
   final pageWidgets = [
     const UpcomingEventsPage(),
     const EventsHomeWidget(),
+    const ProfileWidget(),
+    const ProfileWidget(),
     const ProfileWidget(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    HomePageController hController = Get.put(HomePageController());
     return GetBuilder<HomePageController>(
       init: HomePageController(),
       builder: (homePageController) => WillPopScope(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          body: SafeArea(
-            child: pageWidgets[homePageController.selectedPage],
-          ),
+          body: pageWidgets[homePageController.selectedPage],
           bottomNavigationBar: buildHomeBottomBar(homePageController),
           backgroundColor: bgDark,
         ),
@@ -55,10 +55,12 @@ class _HomePage extends State<HomePage> {
 
   Widget buildHomeBottomBar(homeController) {
     return ConvexAppBar(
-      items: const [
-        TabItem(icon: Icons.calendar_month_rounded, title: 'UpComing'),
-        TabItem(icon: Icons.event_available_rounded, title: 'Events'),
-        TabItem(icon: Icons.manage_accounts, title: 'Profile')
+      items: [
+        TabItem(icon: Icon(Icons.explore, color: homeController.selectedPage == 0? purpleColor:diabledColor,), title: 'Explore'),
+        TabItem(icon: Icon(Icons.home_outlined, color: homeController.selectedPage == 1? purpleColor:diabledColor,), title: 'Groups'),
+        TabItem(icon: Icon(Icons.chat_bubble_outline, color: homeController.selectedPage == 2? purpleColor:diabledColor,), title: 'Events'),
+        TabItem(icon: Icon(Icons.bookmark_border, color: homeController.selectedPage == 3? purpleColor:diabledColor,), title: 'Map'),
+        TabItem(icon: Icon(Icons.person_outline, color: homeController.selectedPage == 4? purpleColor:diabledColor,), title: 'Profile'),
       ],
       initialActiveIndex: homeController.selectedPage,
       onTap: (count) {
@@ -70,9 +72,8 @@ class _HomePage extends State<HomePage> {
       elevation: 5,
       color: bottomBarInActive,
       top: -20.h,
-      curveSize: 85.h,
-      activeColor: primaryLightColor,
-      style: TabStyle.reactCircle,
+      activeColor: purpleColor,
+      style: TabStyle.react,
       backgroundColor: Colors.white,
     );
   }
