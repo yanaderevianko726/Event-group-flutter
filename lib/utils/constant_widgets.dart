@@ -13,46 +13,27 @@ import 'constants.dart';
 import 'my_colors.dart';
 import 'widgets.dart';
 
-initializeScreenSize(BuildContext context,
-    {double width = 414, double height = 896,}) {
-  ScreenUtil.init(context, designSize: Size(width, height), minTextAdapt: true);
-}
-
-setStatusBarColor(Color color) {
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: color));
-}
-
-getNoData(BuildContext context) {
-  return Container(
-      margin: EdgeInsets.symmetric(
-          vertical: ConstantWidget.getScreenPercentSize(context, 5)),
-      child: const Center(
-        child: Text(
-          'No Data Found',
-          style: TextStyle(
-              color: Colors.black87,
-              fontFamily: Constants.fontsFamily,
-              fontWeight: FontWeight.bold),
-        ),
-      ));
-}
-
-void showCustomToast(String texts, BuildContext context) {
+void showCustomToast(
+  String texts,
+  BuildContext context,
+) {
   Fluttertoast.showToast(
-      msg: texts,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-      fontSize: 16.0);
+    msg: texts,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    backgroundColor: Colors.black,
+    textColor: Colors.white,
+    fontSize: 16.0,
+  );
 }
 
-Widget getSvgImage(String image,
-    {double? width,
-    double? height,
-    Color? color,
-    BoxFit boxFit = BoxFit.contain}) {
+Widget getSvgImage(
+  String image, {
+  double? width,
+  double? height,
+  Color? color,
+  BoxFit boxFit = BoxFit.contain,
+}) {
   return SvgPicture.asset(
     Constants.assetsImagePath + image,
     color: color,
@@ -63,11 +44,13 @@ Widget getSvgImage(String image,
   );
 }
 
-Widget getAssetImage(String image,
-    {double? width,
-    double? height,
-    Color? color,
-    BoxFit boxFit = BoxFit.contain}) {
+Widget getAssetImage(
+  String image, {
+  double? width,
+  double? height,
+  Color? color,
+  BoxFit boxFit = BoxFit.contain,
+}) {
   return Image.asset(
     Constants.assetsImagePath + image,
     color: color,
@@ -84,7 +67,11 @@ TextStyle homeWhiteRegularTextStyle = const TextStyle(
   color: Colors.white,
 );
 
-getDefaultDecoration({double? radius, Color? bgColor, Color? borderColor}) {
+getDefaultDecoration({
+  double? radius,
+  Color? bgColor,
+  Color? borderColor,
+}) {
   return ShapeDecoration(
     color: (bgColor == null) ? Colors.transparent : bgColor,
     shape: SmoothRectangleBorder(
@@ -99,11 +86,13 @@ getDefaultDecoration({double? radius, Color? bgColor, Color? borderColor}) {
   );
 }
 
-BoxDecoration getButtonDecoration(Color bgColor,
-    {BorderRadius? borderRadius,
-    Border? border,
-    List<BoxShadow> shadow = const [],
-    DecorationImage? image}) {
+BoxDecoration getButtonDecoration(
+  Color bgColor, {
+  BorderRadius? borderRadius,
+  Border? border,
+  List<BoxShadow> shadow = const [],
+  DecorationImage? image,
+}) {
   return BoxDecoration(
       color: bgColor,
       borderRadius: borderRadius,
@@ -839,7 +828,10 @@ class ConstantWidget {
       ),
       decoration: InputDecoration(
         isCollapsed: true,
-        contentPadding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 15.h),
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 16.h,
+          horizontal: 15.h,
+        ),
         isDense: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.h),
@@ -847,15 +839,24 @@ class ConstantWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.h),
-          borderSide: BorderSide(color: accentColor, width: 1.h),
+          borderSide: BorderSide(
+            color: accentColor,
+            width: 1.h,
+          ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.h),
-          borderSide: BorderSide(color: Colors.redAccent, width: 1.h),
+          borderSide: BorderSide(
+            color: Colors.redAccent,
+            width: 1.h,
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.h),
-          borderSide: BorderSide(color: Colors.redAccent, width: 1.h),
+          borderSide: BorderSide(
+            color: Colors.redAccent,
+            width: 1.h,
+          ),
         ),
         hintText: s,
         hintStyle: TextStyle(
@@ -870,29 +871,32 @@ class ConstantWidget {
     );
   }
 
-  static Widget getDescTextFiledWithLabel(BuildContext context, String s,
-      TextEditingController textEditingController,
-      {bool withPrefix = false,
-      bool withSufix = false,
-      bool minLines = false,
-      EdgeInsetsGeometry margin = EdgeInsets.zero,
-      bool isPass = false,
-      bool isEnable = true,
-      double? height,
-      double? imageHeight,
-      double? imageWidth,
-      String? image,
-      String? suffixImage,
-      Function? imageFunction,
-      AlignmentGeometry alignmentGeometry = Alignment.centerLeft,
-      List<TextInputFormatter>? inputFormatters,
-      bool defFocus = false,
-      FocusNode? focus1,
-      TextInputType? keyboardType,
-      FormFieldValidator<String>? validator,
-      double maxWidth = 60,
-      ValueChanged<String>? onChanged,
-      int? maxLine}) {
+  static Widget getDescTextFiledWithLabel(
+    BuildContext context,
+    String s,
+    TextEditingController textEditingController, {
+    bool withPrefix = false,
+    bool withSufix = false,
+    bool minLines = false,
+    EdgeInsetsGeometry margin = EdgeInsets.zero,
+    bool isPass = false,
+    bool isEnable = true,
+    double? height,
+    double? imageHeight,
+    double? imageWidth,
+    String? image,
+    String? suffixImage,
+    Function? imageFunction,
+    AlignmentGeometry alignmentGeometry = Alignment.centerLeft,
+    List<TextInputFormatter>? inputFormatters,
+    bool defFocus = false,
+    FocusNode? focus1,
+    TextInputType? keyboardType,
+    FormFieldValidator<String>? validator,
+    double maxWidth = 60,
+    ValueChanged<String>? onChanged,
+    int? maxLine,
+  }) {
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
@@ -907,64 +911,84 @@ class ConstantWidget {
       showCursor: true,
       cursorColor: Colors.black,
       style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.w500,
-          fontSize: 15.sp,
-          fontFamily: Constants.fontsFamily),
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
+        fontSize: 15.sp,
+        fontFamily: Constants.fontsFamily,
+      ),
       decoration: InputDecoration(
-          isCollapsed: true,
-          contentPadding:
-              EdgeInsets.symmetric(vertical: 16.h, horizontal: 15.h),
-          isDense: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.h),
-            borderSide: BorderSide(color: borderColor, width: 1.h),
+        isCollapsed: true,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 16.h,
+          horizontal: 15.h,
+        ),
+        isDense: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15.h),
+          borderSide: BorderSide(
+            color: borderColor,
+            width: 1.h,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.h),
-            borderSide: BorderSide(color: accentColor, width: 1.h),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15.h),
+          borderSide: BorderSide(
+            color: accentColor,
+            width: 1.h,
           ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.h),
-            borderSide: BorderSide(color: Colors.redAccent, width: 1.h),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15.h),
+          borderSide: BorderSide(
+            color: Colors.redAccent,
+            width: 1.h,
           ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.h),
-            borderSide: BorderSide(color: Colors.redAccent, width: 1.h),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15.h),
+          borderSide: BorderSide(
+            color: Colors.redAccent,
+            width: 1.h,
           ),
-          hintText: s,
-          hintStyle: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.w500,
-              fontSize: 17.sp,
-              fontFamily: Constants.fontsFamily)),
+        ),
+        hintText: s,
+        hintStyle: TextStyle(
+          color: textColor,
+          fontWeight: FontWeight.w500,
+          fontSize: 17.sp,
+          fontFamily: Constants.fontsFamily,
+        ),
+      ),
       textAlignVertical: TextAlignVertical.center,
       textAlign: TextAlign.start,
     );
   }
 
-  static Widget getCountryTextFiled(BuildContext context, String s,
-      TextEditingController textEditingController,
-      {bool withPrefix = false,
-      bool withSufix = false,
-      bool minLines = false,
-      EdgeInsetsGeometry margin = EdgeInsets.zero,
-      bool isPass = false,
-      bool isEnable = true,
-      double? height,
-      double? imageHeight,
-      double? imageWidth,
-      String? image,
-      String? suffixImage,
-      Function? imageFunction,
-      AlignmentGeometry alignmentGeometry = Alignment.centerLeft,
-      List<TextInputFormatter>? inputFormatters,
-      bool defFocus = false,
-      FocusNode? focus1,
-      TextInputType? keyboardType,
-      FormFieldValidator<String>? validator,
-      double maxWidth = 60,
-      ValueChanged<CountryCode>? onChanged}) {
+  static Widget getCountryTextFiled(
+    BuildContext context,
+    String s,
+    TextEditingController textEditingController, {
+    bool withPrefix = false,
+    bool withSufix = false,
+    bool minLines = false,
+    EdgeInsetsGeometry margin = EdgeInsets.zero,
+    bool isPass = false,
+    bool isEnable = true,
+    double? height,
+    double? imageHeight,
+    double? imageWidth,
+    String? image,
+    String? suffixImage,
+    Function? imageFunction,
+    AlignmentGeometry alignmentGeometry = Alignment.centerLeft,
+    List<TextInputFormatter>? inputFormatters,
+    bool defFocus = false,
+    FocusNode? focus1,
+    TextInputType? keyboardType,
+    FormFieldValidator<String>? validator,
+    double maxWidth = 60,
+    ValueChanged<CountryCode>? onChanged,
+  }) {
     return GetBuilder<CountryController>(
       init: CountryController(),
       builder: (controller) => TextFormField(
@@ -985,57 +1009,77 @@ class ConstantWidget {
             fontSize: 18.sp,
             fontFamily: Constants.fontsFamily),
         decoration: InputDecoration(
-            prefixIcon: (!withPrefix)
-                ? getHorSpace(12.h)
-                : Padding(
-                    padding: EdgeInsets.only(right: 12.h, left: 8.h),
-                    child: CountryCodePicker(
-                      onChanged: onChanged,
-                      initialSelection: controller.codeName,
-                      flagWidth: 44.h,
-                      padding: EdgeInsets.zero,
-                      textStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w400),
-                      favorite: [controller.code, controller.codeName],
-                      showCountryOnly: true,
-                      showDropDownButton: false,
-                      showOnlyCountryWhenClosed: false,
+          prefixIcon: (!withPrefix)
+              ? getHorSpace(12.h)
+              : Padding(
+                  padding: EdgeInsets.only(right: 12.h, left: 8.h),
+                  child: CountryCodePicker(
+                    onChanged: onChanged,
+                    initialSelection: controller.codeName,
+                    flagWidth: 44.h,
+                    padding: EdgeInsets.zero,
+                    textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w400,
                     ),
+                    favorite: [controller.code, controller.codeName],
+                    showCountryOnly: true,
+                    showDropDownButton: false,
+                    showOnlyCountryWhenClosed: false,
                   ),
-            prefixIconConstraints:
-                BoxConstraints(maxHeight: 44.h, maxWidth: 150.h),
-            isDense: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.h),
-              borderSide: BorderSide(color: borderColor, width: 1.h),
+                ),
+          prefixIconConstraints: BoxConstraints(
+            maxHeight: 44.h,
+            maxWidth: 150.h,
+          ),
+          isDense: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.h),
+            borderSide: BorderSide(
+              color: borderColor,
+              width: 1.h,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.h),
-              borderSide: BorderSide(color: accentColor, width: 1.h),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.h),
+            borderSide: BorderSide(
+              color: accentColor,
+              width: 1.h,
             ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.h),
-              borderSide: BorderSide(color: Colors.redAccent, width: 1.h),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.h),
+            borderSide: BorderSide(
+              color: Colors.redAccent,
+              width: 1.h,
             ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.h),
-              borderSide: BorderSide(color: Colors.redAccent, width: 1.h),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.h),
+            borderSide: BorderSide(
+              color: Colors.redAccent,
+              width: 1.h,
             ),
-            hintText: s,
-            hintStyle: TextStyle(
-                color: descriptionColor,
-                fontWeight: FontWeight.w500,
-                fontSize: 18.sp,
-                fontFamily: Constants.fontsFamily)),
+          ),
+          hintText: s,
+          hintStyle: TextStyle(
+            color: descriptionColor,
+            fontWeight: FontWeight.w500,
+            fontSize: 18.sp,
+            fontFamily: Constants.fontsFamily,
+          ),
+        ),
       ),
     );
   }
 
-  static Widget getDefaultTextFiledWidget(BuildContext context, String s,
-      TextEditingController textEditingController,
-      {bool? isEnabled}) {
+  static Widget getDefaultTextFiledWidget(
+    BuildContext context,
+    String s,
+    TextEditingController textEditingController, {
+    bool? isEnabled,
+  }) {
     double height = getDefaultButtonSize(context);
     double radius = getPercentSize(height, 20);
     double fontSize = getPercentSize(height, 27);
@@ -1047,7 +1091,10 @@ class ConstantWidget {
           margin: EdgeInsets.symmetric(
               vertical: getScreenPercentSize(context, 1.2)),
           alignment: Alignment.centerLeft,
-          decoration: getDefaultDecoration(radius: radius, borderColor: color),
+          decoration: getDefaultDecoration(
+            radius: radius,
+            borderColor: color,
+          ),
           child: Focus(
             onFocusChange: (hasFocus) {},
             child: TextFormField(
@@ -1057,25 +1104,29 @@ class ConstantWidget {
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
               style: TextStyle(
-                  fontFamily: Constants.fontsFamily,
-                  color: textColor,
-                  fontWeight: FontWeight.w400,
-                  fontSize: fontSize),
+                fontFamily: Constants.fontsFamily,
+                color: textColor,
+                fontWeight: FontWeight.w400,
+                fontSize: fontSize,
+              ),
               decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.only(left: getWidthPercentSize(context, 4)),
-                  border: const OutlineInputBorder(),
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  disabledBorder: InputBorder.none,
-                  hintText: s,
-                  isDense: true,
-                  hintStyle: TextStyle(
-                      fontFamily: Constants.fontsFamily,
-                      color: subTextColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: fontSize)),
+                contentPadding: EdgeInsets.only(
+                  left: getWidthPercentSize(context, 4),
+                ),
+                border: const OutlineInputBorder(),
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                hintText: s,
+                isDense: true,
+                hintStyle: TextStyle(
+                  fontFamily: Constants.fontsFamily,
+                  color: subTextColor,
+                  fontWeight: FontWeight.w400,
+                  fontSize: fontSize,
+                ),
+              ),
             ),
           ),
         );
@@ -1083,8 +1134,13 @@ class ConstantWidget {
     );
   }
 
-  static Widget getRoundCornerButtonWithoutIcon(String texts, Color color,
-      Color textColor, double btnRadius, Function function) {
+  static Widget getRoundCornerButtonWithoutIcon(
+    String texts,
+    Color color,
+    Color textColor,
+    double btnRadius,
+    Function function,
+  ) {
     return InkWell(
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -1096,10 +1152,19 @@ class ConstantWidget {
               shape: BoxShape.rectangle,
               color: color,
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 30,
+              vertical: 8,
+            ),
             child: Center(
               child: getCustomText(
-                  texts, textColor, 1, TextAlign.center, FontWeight.w500, 18),
+                texts,
+                textColor,
+                1,
+                TextAlign.center,
+                FontWeight.w500,
+                18,
+              ),
             ),
           )
         ],
@@ -1110,8 +1175,11 @@ class ConstantWidget {
     );
   }
 
-  static Widget getPasswordTextFiled(BuildContext context, String s,
-      TextEditingController textEditingController) {
+  static Widget getPasswordTextFiled(
+    BuildContext context,
+    String s,
+    TextEditingController textEditingController,
+  ) {
     double height = getDefaultButtonSize(context);
     double radius = getPercentSize(height, 20);
     double fontSize = getPercentSize(height, 27);
@@ -1120,9 +1188,6 @@ class ConstantWidget {
     return StatefulBuilder(
       builder: (context, setState) {
         myFocusNode.addListener(() {
-          if (kDebugMode) {
-            print("focus---${myFocusNode.hasFocus}---$s");
-          }
           setState(() {
             if (myFocusNode.hasFocus) {
               color = primaryColor;
@@ -1134,9 +1199,13 @@ class ConstantWidget {
         return Container(
           height: height,
           margin: EdgeInsets.symmetric(
-              vertical: getScreenPercentSize(context, 1.2)),
+            vertical: getScreenPercentSize(context, 1.2),
+          ),
           alignment: Alignment.centerLeft,
-          decoration: getDefaultDecoration(radius: radius, borderColor: color),
+          decoration: getDefaultDecoration(
+            radius: radius,
+            borderColor: color,
+          ),
           child: Focus(
             onFocusChange: (hasFocus) {},
             child: TextFormField(
@@ -1152,25 +1221,26 @@ class ConstantWidget {
                   fontWeight: FontWeight.w400,
                   fontSize: fontSize),
               decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.only(left: getWidthPercentSize(context, 4)),
-                  border: const OutlineInputBorder(),
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  disabledBorder: InputBorder.none,
-                  hintText: s,
-                  suffixIcon: Icon(
-                    Icons.remove_red_eye_outlined,
+                contentPadding:
+                    EdgeInsets.only(left: getWidthPercentSize(context, 4)),
+                border: const OutlineInputBorder(),
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                hintText: s,
+                suffixIcon: Icon(
+                  Icons.remove_red_eye_outlined,
+                  color: subTextColor,
+                  size: getPercentSize(height, 40),
+                ),
+                isDense: true,
+                hintStyle: TextStyle(
+                    fontFamily: Constants.fontsFamily,
                     color: subTextColor,
-                    size: getPercentSize(height, 40),
-                  ),
-                  isDense: true,
-                  hintStyle: TextStyle(
-                      fontFamily: Constants.fontsFamily,
-                      color: subTextColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: fontSize)),
+                    fontWeight: FontWeight.w400,
+                    fontSize: fontSize),
+              ),
             ),
           ),
         );
@@ -1179,15 +1249,20 @@ class ConstantWidget {
   }
 
   static Widget getButtonWidget(
-      BuildContext context, String s, var color, Function function) {
+    BuildContext context,
+    String s,
+    var color,
+    Function function,
+  ) {
     double radius = 22.h;
     return InkWell(
       child: Container(
         height: 60.h,
         decoration: getDefaultDecoration(radius: radius, bgColor: primaryColor),
         child: Center(
-            child: getDefaultTextWidget(
-                s, TextAlign.center, FontWeight.w700, 20.sp, Colors.white)),
+          child: getDefaultTextWidget(
+              s, TextAlign.center, FontWeight.w700, 20.sp, Colors.white),
+        ),
       ),
       onTap: () {
         function();
@@ -1203,15 +1278,21 @@ class ConstantWidget {
       child: Container(
         height: 60.h,
         decoration: getDefaultDecoration(radius: radius, bgColor: accentColor),
-        child: Center(child: getProgressDialog(color: Colors.transparent)),
+        child: Center(
+          child: getProgressDialog(color: Colors.transparent),
+        ),
       ),
       onTap: () {},
     );
   }
 
   static Widget getBorderButtonWidget(
-      BuildContext context, String s, Function function,
-      {Color? borderColor, double? btnHeight}) {
+    BuildContext context,
+    String s,
+    Function function, {
+    Color? borderColor,
+    double? btnHeight,
+  }) {
     double height = btnHeight ?? ConstantWidget.getDefaultButtonSize(context);
     double radius = ConstantWidget.getPercentSize(height, 20);
     double fontSize = ConstantWidget.getPercentSize(height, 30);
@@ -1223,8 +1304,9 @@ class ConstantWidget {
         decoration: getDefaultDecoration(
             radius: radius, borderColor: borderColor ?? accentColor),
         child: Center(
-            child: getDefaultTextWidget(s, TextAlign.center, FontWeight.bold,
-                fontSize, borderColor ?? accentColor)),
+          child: getDefaultTextWidget(s, TextAlign.center, FontWeight.bold,
+              fontSize, borderColor ?? accentColor),
+        ),
       ),
       onTap: () {
         function();
@@ -1233,52 +1315,60 @@ class ConstantWidget {
   }
 
   static Widget getCustomTextWithoutAlign(
-      String text, Color color, FontWeight fontWeight, double fontSize) {
+    String text,
+    Color color,
+    FontWeight fontWeight,
+    double fontSize,
+  ) {
     return Text(
       text,
       style: TextStyle(
-          color: color,
-          fontSize: fontSize,
-          fontFamily: Constants.fontsFamily,
-          decoration: TextDecoration.none,
-          fontWeight: fontWeight),
+        color: color,
+        fontSize: fontSize,
+        fontFamily: Constants.fontsFamily,
+        decoration: TextDecoration.none,
+        fontWeight: fontWeight,
+      ),
     );
   }
 
   static Widget getTextWidgetWithFontWithMaxLine1(
-      String text,
-      Color color,
-      TextAlign textAlign,
-      FontWeight fontWeight,
-      double textSizes,
-      String font) {
+    String text,
+    Color color,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+    String font,
+  ) {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          fontSize: textSizes,
-          color: color,
-          fontFamily: font,
-          letterSpacing: 1,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.none,
+        fontSize: textSizes,
+        color: color,
+        fontFamily: font,
+        letterSpacing: 1,
+        fontWeight: fontWeight,
+      ),
       textAlign: textAlign,
     );
   }
 
-  static Widget getShadowWidget(
-      {required Widget widget,
-      double? margin,
-      double? verticalMargin,
-      double? horizontalMargin,
-      double? radius,
-      double? topPadding,
-      double? leftPadding,
-      double? rightPadding,
-      double? bottomPadding,
-      Color? color,
-      bool? isShadow}) {
+  static Widget getShadowWidget({
+    required Widget widget,
+    double? margin,
+    double? verticalMargin,
+    double? horizontalMargin,
+    double? radius,
+    double? topPadding,
+    double? leftPadding,
+    double? rightPadding,
+    double? bottomPadding,
+    Color? color,
+    bool? isShadow,
+  }) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: (margin == null) ? 0 : margin),
       margin: EdgeInsets.symmetric(
@@ -1314,101 +1404,122 @@ class ConstantWidget {
     );
   }
 
-  static Widget getCustomText(String text, Color color, int maxLine,
-      TextAlign textAlign, FontWeight fontWeight, double textSizes) {
+  static Widget getCustomText(
+    String text,
+    Color color,
+    int maxLine,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+  ) {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          fontSize: textSizes,
-          color: color,
-          fontFamily: Constants.fontsFamily,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.none,
+        fontSize: textSizes,
+        color: color,
+        fontFamily: Constants.fontsFamily,
+        fontWeight: fontWeight,
+      ),
       maxLines: maxLine,
       textAlign: textAlign,
     );
   }
 
   static Widget getMultilineCustomFont(
-      String text, double fontSize, Color fontColor,
-      {String? fontFamily,
-      TextOverflow overflow = TextOverflow.ellipsis,
-      TextDecoration decoration = TextDecoration.none,
-      FontWeight fontWeight = FontWeight.normal,
-      TextAlign textAlign = TextAlign.start,
-      txtHeight = 1.0}) {
+    String text,
+    double fontSize,
+    Color fontColor, {
+    String? fontFamily,
+    TextOverflow overflow = TextOverflow.ellipsis,
+    TextDecoration decoration = TextDecoration.none,
+    FontWeight fontWeight = FontWeight.normal,
+    TextAlign textAlign = TextAlign.start,
+    txtHeight = 1.0,
+  }) {
     return Text(
       text,
       style: TextStyle(
-          decoration: decoration,
-          fontSize: fontSize,
-          fontStyle: FontStyle.normal,
-          color: fontColor,
-          fontFamily: Constants.fontsFamily,
-          height: txtHeight,
-          fontWeight: fontWeight),
+        decoration: decoration,
+        fontSize: fontSize,
+        fontStyle: FontStyle.normal,
+        color: fontColor,
+        fontFamily: Constants.fontsFamily,
+        height: txtHeight,
+        fontWeight: fontWeight,
+      ),
       textAlign: textAlign,
     );
   }
 
   static Widget getCustomTextFont(
-      String text,
-      Color color,
-      int maxLine,
-      TextAlign textAlign,
-      FontWeight fontWeight,
-      double textSizes,
-      String font) {
+    String text,
+    Color color,
+    int maxLine,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+    String font,
+  ) {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          fontSize: textSizes,
-          color: color,
-          fontFamily: font,
-          height: 1.1,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.none,
+        fontSize: textSizes,
+        color: color,
+        fontFamily: font,
+        height: 1.1,
+        fontWeight: fontWeight,
+      ),
       maxLines: maxLine,
       textAlign: textAlign,
     );
   }
 
   static Widget getCustomTextFontWithSpace(
-      String text,
-      Color color,
-      int maxLine,
-      TextAlign textAlign,
-      FontWeight fontWeight,
-      double textSizes,
-      String font) {
+    String text,
+    Color color,
+    int maxLine,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+    String font,
+  ) {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          fontSize: textSizes,
-          color: color,
-          fontFamily: font,
-          height: 1.3,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.none,
+        fontSize: textSizes,
+        color: color,
+        fontFamily: font,
+        height: 1.3,
+        fontWeight: fontWeight,
+      ),
       maxLines: maxLine,
       textAlign: textAlign,
     );
   }
 
-  static Widget getTextWidgetWithSpacing(String text, Color color,
-      TextAlign textAlign, FontWeight fontWeight, double textSizes) {
+  static Widget getTextWidgetWithSpacing(
+    String text,
+    Color color,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+  ) {
     return Text(
       text,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          fontSize: textSizes,
-          color: color,
-          height: 1.5,
-          fontFamily: Constants.fontsFamily,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.none,
+        fontSize: textSizes,
+        color: color,
+        height: 1.5,
+        fontFamily: Constants.fontsFamily,
+        fontWeight: fontWeight,
+      ),
       textAlign: textAlign,
     );
   }
@@ -1437,51 +1548,66 @@ class ConstantWidget {
     );
   }
 
-  static Widget getTextDecorationWidget(String text, Color color,
-      TextAlign textAlign, FontWeight fontWeight, double textSizes) {
+  static Widget getTextDecorationWidget(
+    String text,
+    Color color,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+  ) {
     return Text(
       text,
       style: TextStyle(
-          decoration: TextDecoration.underline,
-          fontSize: textSizes,
-          color: color,
-          fontFamily: Constants.fontsFamily,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.underline,
+        fontSize: textSizes,
+        color: color,
+        fontFamily: Constants.fontsFamily,
+        fontWeight: fontWeight,
+      ),
       textAlign: textAlign,
     );
   }
 
-  static BoxDecoration getButtonDecoration(Color bgColor,
-      {BorderRadius? borderRadius,
-      Border? border,
-      List<BoxShadow> shadow = const [],
-      DecorationImage? image}) {
+  static BoxDecoration getButtonDecoration(
+    Color bgColor, {
+    BorderRadius? borderRadius,
+    Border? border,
+    List<BoxShadow> shadow = const [],
+    DecorationImage? image,
+  }) {
     return BoxDecoration(
-        color: bgColor,
-        borderRadius: borderRadius,
-        border: border,
-        boxShadow: shadow,
-        image: image);
+      color: bgColor,
+      borderRadius: borderRadius,
+      border: border,
+      boxShadow: shadow,
+      image: image,
+    );
   }
 
-  static Widget getButtonWithShadow(BuildContext context, Color bgColor,
-      String text, Color textColor, Function function, double fontsize,
-      {bool isBorder = false,
-      EdgeInsetsGeometry? insetsGeometry,
-      borderColor = Colors.transparent,
-      FontWeight weight = FontWeight.bold,
-      bool isIcon = false,
-      String? image,
-      Color? imageColor,
-      double? imageWidth,
-      double? imageHeight,
-      bool smallFont = false,
-      double? buttonHeight,
-      double? buttonWidth,
-      List<BoxShadow> boxShadow = const [],
-      EdgeInsetsGeometry? insetsGeometrypadding,
-      BorderRadius? borderRadius,
-      double? borderWidth}) {
+  static Widget getButtonWithShadow(
+    BuildContext context,
+    Color bgColor,
+    String text,
+    Color textColor,
+    Function function,
+    double fontsize, {
+    bool isBorder = false,
+    EdgeInsetsGeometry? insetsGeometry,
+    borderColor = Colors.transparent,
+    FontWeight weight = FontWeight.bold,
+    bool isIcon = false,
+    String? image,
+    Color? imageColor,
+    double? imageWidth,
+    double? imageHeight,
+    bool smallFont = false,
+    double? buttonHeight,
+    double? buttonWidth,
+    List<BoxShadow> boxShadow = const [],
+    EdgeInsetsGeometry? insetsGeometrypadding,
+    BorderRadius? borderRadius,
+    double? borderWidth,
+  }) {
     return InkWell(
       onTap: () {
         function();
@@ -1496,7 +1622,10 @@ class ConstantWidget {
           borderRadius: borderRadius,
           shadow: boxShadow,
           border: (isBorder)
-              ? Border.all(color: borderColor, width: borderWidth!)
+              ? Border.all(
+                  color: borderColor,
+                  width: borderWidth!,
+                )
               : null,
         ),
         child: Row(
@@ -1505,11 +1634,20 @@ class ConstantWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             (isIcon)
-                ? getSvgImage(image!, width: 20.h, height: 20.h)
+                ? getSvgImage(
+                    image!,
+                    width: 20.h,
+                    height: 20.h,
+                  )
                 : getHorSpace(0),
             (isIcon) ? getHorSpace(10.h) : getHorSpace(0),
             ConstantWidget.getTextWidget(
-                text, textColor, TextAlign.center, weight, fontsize),
+              text,
+              textColor,
+              TextAlign.center,
+              weight,
+              fontsize,
+            ),
           ],
         ),
       ),
@@ -1517,16 +1655,17 @@ class ConstantWidget {
   }
 
   static Widget getRichText(
-      String firstText,
-      Color firstColor,
-      FontWeight firstWeight,
-      double firstSize,
-      String secondText,
-      Color secondColor,
-      FontWeight secondWeight,
-      double secondSize,
-      {TextAlign textAlign = TextAlign.center,
-      double? txtHeight}) {
+    String firstText,
+    Color firstColor,
+    FontWeight firstWeight,
+    double firstSize,
+    String secondText,
+    Color secondColor,
+    FontWeight secondWeight,
+    double secondSize, {
+    TextAlign textAlign = TextAlign.center,
+    double? txtHeight,
+  }) {
     return RichText(
       textAlign: textAlign,
       text: TextSpan(
@@ -1540,70 +1679,82 @@ class ConstantWidget {
           ),
           children: [
             TextSpan(
-                text: secondText,
-                style: TextStyle(
-                    color: secondColor,
-                    fontWeight: secondWeight,
-                    fontFamily: Constants.fontsFamily,
-                    fontSize: secondSize,
-                    height: txtHeight))
+              text: secondText,
+              style: TextStyle(
+                color: secondColor,
+                fontWeight: secondWeight,
+                fontFamily: Constants.fontsFamily,
+                fontSize: secondSize,
+                height: txtHeight,
+              ),
+            )
           ]),
     );
   }
 
   static Widget getTextWidgetWithFont(
-      String text,
-      Color color,
-      TextAlign textAlign,
-      FontWeight fontWeight,
-      double textSizes,
-      String font) {
+    String text,
+    Color color,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+    String font,
+  ) {
     return Text(
       text,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          fontSize: textSizes,
-          color: color,
-          fontFamily: Constants.fontsFamily,
-          letterSpacing: 1,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.none,
+        fontSize: textSizes,
+        color: color,
+        fontFamily: Constants.fontsFamily,
+        letterSpacing: 1,
+        fontWeight: fontWeight,
+      ),
       textAlign: textAlign,
     );
   }
 
   static Widget getTextWidgetWithFontWithMaxLine(
-      String text,
-      Color color,
-      TextAlign textAlign,
-      FontWeight fontWeight,
-      double textSizes,
-      String font,
-      int maxLine) {
+    String text,
+    Color color,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double textSizes,
+    String font,
+    int maxLine,
+  ) {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
       maxLines: maxLine,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          fontSize: textSizes,
-          color: color,
-          fontFamily: font,
-          letterSpacing: 1,
-          fontWeight: fontWeight),
+        decoration: TextDecoration.none,
+        fontSize: textSizes,
+        color: color,
+        fontFamily: font,
+        letterSpacing: 1,
+        fontWeight: fontWeight,
+      ),
       textAlign: textAlign,
     );
   }
 
-  static Widget getDefaultTextWidget(String s, TextAlign textAlign,
-      FontWeight fontWeight, double fontSize, var color) {
+  static Widget getDefaultTextWidget(
+    String s,
+    TextAlign textAlign,
+    FontWeight fontWeight,
+    double fontSize,
+    var color,
+  ) {
     return Text(
       s,
       textAlign: textAlign,
       style: TextStyle(
-          fontFamily: Constants.fontsFamily,
-          fontWeight: fontWeight,
-          fontSize: fontSize,
-          color: color),
+        fontFamily: Constants.fontsFamily,
+        fontWeight: fontWeight,
+        fontSize: fontSize,
+        color: color,
+      ),
     );
   }
 }

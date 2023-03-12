@@ -11,8 +11,12 @@ Color textColor = const Color(0xff72777A);
 Color bottomBarInActive = const Color(0xFF6C7072);
 Color borderColor = const Color(0xFFE4DFDF);
 Color subTextColor = const Color(0xFFB3B3B3);
-Color diabledColor = const Color(0xFFB8B7C7);
+Color disabledColor = const Color(0xFFB8B7C7);
 Color descriptionColor = const Color(0xFF6C7072);
+Color redLightColor = const Color(0xFFE5625E);
+Color redLight1Color = const Color(0xFFE46D44);
+Color redLight2Color = const Color(0xFFDC42BF);
+Color redLight3Color = const Color(0xFFEEB868);
 Color containerShadow = "#33ACB6B5".toColor();
 
 extension ColorExtension on String {

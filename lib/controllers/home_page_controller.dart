@@ -11,7 +11,7 @@ import '../utils/pref_data.dart';
 class HomePageController extends GetxController {
   late DatabaseReference dbRef = FirebaseDatabase.instance.ref();
   UserDetail userDetail = UserDetail();
-  int selectedPage = 1;
+  int selectedPage = 0;
 
   onChange(int value, Function callback) {
     selectedPage = value;

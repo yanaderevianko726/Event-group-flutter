@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'events/event_home.dart';
-import 'events/upcoming/upcoming_event_page.dart';
+import 'events/explore/explore_widget.dart';
 import 'profile/profile_widget.dart';
 import '../utils/my_colors.dart';
 import '../controllers/home_page_controller.dart';
@@ -19,21 +19,39 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   HomePageController hController = Get.put(HomePageController());
   final pageWidgets = [
-    const UpcomingEventsPage(),
+    const ExplorePage(),
     const EventsHomeWidget(),
     const ProfileWidget(),
     const ProfileWidget(),
     const ProfileWidget(),
   ];
 
+  final statusBarColors = [
+    purpleColor,
+    purpleColor,
+    purpleColor,
+    purpleColor,
+    purpleColor,
+  ];
+
   @override
   Widget build(BuildContext context) {
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     return GetBuilder<HomePageController>(
       init: HomePageController(),
       builder: (homePageController) => WillPopScope(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          body: pageWidgets[homePageController.selectedPage],
+          body: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: statusBarHeight,
+                color: statusBarColors[homePageController.selectedPage],
+              ),
+              Expanded(child: pageWidgets[homePageController.selectedPage]),
+            ],
+          ),
           bottomNavigationBar: buildHomeBottomBar(homePageController),
           backgroundColor: bgDark,
         ),
@@ -56,11 +74,11 @@ class _HomePage extends State<HomePage> {
   Widget buildHomeBottomBar(homeController) {
     return ConvexAppBar(
       items: [
-        TabItem(icon: Icon(Icons.explore, color: homeController.selectedPage == 0? purpleColor:diabledColor,), title: 'Explore'),
-        TabItem(icon: Icon(Icons.home_outlined, color: homeController.selectedPage == 1? purpleColor:diabledColor,), title: 'Groups'),
-        TabItem(icon: Icon(Icons.chat_bubble_outline, color: homeController.selectedPage == 2? purpleColor:diabledColor,), title: 'Events'),
-        TabItem(icon: Icon(Icons.bookmark_border, color: homeController.selectedPage == 3? purpleColor:diabledColor,), title: 'Map'),
-        TabItem(icon: Icon(Icons.person_outline, color: homeController.selectedPage == 4? purpleColor:diabledColor,), title: 'Profile'),
+        TabItem(icon: Icon(Icons.explore, color: homeController.selectedPage == 0? purpleColor:disabledColor,), title: 'Explore'),
+        TabItem(icon: Icon(Icons.home_outlined, color: homeController.selectedPage == 1? purpleColor:disabledColor,), title: 'Groups'),
+        TabItem(icon: Icon(Icons.chat_bubble_outline, color: homeController.selectedPage == 2? purpleColor:disabledColor,), title: 'Events'),
+        TabItem(icon: Icon(Icons.bookmark_border, color: homeController.selectedPage == 3? purpleColor:disabledColor,), title: 'Map'),
+        TabItem(icon: Icon(Icons.person_outline, color: homeController.selectedPage == 4? purpleColor:disabledColor,), title: 'Profile'),
       ],
       initialActiveIndex: homeController.selectedPage,
       onTap: (count) {

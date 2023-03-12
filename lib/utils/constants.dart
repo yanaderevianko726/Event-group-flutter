@@ -28,6 +28,7 @@ class Constants {
   static String usersRef = 'Users';
   static String vendorsRef = 'Vendors';
   static String allEventsRef = 'AllEvents';
+  static String eventTypes = 'EventTypes';
   static String messagesRef = 'Messages';
   static String messageChannelsRef = 'MessageChannels';
   static String hostingEventsRef = 'HostingEvents';
@@ -48,52 +49,10 @@ class Constants {
   static DateFormat historyTitleDateFormat = DateFormat("MMMM dd, yyyy", "en-US");
   static const String defTimeZoneName = "America/Detroit";
 
-  static List<String> userImageUrl = [
-    'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/events%2Fbooking-5.png?alt=media&token=6fc0b6a2-9590-4ad4-956a-71db8880a0aa',
-    'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/events%2Fidea.png?alt=media&token=984d9732-5fa6-44f5-aff8-1c95a43a7595',
-    'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/events%2Fimage%20(2).png?alt=media&token=1b0e6d7b-ae9a-46c0-95dc-0b5db3fd87d9',
-  ];
-
-  static List<String> tmpFNames = [
-    'Alina',
-    'Anastasia',
-    'Nastya',
-  ];
-
-  static List<String> tmpLNames = [
-    'Kudryashova',
-    'Duzenko',
-    'Adamova',
-  ];
-
-  static List<String> tmpImageUrl = [
-    'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/events%2Fbooking-5.png?alt=media&token=6fc0b6a2-9590-4ad4-956a-71db8880a0aa',
-    'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/events%2Fidea.png?alt=media&token=984d9732-5fa6-44f5-aff8-1c95a43a7595',
-    'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/events%2Fimage%20(2).png?alt=media&token=1b0e6d7b-ae9a-46c0-95dc-0b5db3fd87d9',
-  ];
-
-  static List<String> venueNames = [
-    'Dogwood Festival',
-    'Dogiron Festival',
-    'Dogwater Festival',
-  ];
-
   static List<String> typeList = [
     'Food Tent',
     'Food Truck',
     'Entertainer',
-  ];
-
-  static List<String> eventIds = [
-    '-NOvX6yKi9lkoE34a8SW',
-    '-NOvvKRDrOgzDYRGG5P-',
-    'u3PaTyc6D9PxBpe4UKoOhCRu8Nj2',
-  ];
-
-  static List<String> userIds = [
-    'kP7AsPAa9mdjjolonyYlGRncFN03',
-    'tiBOtJ9flJg2s7UHG1qPHjVrAHp2',
-    'tiBOtJ9flJg2s7UHG1qPHjVrAHp2',
   ];
 
   static Future<String> currentTimeUTC() async {
