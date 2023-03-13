@@ -36,8 +36,8 @@ class ExploreController extends GetxController {
       Map<String, dynamic> userMap;
       userMap = jsonDecode(uDetails) as Map<String, dynamic>;
       userDetail = UserDetail.fromJson(userMap);
+      update();
     }
-    update();
   }
 
   loadEventTypes() async {
@@ -80,7 +80,6 @@ class ExploreController extends GetxController {
       );
       eventTypes.add(eventType);
     }
-    update();
 
     isLoading = false;
     update();
@@ -97,8 +96,8 @@ class ExploreController extends GetxController {
       objectMap.forEach((key, value) {
         referredIdsVal = '$value';
       });
+      update();
     }
-    update();
   }
 
   loadEventModels() async {

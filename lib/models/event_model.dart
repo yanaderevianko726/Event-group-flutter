@@ -106,7 +106,7 @@ class EventModel {
               child: Image.network(
                 '$eventImage',
                 width: double.infinity,
-                height: Constants.featuredEventHeight * 0.56,
+                height: Constants.featuredEventHeight * 0.54,
                 fit: BoxFit.cover,
               ),
             ),
@@ -131,6 +131,7 @@ class EventModel {
                     color: Colors.grey,
                     size: 20,
                   ),
+                  const SizedBox(width: 5),
                   Expanded(
                     child: ConstantWidget.getTextWidget(
                       '$location',
@@ -145,14 +146,38 @@ class EventModel {
             ),
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2),
               child: ConstantWidget.getTextWidget(
                 '$description',
                 descriptionColor,
                 TextAlign.start,
                 FontWeight.w400,
-                16.sp,
+                15.sp,
                 maxLines: 1,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/ic_user.png',
+                    color: Colors.grey,
+                    width: 18,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: ConstantWidget.getTextWidget(
+                      '$interestedIn',
+                      descriptionColor,
+                      TextAlign.start,
+                      FontWeight.w400,
+                      15.sp,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

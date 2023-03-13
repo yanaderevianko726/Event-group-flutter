@@ -45,7 +45,7 @@ class HomePageController extends GetxController {
         VendorModel vendorModel = VendorModel.fromJson(vendorMap);
         await PrefData.setVendorDetail(json.encode(vendorModel));
       }
+      update();
     }
-    update();
   }
 }
