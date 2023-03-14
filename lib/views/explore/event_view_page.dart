@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/utils/constant_widgets.dart';
-import 'package:popuppros/views/groups/join_group.dart';
 
-import '../../../controllers/events/hosting/hosting_event_view_controller.dart';
-import '../../../utils/constants.dart';
-import '../../../utils/my_colors.dart';
-import '../../groups/create_group.dart';
+import '../../controllers/events/hosting/hosting_event_view_controller.dart';
+import '../../utils/constants.dart';
+import '../../utils/my_colors.dart';
+import 'create_group.dart';
+import 'join_group.dart';
 
-class HostingEventView extends StatefulWidget {
-  const HostingEventView({super.key});
+class EventViewPage extends StatefulWidget {
+  const EventViewPage({super.key});
 
   @override
   _EventHostingViewWidget createState() => _EventHostingViewWidget();
 }
 
-class _EventHostingViewWidget extends State<HostingEventView> {
+class _EventHostingViewWidget extends State<EventViewPage> {
   @override
   Widget build(BuildContext context) {
     var statusBarHeight = MediaQuery.of(context).viewPadding.top;

@@ -4,7 +4,6 @@ import 'package:popuppros/views/events/approved/approved_events_viewall.dart';
 import 'package:popuppros/views/events/hosting/hosting_events_viewall.dart';
 import 'package:popuppros/views/events/invited/invited_event_view.dart';
 import 'package:popuppros/views/events/invited/invited_event_viewall.dart';
-import 'package:popuppros/views/groups/join_group.dart';
 import 'package:popuppros/views/messages/messages_page.dart';
 import 'package:popuppros/views/notifications/notifications_page.dart';
 import 'package:popuppros/views/profile/host_profile.dart';
@@ -14,7 +13,8 @@ import 'package:popuppros/views/welcome/welcome_page.dart';
 import '../views/auth/signin/signin_page.dart';
 import '../views/auth/signup/signup_page.dart';
 import '../views/events/create_event_page.dart';
-import '../views/events/hosting/hosting_event_view.dart';
+import '../views/explore/event_view_page.dart';
+import '../views/explore/join_group.dart';
 import '../views/home_page.dart';
 import '../views/profile/edit_profile_page.dart';
 import '../views/splash_page.dart';
@@ -33,7 +33,7 @@ class AppPages {
     AppRoutes.eventsHostingAllRoute: (context) => const HostingEventsViewAll(),
     AppRoutes.eventsApprovedAllRoute: (context) => const ApprovedEventsViewAll(),
     AppRoutes.eventsInvitedAllRoute: (context) => const InvitedEventsViewAll(),
-    AppRoutes.eventHostingViewRoute: (context) => const HostingEventView(),
+    AppRoutes.eventHostingViewRoute: (context) => const EventViewPage(),
     AppRoutes.eventApprovedViewRoute: (context) => const ApprovedEventView(),
     AppRoutes.eventInvitedViewRoute: (context) => const InvitedEventView(),
     AppRoutes.browseVendorsRoute: (context) => const BrowseVendorsPage(),

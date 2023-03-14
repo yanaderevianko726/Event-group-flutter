@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:popuppros/views/groups/people_details.dart';
+import 'package:popuppros/views/explore/people_details.dart';
 import '../../../utils/constant_widgets.dart';
 import '../../../utils/my_colors.dart';
 import '../../controllers/groups/join_group_controller.dart';
