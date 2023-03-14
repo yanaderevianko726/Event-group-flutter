@@ -17,6 +17,7 @@ class JoinGroupController extends GetxController {
   UserDetail userDetail = UserDetail();
 
   List<TagModel> tagModels = [];
+  List<UserDetail> peoples = [];
 
   bool isLoading = false;
 
@@ -29,6 +30,7 @@ class JoinGroupController extends GetxController {
   initController() async {
     await getUserDetails();
     await loadEventTags();
+    await loadPeoples();
   }
 
   getUserDetails() async {
@@ -93,5 +95,9 @@ class JoinGroupController extends GetxController {
 
     isLoading = false;
     update();
+  }
+
+  loadPeoples() async {
+    peoples.clear();
   }
 }
