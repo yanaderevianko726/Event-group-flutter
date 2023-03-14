@@ -22,8 +22,8 @@ class _EventsHostingWidget extends State<HostingEventsViewAll> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: GetBuilder<HostingEventsController>(
-          init: HostingEventsController(),
+        child: GetBuilder<ExploreEventsController>(
+          init: ExploreEventsController(),
           builder: (eventController) => GetBuilder<NotificationController>(
             init: NotificationController(),
             builder: (notificationController) => Container(
@@ -74,23 +74,23 @@ class _EventsHostingWidget extends State<HostingEventsViewAll> {
                     showBack: true,
                   ),
                   ConstantWidget.getVerSpace(20.h),
-                  if (eventController.hostingEvents.isNotEmpty)
+                  if (eventController.exploreEvents.isNotEmpty)
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             for (var i = 0;
-                                i < eventController.hostingEvents.length;
+                                i < eventController.exploreEvents.length;
                                 i++)
                               eventsCell(
                                 context: context,
-                                eventModel: eventController.hostingEvents[i],
+                                eventModel: eventController.exploreEvents[i],
                                 tagColor: Colors.green[700]!,
                                 callback: () {
                                   Get.toNamed(
                                     AppRoutes.eventHostingViewRoute,
                                     arguments: [
-                                      eventController.hostingEvents[i]
+                                      eventController.exploreEvents[i]
                                     ],
                                   );
                                 },

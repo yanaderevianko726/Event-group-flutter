@@ -32,11 +32,12 @@ class Constants {
   static String eventTypes = 'EventTypes';
   static String messagesRef = 'Messages';
   static String messageChannelsRef = 'MessageChannels';
-  static String hostingEventsRef = 'HostingEvents';
+  static String exploreEventsRef = 'ExploreEvents';
   static String approvedEventsRef = 'ApprovedEvents';
   static String invitedEventsRef = 'InvitedEvents';
   static String notificationsRef = 'Notifications';
-  static String referredEventRef = 'ReferredEvent';
+  static String referredEventRef = 'ReferredEvents';
+  static String referredGroupsRef = 'ReferredGroups';
   static String referredVendorsRef = 'ReferredVendors';
   static String approvedVendorsRef = 'ApprovedVendors';
   static String approvedBy = 'approvedby_';

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/utils/constant_widgets.dart';
 
-import '../../controllers/events/hosting/hosting_event_view_controller.dart';
+import '../../controllers/explore/explore_event_view_controller.dart';
 import '../../utils/constants.dart';
 import '../../utils/my_colors.dart';
 import 'create_group.dart';
@@ -22,8 +22,8 @@ class _EventHostingViewWidget extends State<EventViewPage> {
   Widget build(BuildContext context) {
     var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     double screenWidth = MediaQuery.of(context).size.width;
-    return GetBuilder<HostingEventViewController>(
-      init: HostingEventViewController(),
+    return GetBuilder<ExploreEventViewController>(
+      init: ExploreEventViewController(),
       builder: (eventViewController) => Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: bgDark,

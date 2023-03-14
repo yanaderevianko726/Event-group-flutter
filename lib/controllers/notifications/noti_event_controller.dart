@@ -73,7 +73,7 @@ class NotiEventController extends GetxController {
         );
 
     await dbRef
-        .child(Constants.hostingEventsRef)
+        .child(Constants.exploreEventsRef)
         .child('${eventModel.userId}')
         .child('${eventModel.eventId}')
         .set(

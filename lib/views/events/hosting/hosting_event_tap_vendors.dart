@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/routes/app_routes.dart';
 
-import '../../../controllers/events/hosting/hosting_event_view_controller.dart';
+import '../../../controllers/explore/explore_event_view_controller.dart';
 import '../../../utils/my_colors.dart';
 import '../../../utils/widgets.dart';
 
@@ -20,8 +20,8 @@ class _HostingEventTapVendors extends State<HostingEventTapVendors> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return GetBuilder<HostingEventViewController>(
-      init: HostingEventViewController(),
+    return GetBuilder<ExploreEventViewController>(
+      init: ExploreEventViewController(),
       builder: (eventController) => Container(
         width: screenWidth,
         height: double.infinity,

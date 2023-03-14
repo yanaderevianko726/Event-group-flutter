@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/models/message_channel_model.dart';
-import '../../../models/model.dart';
-import '../../../utils/constants.dart';
-import '../../../utils/pref_data.dart';
+import '../../models/model.dart';
+import '../../utils/constants.dart';
+import '../../utils/pref_data.dart';
 
-class HostingEventViewController extends GetxController {
+class ExploreEventViewController extends GetxController {
   late DatabaseReference dbRef = FirebaseDatabase.instance.ref();
   UserDetail userDetail = UserDetail();
   EventModel eventModel = EventModel();

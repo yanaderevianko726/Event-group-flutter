@@ -1,15 +1,10 @@
 import 'dart:convert';
-import 'package:crypto/crypto.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../models/tag_model.dart';
 import '../../models/userdetail_model.dart';
 import '../../utils/constants.dart';
-import '../../utils/functions.dart';
 import '../../utils/pref_data.dart';
 
 class JoinGroupController extends GetxController {

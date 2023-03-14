@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:popuppros/utils/constants.dart';
 import 'package:popuppros/utils/widgets.dart';
 
-import '../../../controllers/events/hosting/hosting_event_view_controller.dart';
+import '../../../controllers/explore/explore_event_view_controller.dart';
 import '../../../utils/constant_widgets.dart';
 import '../../../utils/my_colors.dart';
 
@@ -21,8 +21,8 @@ class _HostingEventTapDetailsState extends State<HostingEventTapDetails> {
     double screenWidth = MediaQuery.of(context).size.width;
     double horPadding = 18.h;
     double pieceWidth = (screenWidth - horPadding*2 - 12.h) / 2;
-    return GetBuilder<HostingEventViewController>(
-      init: HostingEventViewController(),
+    return GetBuilder<ExploreEventViewController>(
+      init: ExploreEventViewController(),
       builder: (eventController) => Container(
         width: screenWidth,
         height: double.infinity,

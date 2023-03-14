@@ -16,217 +16,199 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagesPageState extends State<MessagesPage> {
-  List<Widget> topIcons = [];
-
-  initTopIcons() {
-    Widget alert = Icon(
-      Icons.call,
-      color: primaryLightColor,
-      size: 28.h,
-    );
-    topIcons.add(alert);
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initTopIcons();
-  }
-
   @override
   Widget build(BuildContext context) {
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     return GetBuilder<MessagesController>(
       init: MessagesController(),
       builder: (messagesController) => Scaffold(
         backgroundColor: bgDark,
-        body: SafeArea(
-          child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: bgDarkWhite,
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 80.h,
-                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: bgDarkWhite,
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 152 + statusBarHeight,
+                decoration: BoxDecoration(
+                  color: purpleColor,
+                  boxShadow: [
                     BoxShadow(
                       color: "#2F000000".toColor(),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
-                    )
-                  ]),
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        height: 80.h,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            for (var i = 0; i < topIcons.length; i++)
-                              Padding(
-                                padding: EdgeInsets.only(left: 12.h),
-                                child: topIcons.elementAt(i),
-                              ),
-                            SizedBox(
-                              width: 16.w,
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 80.h,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Container(
-                                width: 12.w,
-                                margin: EdgeInsets.only(left: 12.h),
-                                child: Icon(
-                                  Icons.arrow_back_ios,
-                                  size: 28.h,
-                                  color: textColor,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 16.h,
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: messagesController
-                                      .channelModel.otherImage!.isNotEmpty
-                                  ? Image.network(
-                                      '${messagesController.channelModel.otherImage}',
-                                      width: 56.h,
-                                      height: 56.h,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.asset(
-                                      "${Constants.assetsImagePath}profile_imge.png",
-                                      width: 60.h,
-                                      height: 60.h,
-                                    ),
-                            ),
-                            SizedBox(
-                              width: 12.h,
-                            ),
-                            getCustomText(
-                              '${messagesController.channelModel.otherName}.',
-                              Colors.black87.withOpacity(0.7),
-                              1,
-                              TextAlign.start,
-                              FontWeight.w400,
-                              18.sp,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                ConstantWidget.getVerSpace(10.h),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 8.h,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: statusBarHeight + 24,
                     ),
-                    child: SingleChildScrollView(
-                      reverse: true,
-                      child: Column(
-                        children: [
-                          if (messagesController.messageModels.isNotEmpty)
-                            for (var i = 0;
-                                i < messagesController.messageModels.length;
-                                i++)
-                              messagesController.messageModels[i].messageCell(
-                                context: context,
-                                userDetail: messagesController.userDetail,
-                                onClickCell: () {},
-                              ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.h,
-                      vertical: 8,
-                    ),
-                    child: Row(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Expanded(
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
                           child: Container(
-                            padding: const EdgeInsets.only(
-                              left: 16,
-                              right: 16,
+                            margin: const EdgeInsets.only(left: 12, right: 12),
+                            child: Icon(
+                              Icons.arrow_back,
+                              size: 24.h,
+                              color: Colors.white,
                             ),
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(30),
-                              ),
-                              color: borderColor,
-                            ),
-                            child: ConstantWidget.getMessageTextFiled(
-                              context,
-                              "Type a message",
-                              messagesController.messageTxtController,
-                              isEnable: false,
-                              maxLine: 5,
-                              minLines: 1,
-                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: getCustomText(
+                            'Just the Girls 🥰🥰',
+                            Colors.white,
+                            1,
+                            TextAlign.start,
+                            FontWeight.w400,
+                            24.sp,
                           ),
                         ),
                         SizedBox(
                           width: 12.h,
                         ),
-                        InkWell(
-                          onTap: () {
-                            messagesController.onClickSend();
-                          },
-                          child: Container(
-                            width: 56.h,
-                            height: 56.h,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(30),
-                              ),
-                              color: borderColor,
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(40),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 14.0,
-                                right: 10,
-                                top: 10,
-                                bottom: 10,
+                            child: Image.network(
+                              'https://firebasestorage.googleapis.com/v0/b/people-olyvia.appspot.com/o/users%2FScreen%20Shot%202023-02-13%20at%2010.49%201.png?alt=media&token=3b27cfa9-9d7a-45dd-a553-45e44a29b992',
+                              width: 64,
+                              height: 64,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 8),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(40),
                               ),
-                              child: Center(
-                                child: Image.asset(
-                                  '${Constants.assetsImagePath}ic_send.png',
-                                ),
+                              child: Image.network(
+                                'https://firebasestorage.googleapis.com/v0/b/people-olyvia.appspot.com/o/users%2FMask%20Group.png?alt=media&token=9f82676e-8dc3-4b0c-a378-26a0e867d7f4',
+                                width: 64,
+                                height: 64,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                        ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 8),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(40),
+                              ),
+                              child: Image.network(
+                                'https://firebasestorage.googleapis.com/v0/b/people-olyvia.appspot.com/o/users%2FMask%20Group%20(1).png?alt=media&token=caa7beb7-079d-4f01-8dbb-c42f7d07c580',
+                                width: 64,
+                                height: 64,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ConstantWidget.getVerSpace(10.h),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 8.h,
+                  ),
+                  child: SingleChildScrollView(
+                    reverse: true,
+                    child: Column(
+                      children: [
+                        if (messagesController.messageModels.isNotEmpty)
+                          for (var i = 0;
+                              i < messagesController.messageModels.length;
+                              i++)
+                            messagesController.messageModels[i].messageCell(
+                              context: context,
+                              userDetail: messagesController.userDetail,
+                              onClickCell: () {},
+                            ),
                       ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              Container(
+                width: double.infinity,
+                color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.h,
+                    vertical: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                            left: 16,
+                            right: 16,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(30),
+                            ),
+                            color: borderColor,
+                          ),
+                          child: ConstantWidget.getMessageTextFiled(
+                            context,
+                            "Type a message",
+                            messagesController.messageTxtController,
+                            isEnable: false,
+                            maxLine: 5,
+                            minLines: 1,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 12.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          messagesController.onClickSend();
+                        },
+                        child: Center(
+                          child: Image.asset(
+                            '${Constants.assetsImagePath}ic_send_msg.png',
+                            width: 52.h,
+                            height: 52.h,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

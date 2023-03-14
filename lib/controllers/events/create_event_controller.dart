@@ -120,7 +120,7 @@ class CreateEventController extends GetxController {
           final imgUrl = await eventImageRef.getDownloadURL();
           eventModel.eventImage = imgUrl;
 
-          String? newKey = dbRef.child(Constants.hostingEventsRef).push().key;
+          String? newKey = dbRef.child(Constants.exploreEventsRef).push().key;
           eventModel.eventId = newKey;
           await dbRef
               .child(Constants.allEventsRef)
@@ -129,7 +129,7 @@ class CreateEventController extends GetxController {
             eventModel.toJson(),
           );
           await dbRef
-              .child(Constants.hostingEventsRef)
+              .child(Constants.exploreEventsRef)
               .child('${userDetail.userId}')
               .child('${eventModel.eventId}')
               .set(

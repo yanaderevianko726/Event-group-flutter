@@ -43,7 +43,7 @@ class HomeEventsController extends GetxController {
   loadHostingEvents() async {
     hostingEvents = [];
     final snapshot = await dbRef
-        .child(Constants.hostingEventsRef)
+        .child(Constants.exploreEventsRef)
         .child('${userDetail.userId}')
         .get();
     if (snapshot.exists) {

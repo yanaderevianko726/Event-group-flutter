@@ -29,7 +29,7 @@ class _HomePage extends State<HomePage> {
   final statusBarColors = [
     purpleColor,
     purpleColor,
-    purpleColor,
+    blueLight,
     purpleColor,
     purpleColor,
   ];
@@ -75,9 +75,9 @@ class _HomePage extends State<HomePage> {
     return ConvexAppBar(
       items: [
         TabItem(icon: Icon(Icons.explore, color: homeController.selectedPage == 0? purpleColor:disabledColor,), title: 'Explore'),
-        TabItem(icon: Icon(Icons.home_outlined, color: homeController.selectedPage == 1? purpleColor:disabledColor,), title: 'Groups'),
-        TabItem(icon: Icon(Icons.chat_bubble_outline, color: homeController.selectedPage == 2? purpleColor:disabledColor,), title: 'Events'),
-        TabItem(icon: Icon(Icons.bookmark_border, color: homeController.selectedPage == 3? purpleColor:disabledColor,), title: 'Map'),
+        TabItem(icon: Icon(Icons.home_outlined, color: homeController.selectedPage == 1? purpleColor:disabledColor,), title: 'Users'),
+        TabItem(icon: Icon(Icons.chat_bubble_outline, color: homeController.selectedPage == 2? purpleColor:disabledColor,), title: 'Groups'),
+        TabItem(icon: Icon(Icons.bookmark_border, color: homeController.selectedPage == 3? purpleColor:disabledColor,), title: 'Saved'),
         TabItem(icon: Icon(Icons.person_outline, color: homeController.selectedPage == 4? purpleColor:disabledColor,), title: 'Profile'),
       ],
       initialActiveIndex: homeController.selectedPage,

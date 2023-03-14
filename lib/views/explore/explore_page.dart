@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/routes/app_routes.dart';
-import '../../../controllers/events/explore/explore_controller.dart';
 import '../../../utils/constant_widgets.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/my_colors.dart';
+import '../../controllers/explore/explore_controller.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
