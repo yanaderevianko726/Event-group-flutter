@@ -395,7 +395,9 @@ class _CreateGroupPageWidget extends State<CreateGroupPage> {
                   height: 16,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showSuccessDialog();
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: 48,
@@ -442,6 +444,98 @@ class _CreateGroupPageWidget extends State<CreateGroupPage> {
           ),
         ),
       ),
+    );
+  }
+
+  showSuccessDialog() async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: SizedBox(
+            height: 320,
+            child: Padding(
+              padding: EdgeInsets.all(20.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/ic_congrat.png',
+                    width: 120,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                      top: 40.h,
+                      bottom: 12.h,
+                    ),
+                    child: Center(
+                      child: ConstantWidget.getTextWidget(
+                        'Congratulations! Group created',
+                        primaryColor,
+                        TextAlign.center,
+                        FontWeight.w500,
+                        26.sp,
+                        maxLines: 2,
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 48,
+                      margin: const EdgeInsets.only(top: 24, bottom: 16),
+                      decoration: BoxDecoration(
+                        color: purpleColor,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const SizedBox(
+                            width: 44,
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 12.0),
+                            child: ConstantWidget.getTextWidget(
+                              'View In Groups',
+                              Colors.white,
+                              TextAlign.center,
+                              FontWeight.w400,
+                              20.sp,
+                              maxLines: 2,
+                            ),
+                          ),
+                          const Spacer(),
+                          Image.asset(
+                            'assets/images/ic_arrow_right_purple.png',
+                            width: 28,
+                            fit: BoxFit.cover,
+                          ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'events/event_home.dart';
-import 'events/explore/explore_widget.dart';
+import 'explore/explore_page.dart';
 import 'profile/profile_widget.dart';
 import '../utils/my_colors.dart';
 import '../controllers/home_page_controller.dart';

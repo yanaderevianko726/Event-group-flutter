@@ -8,6 +8,7 @@ import 'package:popuppros/views/groups/join_group.dart';
 import '../../../controllers/events/hosting/hosting_event_view_controller.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/my_colors.dart';
+import '../../groups/create_group.dart';
 
 class HostingEventView extends StatefulWidget {
   const HostingEventView({super.key});
@@ -369,35 +370,40 @@ class _EventHostingViewWidget extends State<HostingEventView> {
                         ),
                       ),
                       const Spacer(),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: purpleColor,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(15),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const CreateGroupPage());
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: purpleColor,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(15),
+                            ),
                           ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 12.0),
-                              child: ConstantWidget.getTextWidget(
-                                'Create \n Group',
-                                Colors.white,
-                                TextAlign.center,
-                                FontWeight.w400,
-                                20.sp,
-                                maxLines: 2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: ConstantWidget.getTextWidget(
+                                  'Create \n Group',
+                                  Colors.white,
+                                  TextAlign.center,
+                                  FontWeight.w400,
+                                  20.sp,
+                                  maxLines: 2,
+                                ),
                               ),
-                            ),
-                            Image.asset(
-                              'assets/images/ic_arrow_right_purple.png',
-                              width: 28,
-                              fit: BoxFit.cover,
-                            ),
-                          ],
+                              Image.asset(
+                                'assets/images/ic_arrow_right_purple.png',
+                                width: 28,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
