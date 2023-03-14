@@ -6,6 +6,7 @@ import '../../../utils/constant_widgets.dart';
 import '../../../utils/my_colors.dart';
 import '../../controllers/groups/groups_controller.dart';
 import '../messages/messages_page.dart';
+import 'group_info_page.dart';
 
 class GroupsPage extends StatefulWidget {
   const GroupsPage({super.key});
@@ -177,7 +178,9 @@ class _GroupsPageWidget extends State<GroupsPage> {
                                       Row(
                                         children: [
                                           InkWell(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Get.to(() => const GroupInfoPage());
+                                            },
                                             child: Container(
                                               width: 88,
                                               height: 30,

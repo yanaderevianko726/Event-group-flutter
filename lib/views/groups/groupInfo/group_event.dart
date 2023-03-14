@@ -14,78 +14,224 @@ class GroupEventDetails extends StatefulWidget {
 class _GroupEventDetailsState extends State<GroupEventDetails> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 172,
-          decoration: BoxDecoration(
-            color: pinkLightColor,
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(32),
-              bottomRight: Radius.circular(32),
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.only(top: 16),
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: ConstantWidget.getTextWidget(
+              'Popple Launch Party 😁',
+              textColor,
+              TextAlign.start,
+              FontWeight.w400,
+              26.sp,
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity,
-                height: 64,
-                margin: const EdgeInsets.only(left: 20, top: 28),
-                child: ConstantWidget.getTextWidget(
-                  'My People',
-                  Colors.white,
-                  TextAlign.start,
-                  FontWeight.w500,
-                  28.sp,
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 60.h,
-                margin: EdgeInsets.only(
-                  left: 16.h,
-                  right: 16.h,
-                ),
-                padding: EdgeInsets.only(
-                  left: 8.h,
-                  right: 8.h,
-                ),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
+          Container(
+            width: double.infinity,
+            height: 64.h,
+            margin: const EdgeInsets.only(top: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              children: [
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    color: purpleColor.withOpacity(0.2),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(12),
+                    ),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.calendar_month_outlined,
+                      color: purpleColor,
+                      size: 30,
+                    ),
                   ),
                 ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.search,
-                      size: 32,
-                      color: Colors.white,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: ConstantWidget.getTextWidget(
+                            '13 April, 2023',
+                            textColor,
+                            TextAlign.start,
+                            FontWeight.w400,
+                            18.sp,
+                          ),
                         ),
-                        child: ConstantWidget.getTextWidget(
-                          'Search',
-                          Colors.white,
-                          TextAlign.start,
-                          FontWeight.w400,
-                          20.sp,
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: ConstantWidget.getTextWidget(
+                            'Tuesday, 4:00PM - 9:00PM',
+                            descriptionColor,
+                            TextAlign.start,
+                            FontWeight.w400,
+                            16.sp,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+          Container(
+            width: double.infinity,
+            height: 64.h,
+            margin: const EdgeInsets.only(top: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              children: [
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    color: purpleColor.withOpacity(0.2),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(12),
+                    ),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.location_on,
+                      color: purpleColor,
+                      size: 30,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: ConstantWidget.getTextWidget(
+                            'Wonderland House',
+                            textColor,
+                            TextAlign.start,
+                            FontWeight.w400,
+                            18.sp,
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: ConstantWidget.getTextWidget(
+                            '36 Guild Street Boston, MA ',
+                            descriptionColor,
+                            TextAlign.start,
+                            FontWeight.w400,
+                            16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 64.h,
+            margin: const EdgeInsets.only(top: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 56,
+                  height: 56,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    child: Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/people-olyvia.appspot.com/o/users%2FScreen%20Shot%202023-02-13%20at%2010.49%201.png?alt=media&token=3b27cfa9-9d7a-45dd-a553-45e44a29b992',
+                      width: 72,
+                      height: 72,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: ConstantWidget.getTextWidget(
+                            'Popple Marketing Team',
+                            textColor,
+                            TextAlign.start,
+                            FontWeight.w400,
+                            18.sp,
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: ConstantWidget.getTextWidget(
+                            'Organizer',
+                            descriptionColor,
+                            TextAlign.start,
+                            FontWeight.w400,
+                            16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 16),
+            child: ConstantWidget.getTextWidget(
+              'About Event',
+              textColor,
+              TextAlign.start,
+              FontWeight.w400,
+              24.sp,
+            ),
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: ConstantWidget.getTextWidget(
+              'Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More...',
+              descriptionColor,
+              TextAlign.start,
+              FontWeight.w400,
+              18.sp,
+              maxLines: 5,
+            ),
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+        ],
+      ),
     );
   }
 }
