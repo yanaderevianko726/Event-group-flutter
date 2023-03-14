@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:popuppros/views/groups/create_group.dart';
 import '../../../utils/constant_widgets.dart';
 import '../../../utils/my_colors.dart';
 import '../../controllers/groups/join_group_controller.dart';
@@ -270,7 +271,9 @@ class _PeopleDetailsPageWidget extends State<PeopleDetailsPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const CreateGroupPage());
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: 48,
