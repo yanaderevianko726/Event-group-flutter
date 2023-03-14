@@ -4,6 +4,7 @@ import 'package:popuppros/views/events/approved/approved_events_viewall.dart';
 import 'package:popuppros/views/events/hosting/hosting_events_viewall.dart';
 import 'package:popuppros/views/events/invited/invited_event_view.dart';
 import 'package:popuppros/views/events/invited/invited_event_viewall.dart';
+import 'package:popuppros/views/groups/join_group.dart';
 import 'package:popuppros/views/messages/messages_page.dart';
 import 'package:popuppros/views/notifications/notifications_page.dart';
 import 'package:popuppros/views/profile/host_profile.dart';
@@ -42,5 +43,6 @@ class AppPages {
     AppRoutes.hostProfileRoute: (context) => const HostProfilePage(),
     AppRoutes.createEventRoute: (context) => const CreateEventPage(),
     AppRoutes.notificationRoute: (context) => const NotificationsPage(),
+    AppRoutes.joinGroupRoute: (context) => const JoinGroupPage(),
   };
 }

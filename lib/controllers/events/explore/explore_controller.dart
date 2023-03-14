@@ -151,10 +151,10 @@ class ExploreController extends GetxController {
     ];
 
     final eDescs = [
-      'The best wine in Boston!',
-      'Come see the new MFA ',
-      'The best wine in Boston!',
-      'Come see the new MFA ',
+      'Come celebrate friends, fun, and getting off your phone at the Popple Launch Party (hosted with Wonderland Allston). Come see local stars Zaya Marz and Yael Hayem play! Read More...',
+      'Come celebrate friends, fun, and getting off your phone at the Popple Launch Party (hosted with Wonderland Allston). Come see local stars Zaya Marz and Yael Hayem play! Read More...',
+      'Come celebrate friends, fun, and getting off your phone at the Popple Launch Party (hosted with Wonderland Allston). Come see local stars Zaya Marz and Yael Hayem play! Read More...',
+      'Come celebrate friends, fun, and getting off your phone at the Popple Launch Party (hosted with Wonderland Allston). Come see local stars Zaya Marz and Yael Hayem play! Read More...',
     ];
 
     final eInterestes = [
@@ -180,8 +180,8 @@ class ExploreController extends GetxController {
     ];
 
     final fDescs = [
-      'The best wine in Boston!',
-      'Come see the new MFA ',
+      'Come celebrate friends, fun, and getting off your phone at the Popple Launch Party (hosted with Wonderland Allston). Come see local stars Zaya Marz and Yael Hayem play! Read More...',
+      'Come celebrate friends, fun, and getting off your phone at the Popple Launch Party (hosted with Wonderland Allston). Come see local stars Zaya Marz and Yael Hayem play! Read More...',
     ];
 
     final fInterestes = [
@@ -189,12 +189,30 @@ class ExploreController extends GetxController {
       'Come see the new MFA ',
     ];
 
+    final _dates = [
+      '10 Mar, 2023',
+      '11 Mar, 2023',
+      '12 Mar, 2023',
+      '13 Mar, 2023',
+    ];
+
+    final _times = [
+      'Tuesday, 4:00PM - 6:00PM',
+      'Tuesday, 5:00PM - 7:00PM',
+      'Tuesday, 6:00PM - 8:00PM',
+      'Tuesday, 7:00PM - 9:00PM',
+    ];
+
     for (var i = 0; i < eventImgs.length; i++) {
       EventModel eventModel = EventModel(
         eventName: eTitles[i],
         eventImage: eventImgs[i],
-        location: eLocations[i],
         description: eDescs[i],
+        eventDate: _dates[i],
+        eventTime: _times[i],
+        location: eLocations[i],
+        userImage: 'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/users%2FImage.png?alt=media&token=8fb2587f-3467-4d32-ae61-6670af6c7a6f',
+        addressLine1: 'Ksaverivka City, Vulytsia Ukraine',
         interestedIn: eInterestes[i],
       );
       eventModels.add(eventModel);
@@ -204,8 +222,12 @@ class ExploreController extends GetxController {
       EventModel eventModel = EventModel(
         eventName: fTitles[i],
         eventImage: featuredImgs[i],
-        location: fLocations[i],
         description: fDescs[i],
+        eventDate: _dates[i],
+        eventTime: _times[i],
+        location: fLocations[i],
+        userImage: 'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/users%2FImage.png?alt=media&token=8fb2587f-3467-4d32-ae61-6670af6c7a6f',
+        addressLine1: 'Ksaverivka City, Vulytsia Ukraine',
         interestedIn: fInterestes[i],
       );
       featuredEvents.add(eventModel);

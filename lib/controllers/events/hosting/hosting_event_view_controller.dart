@@ -33,15 +33,15 @@ class HostingEventViewController extends GetxController {
       Map<String, dynamic> userMap;
       userMap = jsonDecode(uDetails) as Map<String, dynamic>;
       userDetail = UserDetail.fromJson(userMap);
+      update();
     }
-    update();
   }
 
   loadEventModel() async {
     if (Get.arguments != null) {
       eventModel = Get.arguments[0] as EventModel;
+      update();
     }
-    update();
   }
 
   loadMessageChannels() async {
@@ -69,8 +69,8 @@ class HostingEventViewController extends GetxController {
           }
         }
       });
+      update();
     }
-    update();
   }
 
   addChannelListener() async {

@@ -20,8 +20,8 @@ class _HomePage extends State<HomePage> {
   HomePageController hController = Get.put(HomePageController());
   final pageWidgets = [
     const ExplorePage(),
-    const EventsHomeWidget(),
     const ProfileWidget(),
+    const EventsHomeWidget(),
     const ProfileWidget(),
     const ProfileWidget(),
   ];

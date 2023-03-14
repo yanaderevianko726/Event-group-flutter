@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,12 +13,15 @@ class EventModel {
   String? userId;
   String? username;
   String? userImage;
+  String? addressLine1;
   String? location;
   String? lat;
   String? lang;
   String? interestedIn;
   String? featured;
   String? bookMark;
+  String? eventDate;
+  String? eventTime;
   String? createdAt;
 
   EventModel({
@@ -30,12 +32,15 @@ class EventModel {
     this.description = '',
     this.userImage = '',
     this.eventImage = '',
+    this.addressLine1 = '',
     this.location = '',
     this.lat = '',
     this.lang = '',
     this.interestedIn = '',
     this.featured = 'Not',
     this.bookMark = 'Not',
+    this.eventDate = '',
+    this.eventTime = '',
     this.createdAt = '',
   });
 
@@ -47,12 +52,15 @@ class EventModel {
         userId: json["userId"] ?? '',
         username: json["username"] ?? '',
         userImage: json["userImage"] ?? '',
+        addressLine1: json["addressLine1"] ?? '',
         location: json["location"] ?? '',
         lat: json["lat"] ?? '',
         lang: json["lang"] ?? '',
         interestedIn: json["interestedIn"] ?? '',
         featured: json["featured"] ?? 'Not',
         bookMark: json["bookMark"] ?? 'Not',
+        eventDate: json["eventDate"] ?? '',
+        eventTime: json["eventTime"] ?? '',
         createdAt: json["createdAt"] ?? '',
       );
 
@@ -64,12 +72,15 @@ class EventModel {
         "userId": userId,
         "username": username,
         "userImage": userImage,
+        "addressLine1": addressLine1,
         "location": location,
         "lat": lat,
         "lang": lang,
         "interestedIn": interestedIn,
         "featured": featured,
         "bookMark": bookMark,
+        "eventDate": eventDate,
+        "eventTime": eventTime,
         "createdAt": createdAt,
       };
 
@@ -103,12 +114,17 @@ class EventModel {
               borderRadius: BorderRadius.all(
                 Radius.circular(borderRadius),
               ),
-              child: Image.network(
-                '$eventImage',
-                width: double.infinity,
-                height: Constants.featuredEventHeight * 0.54,
-                fit: BoxFit.cover,
-              ),
+              child: eventImage!.isNotEmpty
+                  ? Image.network(
+                      '$eventImage',
+                      width: double.infinity,
+                      height: Constants.featuredEventHeight * 0.54,
+                      fit: BoxFit.cover,
+                    )
+                  : SizedBox(
+                      width: double.infinity,
+                      height: Constants.featuredEventHeight * 0.54,
+                    ),
             ),
             Container(
               width: double.infinity,
@@ -146,7 +162,8 @@ class EventModel {
             ),
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2),
               child: ConstantWidget.getTextWidget(
                 '$description',
                 descriptionColor,
@@ -187,7 +204,9 @@ class EventModel {
   }
 
   Widget eventWidget(BuildContext context, Function callback) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double borderRadius = 15;
+    final fLocation =
+        location!.length >= 15 ? location!.substring(0, 14) : location;
     return InkWell(
       onTap: () {
         callback();
@@ -208,6 +227,75 @@ class EventModel {
             )
           ],
           color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.all(
+                Radius.circular(borderRadius),
+              ),
+              child: eventImage!.isNotEmpty
+                  ? Image.network(
+                      '$eventImage',
+                      width: double.infinity,
+                      height: Constants.eventHeight * 0.6,
+                      fit: BoxFit.cover,
+                    )
+                  : SizedBox(
+                      width: double.infinity,
+                      height: Constants.eventHeight * 0.6,
+                    ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+              child: ConstantWidget.getTextWidget(
+                '$eventName',
+                textColor,
+                TextAlign.start,
+                FontWeight.w400,
+                20.sp,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                    color: Colors.grey,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '$fLocation',
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                      fontSize: 16.h,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Image.asset(
+                    'assets/images/ic_user.png',
+                    color: Colors.grey,
+                    width: 18,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '$fLocation',
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                      fontSize: 16.h,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

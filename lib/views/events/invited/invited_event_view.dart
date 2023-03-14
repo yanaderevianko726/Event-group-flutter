@@ -3,14 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/controllers/notifications/notification_controller.dart';
-import 'package:popuppros/views/events/invited/invited_event_tap_slots.dart';
 
 import '../../../controllers/events/invited/invited_event_view_controller.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/my_colors.dart';
-import '../../../models/event_tap.dart';
-import '../hosting/hosting_event_view.dart';
-import 'invited_event_tap_details.dart';
 
 class InvitedEventView extends StatefulWidget {
   const InvitedEventView({super.key});
@@ -19,34 +15,7 @@ class InvitedEventView extends StatefulWidget {
   _InvitedEventView createState() => _InvitedEventView();
 }
 
-class _InvitedEventView extends State<InvitedEventView>
-    with SingleTickerProviderStateMixin {
-  late TabController tabController;
-
-  final List<EventTap> _pages = [
-    EventTap(
-      'Details',
-      const InvitedEventTapDetails(),
-      const Icon(Icons.video_library),
-    ),
-    EventTap(
-      'Slots',
-      const InvitedEventTapSlots(),
-      const Icon(Icons.image),
-    ),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: _pages.length, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
+class _InvitedEventView extends State<InvitedEventView> {
 
   @override
   Widget build(BuildContext context) {
@@ -159,27 +128,9 @@ class _InvitedEventView extends State<InvitedEventView>
                         ),
                       ),
                     ),
-                    SliverPersistentHeader(
-                      delegate: SliverPersistentHeaderDelegateImpl(
-                        tabBar: TabBar(
-                          labelColor: primaryLightColor,
-                          unselectedLabelColor: textColor,
-                          indicatorColor: primaryLightColor,
-                          controller: tabController,
-                          tabs: _pages
-                              .map<Tab>(
-                                  (EventTap page) => Tab(text: page.title))
-                              .toList(),
-                        ),
-                      ),
-                    ),
                   ];
                 },
-                body: TabBarView(
-                  controller: tabController,
-                  children:
-                      _pages.map<Widget>((EventTap page) => page.body).toList(),
-                ),
+                body: Container(),
               ),
             ),
           ),

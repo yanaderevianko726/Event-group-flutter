@@ -18,6 +18,7 @@ abstract class AppRoutes {
   static const hostProfileRoute = Paths.hostProfilePath;
   static const createEventRoute = Paths.createEventPath;
   static const notificationRoute = Paths.notificationPath;
+  static const joinGroupRoute = Paths.joinGroupPath;
 }
 
 abstract class Paths {
@@ -40,4 +41,5 @@ abstract class Paths {
   static const hostProfilePath = "/HostProfilePage";
   static const createEventPath = "/CreateEventPage";
   static const notificationPath = "/NotificationPage";
+  static const joinGroupPath = "/JoinGroupPage";
 }

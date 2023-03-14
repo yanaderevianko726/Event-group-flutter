@@ -2,16 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:popuppros/controllers/notifications/notification_controller.dart';
-import 'package:popuppros/views/events/hosting/hosting_event_tap_details.dart';
+import 'package:popuppros/utils/constant_widgets.dart';
+import 'package:popuppros/views/groups/join_group.dart';
 
 import '../../../controllers/events/hosting/hosting_event_view_controller.dart';
-import '../../../routes/app_routes.dart';
+import '../../../utils/constants.dart';
 import '../../../utils/my_colors.dart';
-import '../../../models/event_tap.dart';
-import 'hosting_event_tap_messages.dart';
-import 'hosting_event_tap_slots.dart';
-import 'hosting_event_tap_vendors.dart';
 
 class HostingEventView extends StatefulWidget {
   const HostingEventView({super.key});
@@ -20,203 +16,401 @@ class HostingEventView extends StatefulWidget {
   _EventHostingViewWidget createState() => _EventHostingViewWidget();
 }
 
-class _EventHostingViewWidget extends State<HostingEventView>
-    with SingleTickerProviderStateMixin {
-  late TabController tabController;
-  final List<EventTap> _pages = [
-    EventTap('Details', const HostingEventTapDetails(),
-        const Icon(Icons.video_library)),
-    EventTap('Slots', const HostingEventTapSlots(), const Icon(Icons.image)),
-    EventTap(
-        'Vendors', const HostingEventTapVendors(), const Icon(Icons.image)),
-    EventTap(
-        'Messages', const HostingEventTapMessages(), const Icon(Icons.image)),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: _pages.length, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
-
+class _EventHostingViewWidget extends State<HostingEventView> {
   @override
   Widget build(BuildContext context) {
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     double screenWidth = MediaQuery.of(context).size.width;
-    double topImgHeight = 280.h;
     return GetBuilder<HostingEventViewController>(
       init: HostingEventViewController(),
-      builder: (eventViewController) => GetBuilder<NotificationController>(
-        init: NotificationController(),
-        builder: (notificationController) => Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: bgDark,
-          body: SafeArea(
-            child: Container(
-              width: screenWidth,
-              height: double.infinity,
-              color: bgDarkWhite,
-              child: NestedScrollView(
-                headerSliverBuilder: (BuildContext context, bool scrolled) {
-                  return <Widget>[
-                    SliverAppBar(
-                      backgroundColor: primaryLightColor,
-                      expandedHeight: topImgHeight,
-                      floating: true,
-                      pinned: true,
-                      snap: true,
-                      forceElevated: true,
-                      elevation: 1,
-                      title: Text(
-                        '${eventViewController.eventModel.eventName}',
-                        style: const TextStyle(color: Colors.white),
+      builder: (eventViewController) => Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: bgDark,
+        body: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: statusBarHeight,
+                  color: pinkLightColor,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 220,
+                  decoration: BoxDecoration(
+                    color: pinkLightColor,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(32),
+                      bottomRight: Radius.circular(32),
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(32),
+                          bottomRight: Radius.circular(32),
+                        ),
+                        child: eventViewController
+                                .eventModel.eventImage!.isNotEmpty
+                            ? Image.network(
+                                '${eventViewController.eventModel.eventImage}',
+                                width: screenWidth,
+                                height: 220,
+                                fit: BoxFit.cover,
+                              )
+                            : SizedBox(
+                                width: double.infinity,
+                                height: Constants.featuredEventHeight * 0.54,
+                              ),
                       ),
-                      actions: <Widget>[
-                        Container(
-                          width: 36.h,
-                          height: 36.h,
-                          margin: EdgeInsets.only(
-                            top: 12.h,
-                            right: 12.h,
-                          ),
-                          child: notificationController.notificationCount > 0
-                              ? Badge(
-                                  label: Text(
-                                    '${notificationController.notificationCount}',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  child: InkWell(
-                                    child: Icon(
-                                      Icons.notifications_none,
-                                      size: 36.h,
-                                      color: primaryLightColor,
-                                    ),
-                                    onTap: () {
-                                      Get.toNamed(AppRoutes.notificationRoute);
-                                    },
-                                  ),
-                                )
-                              : Center(
-                                  child: InkWell(
-                                    child: Icon(
-                                      Icons.notifications_none,
-                                      size: 36.h,
-                                      color: primaryLightColor,
-                                    ),
-                                    onTap: () {
-                                      Get.toNamed(AppRoutes.notificationRoute);
-                                    },
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 12.0, left: 12.0),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.arrow_back,
+                                  size: 28,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 12.0),
+                                  child: ConstantWidget.getTextWidget(
+                                    '${eventViewController.eventModel.eventName}',
+                                    Colors.white,
+                                    TextAlign.start,
+                                    FontWeight.w400,
+                                    24.sp,
                                   ),
                                 ),
-                        ),
-                      ],
-                      flexibleSpace: FlexibleSpaceBar(
-                        centerTitle: true,
-                        title: const Text(''),
-                        background: Stack(
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: topImgHeight,
-                              child: eventViewController
-                                      .eventModel.eventImage!.isNotEmpty
-                                  ? Image.network(
-                                      '${eventViewController.eventModel.eventImage}',
-                                      width: screenWidth,
-                                      height: topImgHeight,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : SizedBox(
-                                      width: screenWidth,
-                                      height: topImgHeight,
-                                    ),
+                              ],
                             ),
-                            Container(
-                              width: double.infinity,
-                              height: topImgHeight,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: <Color>[
-                                    Colors.black.withOpacity(0.4),
-                                    Colors.black.withOpacity(0.2),
-                                    Colors.white.withOpacity(0.1),
-                                    Colors.white.withOpacity(0.1),
-                                    Colors.white.withOpacity(0.1),
-                                    Colors.white.withOpacity(0.1),
-                                  ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: ConstantWidget.getTextWidget(
+                    '${eventViewController.eventModel.eventName}',
+                    textColor,
+                    TextAlign.start,
+                    FontWeight.w500,
+                    28.sp,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 64.h,
+                  margin: const EdgeInsets.only(top: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 56,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: purpleColor.withOpacity(0.2),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.calendar_month_outlined,
+                            color: purpleColor,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.0),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.only(top: 4.0),
+                                child: ConstantWidget.getTextWidget(
+                                  '${eventViewController.eventModel.eventDate}',
+                                  textColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  18.sp,
                                 ),
                               ),
-                            )
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: ConstantWidget.getTextWidget(
+                                  '${eventViewController.eventModel.eventTime}',
+                                  descriptionColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  16.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 64.h,
+                  margin: const EdgeInsets.only(top: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 56,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: purpleColor.withOpacity(0.2),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.location_on,
+                            color: purpleColor,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.0),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.only(top: 4.0),
+                                child: ConstantWidget.getTextWidget(
+                                  '${eventViewController.eventModel.addressLine1}',
+                                  textColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  18.sp,
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: ConstantWidget.getTextWidget(
+                                  '${eventViewController.eventModel.location}',
+                                  descriptionColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  16.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 52.h,
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 48),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(35)),
+                    border: Border.all(width: 0.8, color: purpleColor),
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                    child: ConstantWidget.getTextWidget(
+                      'RSVP',
+                      purpleColor,
+                      TextAlign.start,
+                      FontWeight.w400,
+                      24.sp,
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 80.h,
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                        child:
+                            eventViewController.eventModel.userImage!.isNotEmpty
+                                ? Image.network(
+                                    '${eventViewController.eventModel.userImage}',
+                                    width: 72,
+                                    height: 72,
+                                    fit: BoxFit.cover,
+                                  )
+                                : const SizedBox(
+                                    width: 72,
+                                    height: 72,
+                                  ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          margin: const EdgeInsets.only(left: 12),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                margin: const EdgeInsets.only(top: 4),
+                                child: ConstantWidget.getTextWidget(
+                                  '${eventViewController.eventModel.eventName}',
+                                  textColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  22.sp,
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                margin: const EdgeInsets.only(top: 6),
+                                child: ConstantWidget.getTextWidget(
+                                  'Organizer',
+                                  descriptionColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  22.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: ConstantWidget.getTextWidget(
+                    'About Event',
+                    textColor,
+                    TextAlign.start,
+                    FontWeight.w400,
+                    24.sp,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.only(top: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 26),
+                  child: ConstantWidget.getTextWidget(
+                    '${eventViewController.eventModel.description}',
+                    descriptionColor,
+                    TextAlign.start,
+                    FontWeight.w400,
+                    20.sp,
+                    maxLines: 5,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.only(top: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const JoinGroupPage());
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: purpleColor,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: ConstantWidget.getTextWidget(
+                                  'Join \n Group',
+                                  Colors.white,
+                                  TextAlign.center,
+                                  FontWeight.w400,
+                                  20.sp,
+                                  maxLines: 2,
+                                ),
+                              ),
+                              Image.asset(
+                                'assets/images/ic_arrow_right_purple.png',
+                                width: 28,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: purpleColor,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: ConstantWidget.getTextWidget(
+                                'Create \n Group',
+                                Colors.white,
+                                TextAlign.center,
+                                FontWeight.w400,
+                                20.sp,
+                                maxLines: 2,
+                              ),
+                            ),
+                            Image.asset(
+                              'assets/images/ic_arrow_right_purple.png',
+                              width: 28,
+                              fit: BoxFit.cover,
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    SliverPersistentHeader(
-                      delegate: SliverPersistentHeaderDelegateImpl(
-                        tabBar: TabBar(
-                          labelColor: primaryLightColor,
-                          unselectedLabelColor: textColor,
-                          indicatorColor: primaryLightColor,
-                          controller: tabController,
-                          tabs: _pages
-                              .map<Tab>(
-                                  (EventTap page) => Tab(text: page.title))
-                              .toList(),
-                        ),
-                      ),
-                    ),
-                  ];
-                },
-                body: TabBarView(
-                  controller: tabController,
-                  children:
-                      _pages.map<Widget>((EventTap page) => page.body).toList(),
+                    ],
+                  ),
                 ),
-              ),
+                const SizedBox(
+                  height: 24,
+                ),
+              ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class SliverPersistentHeaderDelegateImpl
-    extends SliverPersistentHeaderDelegate {
-  final TabBar tabBar;
-  final Color color;
-
-  const SliverPersistentHeaderDelegateImpl({
-    this.color = Colors.transparent,
-    required this.tabBar,
-  });
-
-  @override
-  double get maxExtent => tabBar.preferredSize.height;
-
-  @override
-  double get minExtent => tabBar.preferredSize.height;
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
-  }
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: color,
-      child: tabBar,
     );
   }
 }
