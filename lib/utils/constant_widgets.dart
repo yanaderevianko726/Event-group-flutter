@@ -17,8 +17,8 @@ initializeScreenSize(BuildContext context,
   ScreenUtil.init(context, designSize: Size(width, height), minTextAdapt: true);
 }
 
-Widget eventTypeImage({icon}){
-  final iconTitle = 'assets/images/ic_$icon.png';
+Widget eventTagImage({icon}){
+  final iconTitle = 'assets/images/$icon.png';
   return Image.asset(
     iconTitle,
     width: 24,

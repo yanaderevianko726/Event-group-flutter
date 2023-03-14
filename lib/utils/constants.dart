@@ -54,10 +54,10 @@ class Constants {
   static double eventHeight = 180.h;
 
   static final eventIcons = [
-    'sports',
-    'musics',
-    'foods',
-    'arts',
+    'ic_sports',
+    'ic_musics',
+    'ic_foods',
+    'ic_arts',
   ];
 
   static List<String> typeList = [

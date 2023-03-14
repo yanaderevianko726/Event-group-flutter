@@ -158,19 +158,21 @@ class _ExplorePageWidget extends State<ExplorePage> {
                                   SizedBox(
                                     width: 12.h,
                                   ),
-                                  if (exploreController.eventTypes.isNotEmpty)
+                                  if (exploreController.tagModels.isNotEmpty)
                                     for (var i = 0;
-                                        i < exploreController.eventTypes.length;
+                                        i < exploreController.tagModels.length;
                                         i++)
                                       Container(
                                         width: 100,
                                         height: 56.h,
                                         margin: EdgeInsets.symmetric(
-                                            horizontal: 6.h),
+                                          horizontal: 6.h,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Color(
                                             int.parse(
-                                                "0x${exploreController.eventTypes[i].color}"),
+                                              "0x${exploreController.tagModels[i].color}",
+                                            ),
                                           ),
                                           borderRadius: const BorderRadius.all(
                                             Radius.circular(40),
@@ -180,16 +182,17 @@ class _ExplorePageWidget extends State<ExplorePage> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            eventTypeImage(
-                                                icon:
-                                                    '${exploreController.eventTypes[i].icon}'),
+                                            eventTagImage(
+                                              icon:
+                                                  '${exploreController.tagModels[i].icon}',
+                                            ),
                                             Container(
                                               margin:
                                                   EdgeInsets.only(left: 8.h),
                                               child:
                                                   ConstantWidget.getTextWidget(
                                                 exploreController
-                                                    .eventTypes[i].title,
+                                                    .tagModels[i].title,
                                                 Colors.white,
                                                 TextAlign.center,
                                                 FontWeight.w400,
@@ -221,31 +224,31 @@ class _ExplorePageWidget extends State<ExplorePage> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          if (exploreController.eventTypes.isNotEmpty)
-                          Row(
-                            children: [
-                              ConstantWidget.getTextWidget(
-                                'Featured',
-                                textColor,
-                                TextAlign.start,
-                                FontWeight.w400,
-                                20.sp,
-                              ),
-                              const Spacer(),
-                              ConstantWidget.getTextWidget(
-                                'All',
-                                textColor,
-                                TextAlign.start,
-                                FontWeight.w400,
-                                20.sp,
-                              ),
-                              Icon(
-                                Icons.arrow_right,
-                                color: textColor,
-                                size: 22,
-                              ),
-                            ],
-                          ),
+                          if (exploreController.tagModels.isNotEmpty)
+                            Row(
+                              children: [
+                                ConstantWidget.getTextWidget(
+                                  'Featured',
+                                  textColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  20.sp,
+                                ),
+                                const Spacer(),
+                                ConstantWidget.getTextWidget(
+                                  'All',
+                                  textColor,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  20.sp,
+                                ),
+                                Icon(
+                                  Icons.arrow_right,
+                                  color: textColor,
+                                  size: 22,
+                                ),
+                              ],
+                            ),
                           SizedBox(
                             height: 6.h,
                           ),
@@ -265,8 +268,11 @@ class _ExplorePageWidget extends State<ExplorePage> {
                                         i++)
                                       exploreController.featuredEvents[i]
                                           .featuredWidget(context, () {
-                                            Get.toNamed(AppRoutes.eventHostingViewRoute, arguments: [
-                                              exploreController.featuredEvents[i]
+                                        Get.toNamed(
+                                            AppRoutes.eventHostingViewRoute,
+                                            arguments: [
+                                              exploreController
+                                                  .featuredEvents[i]
                                             ]);
                                       }),
                                   SizedBox(
@@ -303,13 +309,10 @@ class _ExplorePageWidget extends State<ExplorePage> {
                           SizedBox(
                             height: 12.h,
                           ),
-                          if (exploreController
-                              .eventModels.isNotEmpty)
+                          if (exploreController.eventModels.isNotEmpty)
                             for (var i = 0;
-                            i <
-                                exploreController
-                                    .eventModels.length;
-                            i++)
+                                i < exploreController.eventModels.length;
+                                i++)
                               exploreController.eventModels[i]
                                   .eventWidget(context, () {}),
                           SizedBox(

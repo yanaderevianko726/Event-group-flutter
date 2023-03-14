@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
-import '../../../models/event_type_model.dart';
 import '../../../models/model.dart';
+import '../../../models/tag_model.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/pref_data.dart';
 
@@ -10,7 +10,7 @@ class ExploreController extends GetxController {
   late DatabaseReference dbRef = FirebaseDatabase.instance.ref();
   UserDetail userDetail = UserDetail();
 
-  List<EventType> eventTypes = [];
+  List<TagModel> tagModels = [];
   List<EventModel> eventModels = [];
   List<EventModel> featuredEvents = [];
   bool isLoading = false;
@@ -25,7 +25,7 @@ class ExploreController extends GetxController {
 
   initController() async {
     await getUserData();
-    await loadEventTypes();
+    await loadEventTags();
     await getReferredValue();
     await loadEventModels();
   }
@@ -40,8 +40,8 @@ class ExploreController extends GetxController {
     }
   }
 
-  loadEventTypes() async {
-    eventTypes = [];
+  loadEventTags() async {
+    tagModels = [];
     isLoading = true;
     update();
 
@@ -73,12 +73,12 @@ class ExploreController extends GetxController {
     ];
 
     for (var i = 0; i < _titles.length; i++) {
-      EventType eventType = EventType(
+      TagModel eventType = TagModel(
         title: _titles[i],
         color: _colors[i],
         icon: Constants.eventIcons[i],
       );
-      eventTypes.add(eventType);
+      tagModels.add(eventType);
     }
 
     isLoading = false;

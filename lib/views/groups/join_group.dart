@@ -50,8 +50,8 @@ class _JoinGroupPageWidget extends State<JoinGroupPage> {
                             children: [
                               Container(
                                 width: double.infinity,
-                                height: 212.h,
-                                padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
+                                height: 172.h,
+                                padding: const EdgeInsets.only(top: 16, left: 12, right: 12),
                                 decoration: BoxDecoration(
                                   color: blueLight,
                                   borderRadius: const BorderRadius.only(
@@ -122,7 +122,7 @@ class _JoinGroupPageWidget extends State<JoinGroupPage> {
                               ),
                               SizedBox(
                                 width: double.infinity,
-                                height: 232.h,
+                                height: 186.h,
                                 child: Column(
                                   children: [
                                     const Spacer(),
@@ -133,6 +133,53 @@ class _JoinGroupPageWidget extends State<JoinGroupPage> {
                                         scrollDirection: Axis.horizontal,
                                         child: Row(
                                           children: [
+                                            SizedBox(
+                                              width: 12.h,
+                                            ),
+                                            if (joinGroupController.tagModels.isNotEmpty)
+                                              for (var i = 0;
+                                              i < joinGroupController.tagModels.length;
+                                              i++)
+                                                Container(
+                                                  width: 100,
+                                                  height: 56.h,
+                                                  margin: EdgeInsets.symmetric(
+                                                    horizontal: 6.h,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    color: Color(
+                                                      int.parse(
+                                                        "0x${joinGroupController.tagModels[i].color}",
+                                                      ),
+                                                    ),
+                                                    borderRadius: const BorderRadius.all(
+                                                      Radius.circular(40),
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                    children: [
+                                                      eventTagImage(
+                                                        icon:
+                                                        '${joinGroupController.tagModels[i].icon}',
+                                                      ),
+                                                      Container(
+                                                        margin:
+                                                        EdgeInsets.only(left: 8.h),
+                                                        child:
+                                                        ConstantWidget.getTextWidget(
+                                                          joinGroupController
+                                                              .tagModels[i].title,
+                                                          Colors.white,
+                                                          TextAlign.center,
+                                                          FontWeight.w400,
+                                                          18.sp,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                             SizedBox(
                                               width: 12.h,
                                             ),
