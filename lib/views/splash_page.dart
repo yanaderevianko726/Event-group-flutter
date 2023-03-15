@@ -31,16 +31,14 @@ class _SplashPage extends State<SplashPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: bgDarkWhite,
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: Center(
-            child: Image.asset(
-              '${Constants.assetsImagePath}logo.png',
-              width: MediaQuery.of(context).size.width * 0.7,
-              fit: BoxFit.fitWidth,
-            ),
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Center(
+          child: Image.asset(
+            '${Constants.assetsImagePath}logo.png',
+            width: MediaQuery.of(context).size.width * 0.4,
+            fit: BoxFit.fitWidth,
           ),
         ),
       ),
