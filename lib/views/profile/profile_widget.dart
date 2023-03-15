@@ -37,38 +37,43 @@ class _ProfileWidget extends State<ProfileWidget> {
               SizedBox(
                 height: statusBarHeight,
               ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Icon(
-                      Icons.arrow_back_sharp,
-                      size: 26,
-                      color: purpleDeepDarkColor,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_sharp,
+                        size: 26,
+                        color: purpleDarkColor,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: getCustomText(
-                      'Profile',
-                      purpleDeepDarkColor,
-                      1,
-                      TextAlign.start,
-                      FontWeight.w400,
-                      24.sp,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                        child: getCustomText(
+                          'Profile',
+                          purpleDarkColor,
+                          1,
+                          TextAlign.start,
+                          FontWeight.w400,
+                          24.sp,
+                        ),
+                      ),
                     ),
-                  ),
-                  InkWell(
-                    child: Icon(
-                      Icons.more_horiz,
-                      size: 36.h,
-                      color: primaryLightColor,
+                    InkWell(
+                      child: Icon(
+                        Icons.more_horiz,
+                        size: 36.h,
+                        color: purpleDarkColor,
+                      ),
+                      onTap: () => {},
                     ),
-                    onTap: () => {},
-                  ),
-                ],
+                  ],
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(

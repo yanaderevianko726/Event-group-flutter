@@ -31,7 +31,7 @@ class _HomePage extends State<HomePage> {
     purpleColor,
     purpleColor,
     purpleColor,
-    purpleColor,
+    purpleDeepDarkColor,
   ];
 
   @override
