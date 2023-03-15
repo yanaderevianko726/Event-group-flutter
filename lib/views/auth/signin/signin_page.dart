@@ -12,6 +12,8 @@ import '../../../utils/my_colors.dart';
 import '../../../utils/widgets.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
+import '../forgetPassword/forget_password1.dart';
+
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
 
@@ -131,7 +133,9 @@ class _SignInPage extends State<SignInPage> {
                                   FontWeight.w500,
                                   17.sp,
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  Get.to(() => const ForgetPassword1Page());
+                                },
                               ),
                             ),
                           ],

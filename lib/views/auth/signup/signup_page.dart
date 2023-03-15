@@ -34,344 +34,340 @@ class _SignUpPage extends State<SignUpPage> {
           body: SafeArea(
             child: Stack(
               children: [
-                SizedBox(
+                Container(
                   width: double.infinity,
                   height: double.infinity,
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 24.h,
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 24.h,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 26.h,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                  Get.back();
+                                },
+                                child: const Icon(
+                                  Icons.arrow_back_sharp,
+                                  size: 26,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(
+                        ),
+                        SizedBox(
+                          height: 24.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 8.h,
+                            ),
+                            ConstantWidget.getTextWidget(
+                              'Sign up',
+                              Colors.black87,
+                              TextAlign.end,
+                              FontWeight.w500,
+                              28.sp,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 40.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(1.h),
+                          child: ConstantWidget.getDefaultTextFiledWithLabel(
+                            context,
+                            "Full name",
+                            signUpController.fNameController,
+                            isEnable: false,
+                            withPrefix: true,
+                            image: "User.svg",
+                            validator: (fullname) {
+                              if (fullname == null || fullname.isEmpty) {
+                                return 'Please enter fullname';
+                              } else {
+                                return '';
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 22.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(1.h),
+                          child: ConstantWidget.getDefaultTextFiledWithLabel(
+                            context,
+                            "Email",
+                            signUpController.emailController,
+                            isEnable: false,
+                            withPrefix: true,
+                            image: "mail.svg",
+                            validator: (email) {
+                              if (email == null || email.isEmpty) {
+                                return 'Please enter email';
+                              } else {
+                                return '';
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 22.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(1.h),
+                          child: ConstantWidget.getDefaultTextFiledWithLabel(
+                            context,
+                            "Password",
+                            signUpController.passwordController,
+                            isEnable: false,
+                            isPass: true,
+                            withPrefix: true,
+                            image: "eye.svg",
+                            validator: (password) {
+                              if (password == null || password.isEmpty) {
+                                return 'Please enter password';
+                              } else {
+                                return '';
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 22.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(1.h),
+                          child: ConstantWidget.getDefaultTextFiledWithLabel(
+                            context,
+                            "Confirm password",
+                            signUpController.confirmController,
+                            isEnable: false,
+                            isPass: true,
+                            withPrefix: true,
+                            image: "eye.svg",
+                            validator: (password) {
+                              if (password == null || password.isEmpty) {
+                                return 'Please confirm password';
+                              } else {
+                                return '';
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 56.h,
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            bool isNetwork = await Functions.getNetwork();
+                            if (isNetwork) {
+                              onClickSignUp(signUpController);
+                            } else {
+                              Functions.showToast(
+                                "Please turn on Internet",
+                              );
+                            }
+                          },
+                          child: Container(
                             width: double.infinity,
-                            height: 26.h,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                            height: 60.h,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(15)),
+                              color: accentColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: "#0F000000".toColor(),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
+                            ),
+                            child: Stack(
                               children: [
-                                InkWell(
-                                  onTap: (){
-                                    Get.back();
-                                  },
-                                  child: const Icon(
-                                    Icons.arrow_back_sharp,
-                                    size: 26,
-                                    color: Colors.black87,
+                                SizedBox(
+                                  width: double.infinity,
+                                  height: 60.h,
+                                  child: Center(
+                                    child: ConstantWidget.getTextWidget(
+                                      'SIGN UP',
+                                      Colors.white,
+                                      TextAlign.end,
+                                      FontWeight.w500,
+                                      20.sp,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: double.infinity,
+                                  height: 60.h,
+                                  child: Row(
+                                    children: [
+                                      const Spacer(),
+                                      Image.asset(
+                                        '${Constants.assetsImagePath}ic_blue_right.png',
+                                        height: 26,
+                                        fit: BoxFit.fitWidth,
+                                      ),
+                                      const SizedBox(width: 12,),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 24.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 8.h,
-                              ),
-                              ConstantWidget.getTextWidget(
-                                'Sign up',
-                                Colors.black87,
-                                TextAlign.end,
-                                FontWeight.w500,
-                                28.sp,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 40.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(1.h),
-                            child: ConstantWidget.getDefaultTextFiledWithLabel(
-                              context,
-                              "Full name",
-                              signUpController.fNameController,
-                              isEnable: false,
-                              withPrefix: true,
-                              image: "User.svg",
-                              validator: (fullname) {
-                                if (fullname == null || fullname.isEmpty) {
-                                  return 'Please enter fullname';
-                                } else {
-                                  return '';
-                                }
-                              },
+                        ),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        ConstantWidget.getTextWidget(
+                          'OR',
+                          Colors.black38,
+                          TextAlign.end,
+                          FontWeight.w500,
+                          18.sp,
+                        ),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        InkWell(
+                          child: Container(
+                            width: double.infinity,
+                            height: 60.h,
+                            margin: EdgeInsets.all(1.h),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: "#0F000000".toColor(),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            height: 22.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(1.h),
-                            child: ConstantWidget.getDefaultTextFiledWithLabel(
-                              context,
-                              "Email",
-                              signUpController.emailController,
-                              isEnable: false,
-                              withPrefix: true,
-                              image: "mail.svg",
-                              validator: (email) {
-                                if (email == null || email.isEmpty) {
-                                  return 'Please enter email';
-                                } else {
-                                  return '';
-                                }
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: 22.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(1.h),
-                            child: ConstantWidget.getDefaultTextFiledWithLabel(
-                              context,
-                              "Password",
-                              signUpController.passwordController,
-                              isEnable: false,
-                              isPass: true,
-                              withPrefix: true,
-                              image: "eye.svg",
-                              validator: (password) {
-                                if (password == null || password.isEmpty) {
-                                  return 'Please enter password';
-                                } else {
-                                  return '';
-                                }
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: 22.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(1.h),
-                            child: ConstantWidget.getDefaultTextFiledWithLabel(
-                              context,
-                              "Confirm password",
-                              signUpController.confirmController,
-                              isEnable: false,
-                              isPass: true,
-                              withPrefix: true,
-                              image: "eye.svg",
-                              validator: (password) {
-                                if (password == null || password.isEmpty) {
-                                  return 'Please confirm password';
-                                } else {
-                                  return '';
-                                }
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: 56.h,
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              bool isNetwork = await Functions.getNetwork();
-                              if (isNetwork) {
-                                onClickSignUp(signUpController);
-                              } else {
-                                Functions.showToast(
-                                  "Please turn on Internet",
-                                );
-                              }
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 60.h,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(Radius.circular(15)),
-                                color: accentColor,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: "#0F000000".toColor(),
-                                    blurRadius: 6,
-                                    offset: const Offset(0, 2),
-                                  )
-                                ],
-                              ),
-                              child: Stack(
-                                children: [
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 60.h,
-                                    child: Center(
-                                      child: ConstantWidget.getTextWidget(
-                                        'SIGN UP',
-                                        Colors.white,
-                                        TextAlign.end,
-                                        FontWeight.w500,
-                                        20.sp,
-                                      ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(right: 16.w),
+                                    child: Image.asset(
+                                      '${Constants.assetsImagePath}ic_google.png',
+                                      height: 24,
+                                      fit: BoxFit.fitWidth,
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 60.h,
-                                    child: Row(
-                                      children: [
-                                        const Spacer(),
-                                        Image.asset(
-                                          '${Constants.assetsImagePath}ic_blue_right.png',
-                                          height: 26,
-                                          fit: BoxFit.fitWidth,
-                                        ),
-                                        const SizedBox(width: 12,),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          ConstantWidget.getTextWidget(
-                            'OR',
-                            Colors.black38,
-                            TextAlign.end,
-                            FontWeight.w500,
-                            18.sp,
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          InkWell(
-                            child: Container(
-                              width: double.infinity,
-                              height: 60.h,
-                              margin: EdgeInsets.all(1.h),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: "#0F000000".toColor(),
-                                    blurRadius: 6,
-                                    offset: const Offset(0, 2),
-                                  )
-                                ],
-                              ),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Container(
-                                      margin: EdgeInsets.only(right: 16.w),
-                                      child: Image.asset(
-                                        '${Constants.assetsImagePath}ic_google.png',
-                                        height: 24,
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                    ),
-                                    getCustomText(
-                                      "SignIn with Google",
-                                      textColor,
-                                      1,
-                                      TextAlign.center,
-                                      FontWeight.normal,
-                                      18.sp,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            onTap: () async {
-                              checkNetworkForGoogleSignUp(signUpController);
-                            },
-                          ),
-                          SizedBox(
-                            height: 12.h,
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              checkNetworkForGoogleSignUp(signUpController);
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 60.h,
-                              margin: EdgeInsets.all(1.h),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: "#0F000000".toColor(),
-                                    blurRadius: 6,
-                                    offset: const Offset(0, 2),
-                                  )
-                                ],
-                              ),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Container(
-                                      margin: EdgeInsets.only(right: 16.w),
-                                      child: Image.asset(
-                                        '${Constants.assetsImagePath}ic_facebook.png',
-                                        height: 26,
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                    ),
-                                    getCustomText(
-                                      "SignIn with Facebook",
-                                      textColor,
-                                      1,
-                                      TextAlign.center,
-                                      FontWeight.normal,
-                                      18.sp,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 48.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ConstantWidget.getTextWidget(
-                                'Do you have an account? ',
-                                Colors.black,
-                                TextAlign.center,
-                                FontWeight.w500,
-                                17.sp,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.signInRoute);
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 12.w),
-                                  child: ConstantWidget.getTextWidget(
-                                    'Sign In',
-                                    primaryColor,
+                                  getCustomText(
+                                    "SignIn with Google",
+                                    textColor,
+                                    1,
                                     TextAlign.center,
-                                    FontWeight.w500,
+                                    FontWeight.normal,
                                     18.sp,
                                   ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          onTap: () async {
+                            checkNetworkForGoogleSignUp(signUpController);
+                          },
+                        ),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            checkNetworkForGoogleSignUp(signUpController);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 60.h,
+                            margin: EdgeInsets.all(1.h),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: "#0F000000".toColor(),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(right: 16.w),
+                                    child: Image.asset(
+                                      '${Constants.assetsImagePath}ic_facebook.png',
+                                      height: 26,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                  getCustomText(
+                                    "SignIn with Facebook",
+                                    textColor,
+                                    1,
+                                    TextAlign.center,
+                                    FontWeight.normal,
+                                    18.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 48.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ConstantWidget.getTextWidget(
+                              'Do you have an account? ',
+                              Colors.black,
+                              TextAlign.center,
+                              FontWeight.w500,
+                              17.sp,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.signInRoute);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 12.w),
+                                child: ConstantWidget.getTextWidget(
+                                  'Sign In',
+                                  primaryColor,
+                                  TextAlign.center,
+                                  FontWeight.w500,
+                                  18.sp,
                                 ),
                               ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 18.h,
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 18.h,
+                        ),
+                      ],
                     ),
                   ),
                 ),
