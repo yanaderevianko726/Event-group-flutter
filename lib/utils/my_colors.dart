@@ -13,6 +13,7 @@ Color tag2Color = const Color(0xFF46CDFB);
 Color tag3Color = const Color(0xFFEF767A);
 Color tag4Color = const Color(0xFF49DCB1);
 Color purpleDarkColor = const Color(0xFF413D8B);
+Color purpleDeepDarkColor = const Color(0xFF160e31);
 Color bgDark = const Color(0xFFFCFCFC);
 Color bgDarkWhite = const Color(0xFFFFFFFF);
 Color textColor = const Color(0xff120D26);
@@ -25,6 +26,7 @@ Color redLightColor = const Color(0xFFE5625E);
 Color redLight1Color = const Color(0xFFE46D44);
 Color redLight2Color = const Color(0xFFDC42BF);
 Color redLight3Color = const Color(0xFFEEB868);
+Color redLight4Color = const Color(0xFFff4d9e);
 Color containerShadow = "#33ACB6B5".toColor();
 
 extension ColorExtension on String {

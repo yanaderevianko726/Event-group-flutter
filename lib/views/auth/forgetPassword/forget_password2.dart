@@ -21,6 +21,7 @@ class _ForgetPassword2PagePageState extends State<ForgetPassword2Page> {
 
   @override
   Widget build(BuildContext context) {
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SizedBox(
@@ -36,7 +37,7 @@ class _ForgetPassword2PagePageState extends State<ForgetPassword2Page> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 24.h,
+                    height: statusBarHeight + 24.h,
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -153,7 +154,7 @@ class _ForgetPassword2PagePageState extends State<ForgetPassword2Page> {
                             height: 60.h,
                             child: Center(
                               child: ConstantWidget.getTextWidget(
-                                'Send',
+                                'Reset Password',
                                 Colors.white,
                                 TextAlign.end,
                                 FontWeight.w500,

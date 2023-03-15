@@ -21,6 +21,7 @@ class _ForgetPassword1PageState extends State<ForgetPassword1Page> {
 
   @override
   Widget build(BuildContext context) {
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SizedBox(
@@ -36,7 +37,7 @@ class _ForgetPassword1PageState extends State<ForgetPassword1Page> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 24.h,
+                    height: statusBarHeight + 24.h,
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -97,17 +98,19 @@ class _ForgetPassword1PageState extends State<ForgetPassword1Page> {
                     ),
                   ),
                   SizedBox(
-                    height: 16.h,
+                    height: 12.h,
                   ),
-                  SizedBox(
+                  Container(
                     width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: Center(
                       child: ConstantWidget.getTextWidget(
                         'Please enter email, we will send the link for reset password to this email.',
-                        textColor,
-                        TextAlign.end,
+                        descriptionColor,
+                        TextAlign.start,
                         FontWeight.w400,
                         18.sp,
+                        maxLines: 2
                       ),
                     ),
                   ),

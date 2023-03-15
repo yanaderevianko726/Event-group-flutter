@@ -83,7 +83,7 @@ class _SignUpPage extends State<SignUpPage> {
                           ],
                         ),
                         SizedBox(
-                          height: 40.h,
+                          height: 52.h,
                         ),
                         Padding(
                           padding: EdgeInsets.all(1.h),
@@ -169,7 +169,7 @@ class _SignUpPage extends State<SignUpPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 56.h,
+                          height: 44.h,
                         ),
                         InkWell(
                           onTap: () async {

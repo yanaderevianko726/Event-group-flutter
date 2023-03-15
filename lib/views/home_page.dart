@@ -29,7 +29,7 @@ class _HomePage extends State<HomePage> {
   final statusBarColors = [
     purpleColor,
     purpleColor,
-    blueLight,
+    purpleColor,
     purpleColor,
     purpleColor,
   ];

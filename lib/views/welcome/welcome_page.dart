@@ -5,6 +5,7 @@ import 'package:popuppros/routes/app_routes.dart';
 import 'package:popuppros/utils/constants.dart';
 import '../../controllers/welcome_controller.dart';
 import '../../utils/constant_widgets.dart';
+import '../../utils/functions.dart';
 import '../../utils/my_colors.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -44,7 +45,7 @@ class _WelcomePage extends State<WelcomePage> {
                       child: Center(
                         child: Image.asset(
                           '${Constants.assetsImagePath}logo.png',
-                          width: MediaQuery.of(context).size.width * 0.5,
+                          width: MediaQuery.of(context).size.width * 0.38,
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -65,19 +66,65 @@ class _WelcomePage extends State<WelcomePage> {
               ),
               const Spacer(),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 36.w),
-                child: getButton(
-                  context,
-                  accentColor,
-                  "SIGN IN",
-                  Colors.white,
-                  () {
-                    Get.toNamed(AppRoutes.signInRoute);
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: InkWell(
+                  onTap: () async {
+                    bool isNetwork = await Functions.getNetwork();
+                    if (isNetwork) {
+                      Get.toNamed(AppRoutes.signInRoute);
+                    } else {
+                      Functions.showToast(
+                        "Please turn on Internet",
+                      );
+                    }
                   },
-                  22.sp,
-                  weight: FontWeight.w700,
-                  buttonHeight: 60.h,
-                  borderRadius: BorderRadius.circular(15),
+                  child: Container(
+                    width: double.infinity,
+                    height: 60.h,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      color: accentColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: "#0F000000".toColor(),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
+                        )
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          height: 60.h,
+                          child: Center(
+                            child: ConstantWidget.getTextWidget(
+                              'SIGN IN',
+                              Colors.white,
+                              TextAlign.end,
+                              FontWeight.w500,
+                              20.sp,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 60.h,
+                          child: Row(
+                            children: [
+                              const Spacer(),
+                              Image.asset(
+                                '${Constants.assetsImagePath}ic_blue_right.png',
+                                height: 26,
+                                fit: BoxFit.fitWidth,
+                              ),
+                              const SizedBox(width: 12,),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               SizedBox(

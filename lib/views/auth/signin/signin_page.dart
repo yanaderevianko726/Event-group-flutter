@@ -45,15 +45,15 @@ class _SignInPage extends State<SignInPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 40.h,
+                          height: 88.h,
                         ),
                         Image.asset(
                           '${Constants.assetsImagePath}logo.png',
-                          width: MediaQuery.of(context).size.width * 0.5,
+                          width: MediaQuery.of(context).size.width * 0.32,
                           fit: BoxFit.fitWidth,
                         ),
                         SizedBox(
-                          height: 36.h,
+                          height: 72.h,
                         ),
                         Padding(
                           padding: EdgeInsets.all(1.h),
@@ -96,52 +96,55 @@ class _SignInPage extends State<SignInPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 12.h,
                         ),
-                        Row(
-                          children: [
-                            FlutterSwitch(
-                              width: 44.0,
-                              height: 22.0,
-                              padding: 2.0,
-                              toggleSize: 20.0,
-                              borderRadius: 15.0,
-                              activeColor: primaryColor,
-                              value: signInController.isRemember,
-                              onToggle: (val) {
-                                setState(() {
-                                  signInController.setRemember(val);
-                                });
-                              },
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: ConstantWidget.getTextWidget(
-                                'Remember Me',
-                                Colors.black54,
-                                TextAlign.start,
-                                FontWeight.w500,
-                                17.sp,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Row(
+                            children: [
+                              FlutterSwitch(
+                                width: 44.0,
+                                height: 22.0,
+                                padding: 2.0,
+                                toggleSize: 20.0,
+                                borderRadius: 15.0,
+                                activeColor: primaryColor,
+                                value: signInController.isRemember,
+                                onToggle: (val) {
+                                  setState(() {
+                                    signInController.setRemember(val);
+                                  });
+                                },
                               ),
-                            ),
-                            Expanded(
-                              child: InkWell(
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
                                 child: ConstantWidget.getTextWidget(
-                                  'Forgot Password ?',
+                                  'Remember Me',
                                   Colors.black54,
-                                  TextAlign.end,
+                                  TextAlign.start,
                                   FontWeight.w500,
                                   17.sp,
                                 ),
-                                onTap: () {
-                                  Get.to(() => const ForgetPassword1Page());
-                                },
                               ),
-                            ),
-                          ],
+                              Expanded(
+                                child: InkWell(
+                                  child: ConstantWidget.getTextWidget(
+                                    'Forgot Password ?',
+                                    Colors.black54,
+                                    TextAlign.end,
+                                    FontWeight.w500,
+                                    17.sp,
+                                  ),
+                                  onTap: () {
+                                    Get.to(() => const ForgetPassword1Page());
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(
-                          height: 72.h,
+                          height: 48.h,
                         ),
                         InkWell(
                           onTap: () async {

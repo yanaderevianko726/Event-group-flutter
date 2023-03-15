@@ -22,6 +22,7 @@ class ProfileWidget extends StatefulWidget {
 class _ProfileWidget extends State<ProfileWidget> {
   @override
   Widget build(BuildContext context) {
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     double screenWidth = MediaQuery.of(context).size.width;
     return GetBuilder<ProfileController>(
       init: ProfileController(),
@@ -33,118 +34,109 @@ class _ProfileWidget extends State<ProfileWidget> {
           color: bgDarkWhite,
           child: Column(
             children: [
-              topAppBar(
-                title: 'Profile',
-                icons: [
-                  SizedBox(
-                    width: 36.h,
-                    height: 36.h,
-                    child: notificationController.notificationCount > 0
-                        ? Badge(
-                            label: Text(
-                              '${notificationController.notificationCount}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: InkWell(
-                              child: Icon(
-                                Icons.notifications_none,
-                                size: 36.h,
-                                color: primaryLightColor,
-                              ),
-                              onTap: () {
-                                Get.toNamed(AppRoutes.notificationRoute);
-                              },
-                            ),
-                          )
-                        : Center(
-                            child: InkWell(
-                              child: Icon(
-                                Icons.notifications_none,
-                                size: 36.h,
-                                color: primaryLightColor,
-                              ),
-                              onTap: () {
-                                Get.toNamed(AppRoutes.notificationRoute);
-                              },
-                            ),
-                          ),
+              SizedBox(
+                height: statusBarHeight,
+              ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_sharp,
+                      size: 26,
+                      color: purpleDeepDarkColor,
+                    ),
                   ),
-                  topIcon(
-                    icon: Icons.search,
-                    callback: () {},
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: getCustomText(
+                      'Profile',
+                      purpleDeepDarkColor,
+                      1,
+                      TextAlign.start,
+                      FontWeight.w400,
+                      24.sp,
+                    ),
+                  ),
+                  InkWell(
+                    child: Icon(
+                      Icons.more_horiz,
+                      size: 36.h,
+                      color: primaryLightColor,
+                    ),
+                    onTap: () => {},
                   ),
                 ],
               ),
-              if (profileController.userDetail != null)
-                Container(
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 20.h,
-                    vertical: 20.h,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.h,
-                    vertical: 20.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: "#0F000000".toColor(),
-                        blurRadius: 28,
-                        offset: const Offset(0, 6),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(12.h),
-                  ),
-                  child: Row(
-                    children: [
-                      ClipOval(
-                        child: Material(
-                          child: profileController.userDetail.image != ''
-                              ? CachedNetworkImage(
-                                  height: 80.h,
-                                  width: 80.h,
-                                  imageUrl: profileController.userDetail.image!,
-                                )
-                              : Image.asset(
-                                  "${Constants.assetsImagePath}profile_imge.png",
-                                  width: 80.h,
-                                  height: 80.h,
-                                ),
-                        ),
-                      ),
-                      ConstantWidget.getHorSpace(16.h),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          getCustomText(
-                            profileController.userDetail.firstName != null
-                                ? '${profileController.userDetail.firstName} ${profileController.userDetail.lastName}'
-                                : '',
-                            textColor,
-                            1,
-                            TextAlign.start,
-                            FontWeight.w500,
-                            19.sp,
-                          ),
-                          ConstantWidget.getVerSpace(4.h),
-                          getCustomText(
-                            profileController.userDetail.email != null
-                                ? '${profileController.userDetail.email}'
-                                : '',
-                            descriptionColor,
-                            1,
-                            TextAlign.start,
-                            FontWeight.w500,
-                            17.sp,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 20.h,
+                  vertical: 20.h,
                 ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.h,
+                  vertical: 20.h,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: "#0F000000".toColor(),
+                      blurRadius: 28,
+                      offset: const Offset(0, 6),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(12.h),
+                ),
+                child: Row(
+                  children: [
+                    ClipOval(
+                      child: Material(
+                        child: profileController.userDetail.image != ''
+                            ? CachedNetworkImage(
+                                height: 80.h,
+                                width: 80.h,
+                                imageUrl: profileController.userDetail.image!,
+                              )
+                            : Image.asset(
+                                "${Constants.assetsImagePath}profile_imge.png",
+                                width: 80.h,
+                                height: 80.h,
+                              ),
+                      ),
+                    ),
+                    ConstantWidget.getHorSpace(16.h),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        getCustomText(
+                          profileController.userDetail.firstName != null
+                              ? '${profileController.userDetail.firstName} ${profileController.userDetail.lastName}'
+                              : '',
+                          textColor,
+                          1,
+                          TextAlign.start,
+                          FontWeight.w500,
+                          19.sp,
+                        ),
+                        ConstantWidget.getVerSpace(4.h),
+                        getCustomText(
+                          profileController.userDetail.email != null
+                              ? '${profileController.userDetail.email}'
+                              : '',
+                          descriptionColor,
+                          1,
+                          TextAlign.start,
+                          FontWeight.w500,
+                          17.sp,
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
               ConstantWidget.getVerSpace(18.h),
               if (profileController.userDetail != null)
                 Container(

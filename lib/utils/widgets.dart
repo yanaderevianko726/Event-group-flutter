@@ -166,6 +166,7 @@ Widget notificationUI({
 
 Widget topAppBar({
   String title = '',
+  Color? titleColor,
   bool showBack = false,
   List<Widget>? icons,
 }) {
@@ -190,8 +191,14 @@ Widget topAppBar({
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              getCustomText(title, Colors.black87.withOpacity(0.7), 1,
-                  TextAlign.start, FontWeight.w400, 24.sp),
+              getCustomText(
+                title,
+                titleColor ?? Colors.black87.withOpacity(0.7),
+                1,
+                TextAlign.start,
+                FontWeight.w400,
+                24.sp,
+              ),
             ],
           ),
         ),
@@ -249,7 +256,7 @@ Widget topAppBar({
 
 Widget topIcon({
   IconData? icon,
-  bool coloredWhite = false,
+  Color? color,
   Function? callback,
 }) {
   return SizedBox(
@@ -260,8 +267,7 @@ Widget topIcon({
         child: Icon(
           icon,
           size: 36.h,
-          color:
-              coloredWhite ? Colors.white.withOpacity(0.8) : primaryLightColor,
+          color: color ?? primaryLightColor,
         ),
         onTap: () => {callback!()},
       ),
