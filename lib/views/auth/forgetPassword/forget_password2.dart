@@ -110,7 +110,7 @@ class _ForgetPassword2PagePageState extends State<ForgetPassword2Page> {
                       image: "eye.svg",
                       validator: (confirm) {
                         if (confirm == null || confirm.isEmpty) {
-                          return 'Please enter confirm password';
+                          return 'Please confirm password';
                         } else {
                           return '';
                         }
