@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import '../../controllers/user/profile_controller.dart';
 import '../../routes/app_routes.dart';
 import '../../utils/constant_widgets.dart';
 import '../../utils/constants.dart';
+import '../../utils/functions.dart';
 import '../../utils/my_colors.dart';
 import '../../utils/widgets.dart';
 
@@ -22,7 +24,6 @@ class ProfileWidget extends StatefulWidget {
 class _ProfileWidget extends State<ProfileWidget> {
   @override
   Widget build(BuildContext context) {
-    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     double screenWidth = MediaQuery.of(context).size.width;
     return GetBuilder<ProfileController>(
       init: ProfileController(),
@@ -31,325 +32,405 @@ class _ProfileWidget extends State<ProfileWidget> {
         builder: (notificationController) => Container(
           height: double.infinity,
           width: double.infinity,
-          color: bgDarkWhite,
-          child: Column(
-            children: [
-              SizedBox(
-                height: statusBarHeight,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Icon(
-                        Icons.arrow_back_sharp,
-                        size: 26,
-                        color: purpleDarkColor,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: getCustomText(
-                          'Profile',
-                          purpleDarkColor,
-                          1,
-                          TextAlign.start,
-                          FontWeight.w400,
-                          24.sp,
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      child: Icon(
-                        Icons.more_horiz,
-                        size: 36.h,
-                        color: purpleDarkColor,
-                      ),
-                      onTap: () => {},
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20.h,
-                  vertical: 20.h,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.h,
-                  vertical: 20.h,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: "#0F000000".toColor(),
-                      blurRadius: 28,
-                      offset: const Offset(0, 6),
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(12.h),
-                ),
-                child: Row(
-                  children: [
-                    ClipOval(
-                      child: Material(
-                        child: profileController.userDetail.image != ''
-                            ? CachedNetworkImage(
-                                height: 80.h,
-                                width: 80.h,
-                                imageUrl: profileController.userDetail.image!,
-                              )
-                            : Image.asset(
-                                "${Constants.assetsImagePath}profile_imge.png",
-                                width: 80.h,
-                                height: 80.h,
-                              ),
-                      ),
-                    ),
-                    ConstantWidget.getHorSpace(16.h),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        getCustomText(
-                          profileController.userDetail.firstName != null
-                              ? '${profileController.userDetail.firstName} ${profileController.userDetail.lastName}'
-                              : '',
-                          textColor,
-                          1,
-                          TextAlign.start,
-                          FontWeight.w500,
-                          19.sp,
-                        ),
-                        ConstantWidget.getVerSpace(4.h),
-                        getCustomText(
-                          profileController.userDetail.email != null
-                              ? '${profileController.userDetail.email}'
-                              : '',
-                          descriptionColor,
-                          1,
-                          TextAlign.start,
-                          FontWeight.w500,
-                          17.sp,
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              ConstantWidget.getVerSpace(18.h),
-              if (profileController.userDetail != null)
+          color: bgLightWhite,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
                 Container(
-                  width: screenWidth,
-                  height: 56.h,
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 20.h,
-                    vertical: 20.h,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.h,
-                    vertical: 5.h,
-                  ),
+                  width: double.infinity,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1.2.h,
-                      color: borderColor,
+                    color: purpleDeepDarkColor,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(32),
+                      bottomRight: Radius.circular(32),
                     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                    color: Colors.white,
                   ),
-                  child: Row(
+                  child: Column(
                     children: [
-                      Image.asset(
-                        '${Constants.assetsImagePath}ic_call.png',
-                        width: 28.h,
-                        fit: BoxFit.fitWidth,
+                      Container(
+                        width: double.infinity,
+                        height: 64,
+                        margin: const EdgeInsets.only(top: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_sharp,
+                                size: 26,
+                                color: purpleDarkColor,
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: getCustomText(
+                                  'Profile',
+                                  purpleDarkColor,
+                                  1,
+                                  TextAlign.start,
+                                  FontWeight.w400,
+                                  24.sp,
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              child: Icon(
+                                Icons.more_horiz,
+                                size: 36.h,
+                                color: purpleDarkColor,
+                              ),
+                              onTap: () => {},
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.h,
+                          vertical: 12.h,
+                        ),
+                        child: Row(
+                          children: [
+                            ClipOval(
+                              child: Material(
+                                child: profileController.userDetail.image != ''
+                                    ? CachedNetworkImage(
+                                        height: 80.h,
+                                        width: 80.h,
+                                        imageUrl:
+                                            profileController.userDetail.image!,
+                                      )
+                                    : Image.asset(
+                                        "${Constants.assetsImagePath}profile_imge.png",
+                                        width: 80.h,
+                                        height: 80.h,
+                                      ),
+                              ),
+                            ),
+                            ConstantWidget.getHorSpace(20.h),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                getCustomText(
+                                  'Chinelo Chyko',
+                                  Colors.white.withOpacity(0.9),
+                                  1,
+                                  TextAlign.start,
+                                  FontWeight.w500,
+                                  20.sp,
+                                ),
+                                ConstantWidget.getVerSpace(10.h),
+                                getCustomText(
+                                  'Product Designer',
+                                  descriptionColor,
+                                  1,
+                                  TextAlign.start,
+                                  FontWeight.w500,
+                                  17.sp,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        width: 16.h,
-                      ),
-                      getCustomText(
-                        '+380 50 155 2037',
-                        textColor,
-                        1,
-                        TextAlign.start,
-                        FontWeight.w500,
-                        17.sp,
-                      ),
-                    ],
-                  ),
-                ),
-              ConstantWidget.getVerSpace(40.h),
-              if (profileController.userDetail != null)
-                Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 20.h, vertical: 12.h),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.h, vertical: 5.h),
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.vendorProfileRoute);
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          '${Constants.assetsImagePath}ic_bookmark.png',
-                          width: 24.h,
-                          fit: BoxFit.fitWidth,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            Container(
+                              width: 100,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: purpleColor.withOpacity(0.3),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 2.0),
+                                child: Center(
+                                  child: ConstantWidget.getTextWidget(
+                                    '•  Designer',
+                                    Colors.lightGreen.withOpacity(0.8),
+                                    TextAlign.end,
+                                    FontWeight.w400,
+                                    18.sp,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 108,
+                              height: 30,
+                              margin: const EdgeInsets.only(left: 12),
+                              decoration: BoxDecoration(
+                                color: purpleColor.withOpacity(0.3),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 2.0),
+                                child: Center(
+                                  child: ConstantWidget.getTextWidget(
+                                    '•  Developer',
+                                    Colors.lightBlueAccent.withOpacity(0.8),
+                                    TextAlign.end,
+                                    FontWeight.w400,
+                                    18.sp,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 16.h,
-                        ),
-                        Expanded(
-                          child: getCustomText(
-                            'Vendor Profile',
-                            textColor,
-                            1,
-                            TextAlign.start,
-                            FontWeight.w500,
-                            17.sp,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 60,
+                        margin: const EdgeInsets.only(top: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        decoration: BoxDecoration(
+                          color: purpleLightColor,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(32),
                           ),
                         ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 24.h,
-                          color: textColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: screenWidth * 0.25,
+                              height: 60,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ConstantWidget.getTextWidget(
+                                    '239',
+                                    Colors.white,
+                                    TextAlign.center,
+                                    FontWeight.w500,
+                                    24.sp,
+                                  ),
+                                  ConstantWidget.getTextWidget(
+                                    'Total Post',
+                                    Colors.white.withOpacity(0.7),
+                                    TextAlign.center,
+                                    FontWeight.w400,
+                                    18.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: screenWidth * 0.25,
+                              height: 60,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ConstantWidget.getTextWidget(
+                                    '239',
+                                    Colors.white,
+                                    TextAlign.center,
+                                    FontWeight.w500,
+                                    24.sp,
+                                  ),
+                                  ConstantWidget.getTextWidget(
+                                    'Followers',
+                                    Colors.white.withOpacity(0.7),
+                                    TextAlign.center,
+                                    FontWeight.w400,
+                                    18.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: screenWidth * 0.25,
+                              height: 60,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ConstantWidget.getTextWidget(
+                                    '239',
+                                    Colors.white,
+                                    TextAlign.center,
+                                    FontWeight.w500,
+                                    24.sp,
+                                  ),
+                                  ConstantWidget.getTextWidget(
+                                    'Following',
+                                    Colors.white.withOpacity(0.7),
+                                    TextAlign.center,
+                                    FontWeight.w400,
+                                    18.sp,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-              Container(
-                width: screenWidth,
-                height: 0.8.h,
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20.h,
-                ),
-                color: borderColor,
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.h, vertical: 12.h),
-                padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 5.h),
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed(AppRoutes.hostProfileRoute);
-                  },
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        '${Constants.assetsImagePath}ic_bookmark.png',
-                        width: 24.h,
-                        fit: BoxFit.fitWidth,
-                      ),
-                      SizedBox(
-                        width: 16.h,
-                      ),
-                      Expanded(
-                        child: getCustomText(
-                          'Host Profile',
-                          textColor,
-                          1,
-                          TextAlign.start,
-                          FontWeight.w500,
-                          17.sp,
-                        ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 24.h,
-                        color: textColor,
                       ),
                     ],
                   ),
                 ),
-              ),
-              Container(
-                width: screenWidth,
-                height: 0.8.h,
-                margin: EdgeInsets.symmetric(horizontal: 20.h),
-                color: borderColor,
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20.h,
-                  vertical: 12.h,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.h,
-                  vertical: 5.h,
-                ),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      '${Constants.assetsImagePath}ic_bookmark.png',
-                      width: 24.h,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    SizedBox(
-                      width: 16.h,
-                    ),
-                    Expanded(
-                      child: getCustomText(
-                        'Points',
-                        textColor,
-                        1,
-                        TextAlign.start,
-                        FontWeight.w500,
-                        17.sp,
+                ConstantWidget.getVerSpace(24.h),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      DottedBorder(
+                        color: Colors.grey,
+                        strokeWidth: 1,
+                        strokeCap: StrokeCap.butt,
+                        dashPattern: const [8, 5],
+                        borderType: BorderType.Circle,
+                        radius: const Radius.circular(8),
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(30),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.add,
+                              size: 24,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 24.h,
-                      color: textColor,
-                    ),
-                  ],
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: const EdgeInsets.only(left: 12),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/ic_more1.png',
+                            width: 24,
+                            fit: BoxFit.fitWidth,
+                            color: Colors.yellow,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: const EdgeInsets.only(left: 12),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/ic_bag.png',
+                            width: 24,
+                            fit: BoxFit.fitWidth,
+                            color: Colors.yellow,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: const EdgeInsets.only(left: 12),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/ic_img1.png',
+                            width: 24,
+                            fit: BoxFit.fitWidth,
+                            color: Colors.yellow,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                width: screenWidth,
-                height: 0.8.h,
-                margin: EdgeInsets.symmetric(horizontal: 20.h),
-                color: borderColor,
-              ),
-              const Spacer(),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.h,
-                  vertical: 20.h,
+                ConstantWidget.getVerSpace(40.h),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: screenWidth * 0.4,
+                        height: screenWidth * 0.4,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15),),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                          child: Image.network(
+                            'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/users%2Favatar.png?alt=media&token=7f1beeb1-059c-4bc8-83e9-3994123b6835',
+                            width: screenWidth * 0.4,
+                            height: screenWidth * 0.4,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: screenWidth * 0.4,
+                        height: screenWidth * 0.4,
+                        margin: const EdgeInsets.only(left: 12),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15),),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                          child: Image.network(
+                            'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/users%2Favatar.png?alt=media&token=7f1beeb1-059c-4bc8-83e9-3994123b6835',
+                            width: screenWidth * 0.4,
+                            height: screenWidth * 0.4,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                child: getButton(
-                  context,
-                  primaryColor,
-                  "Sign Out",
-                  Colors.white,
-                  () {
-                    onSignOut(profileController, context);
-                  },
-                  20.sp,
-                  weight: FontWeight.w700,
-                  buttonHeight: 58.h,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-              SizedBox(
-                height: 32.h,
-              )
-            ],
+                SizedBox(
+                  height: 32.h,
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  onSignOut(profileController, context) async {
+  onSignOut(profileController) async {
     double btnWidth = (MediaQuery.of(context).size.width - 80) / 2;
     showModalBottomSheet<void>(
       enableDrag: true,

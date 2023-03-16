@@ -52,7 +52,8 @@ class _WelcomePage extends State<WelcomePage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.1),
+                        left: MediaQuery.of(context).size.width * 0.1,
+                      ),
                       width: congratsWidth,
                       height: congratsWidth,
                       child: Image.asset(
@@ -118,7 +119,9 @@ class _WelcomePage extends State<WelcomePage> {
                                 height: 26,
                                 fit: BoxFit.fitWidth,
                               ),
-                              const SizedBox(width: 12,),
+                              const SizedBox(
+                                width: 12,
+                              ),
                             ],
                           ),
                         ),
