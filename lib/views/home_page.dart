@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'explore/explore_page.dart';
 import 'groups/groups_page.dart';
-import 'profile/profile_widget.dart';
+import 'profile/profile_view_page.dart';
 import '../utils/my_colors.dart';
 import '../controllers/home_page_controller.dart';
 
@@ -20,10 +20,10 @@ class _HomePage extends State<HomePage> {
   HomePageController hController = Get.put(HomePageController());
   final pageWidgets = [
     const ExplorePage(),
-    const ProfileWidget(),
+    const ProfileViewPage(),
     const GroupsPage(),
-    const ProfileWidget(),
-    const ProfileWidget(),
+    const ProfileViewPage(),
+    const ProfileViewPage(),
   ];
 
   final statusBarColors = [

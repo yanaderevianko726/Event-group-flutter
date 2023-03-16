@@ -14,14 +14,14 @@ import '../../utils/functions.dart';
 import '../../utils/my_colors.dart';
 import '../../utils/widgets.dart';
 
-class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({super.key});
+class ProfileViewPage extends StatefulWidget {
+  const ProfileViewPage({super.key});
 
   @override
   _ProfileWidget createState() => _ProfileWidget();
 }
 
-class _ProfileWidget extends State<ProfileWidget> {
+class _ProfileWidget extends State<ProfileViewPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -409,7 +409,7 @@ class _ProfileWidget extends State<ProfileWidget> {
                             Radius.circular(15),
                           ),
                           child: Image.network(
-                            'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/users%2Favatar.png?alt=media&token=7f1beeb1-059c-4bc8-83e9-3994123b6835',
+                            'https://firebasestorage.googleapis.com/v0/b/people-olyvia.appspot.com/o/users%2Fic_entertainment.png?alt=media&token=ec2797a6-85b9-4a94-a116-8bfc3d6f558f',
                             width: screenWidth * 0.4,
                             height: screenWidth * 0.4,
                             fit: BoxFit.cover,
@@ -417,6 +417,71 @@ class _ProfileWidget extends State<ProfileWidget> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(
+                  height: 32.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: InkWell(
+                    onTap: () async {
+                      bool isNetwork = await Functions.getNetwork();
+                      if (isNetwork) {
+                        onSignOut(profileController);
+                      } else {
+                        Functions.showToast(
+                          "Please turn on Internet",
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 60.h,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(15)),
+                        color: accentColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color: "#0F000000".toColor(),
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          )
+                        ],
+                      ),
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            height: 60.h,
+                            child: Center(
+                              child: ConstantWidget.getTextWidget(
+                                'SIGN OUT',
+                                Colors.white,
+                                TextAlign.end,
+                                FontWeight.w500,
+                                20.sp,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 60.h,
+                            child: Row(
+                              children: [
+                                const Spacer(),
+                                Image.asset(
+                                  '${Constants.assetsImagePath}ic_blue_right.png',
+                                  height: 26,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                                const SizedBox(width: 12,),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(

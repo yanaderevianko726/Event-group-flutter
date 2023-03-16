@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:popuppros/views/profile/other_profile_view.dart';
 
 import '../../../utils/constant_widgets.dart';
 import '../../../utils/my_colors.dart';
@@ -226,15 +228,20 @@ class _GroupInfoDetailState extends State<GroupInfoDetail> {
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(40),
-                  ),
-                  child: Image.network(
-                    'https://firebasestorage.googleapis.com/v0/b/people-olyvia.appspot.com/o/users%2FScreen%20Shot%202023-02-13%20at%2010.49%201.png?alt=media&token=3b27cfa9-9d7a-45dd-a553-45e44a29b992',
-                    width: 64,
-                    height: 64,
-                    fit: BoxFit.cover,
+                InkWell(
+                  onTap: (){
+                    Get.to(() => const OtherProfileView());
+                  },
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(40),
+                    ),
+                    child: Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/people-olyvia.appspot.com/o/users%2FScreen%20Shot%202023-02-13%20at%2010.49%201.png?alt=media&token=3b27cfa9-9d7a-45dd-a553-45e44a29b992',
+                      width: 64,
+                      height: 64,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Container(
