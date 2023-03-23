@@ -16,16 +16,7 @@ Future<void> main() async {
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
 
-  if (kIsWeb) {
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyB4INkzPNaTlYMEiXSlVE7eDDaGL2xWAWQ",
-        appId: "1:238824124023:web:6c3e078daa130c63b22072",
-        messagingSenderId: "238824124023",
-        projectId: "popuppros-d9cba",
-      ),
-    );
-  } else if (Platform.isIOS) {
+  if (Platform.isIOS) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
         apiKey: "AIzaSyB4bPCsNusePpowjVoBTauC9OFNRdN9Sbc",
