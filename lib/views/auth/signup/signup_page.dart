@@ -244,6 +244,9 @@ class _SignUpPage extends State<SignUpPage> {
                           height: 16.h,
                         ),
                         InkWell(
+                          onTap: () async {
+                            checkNetworkForGoogleSignUp(signUpController);
+                          },
                           child: Container(
                             width: double.infinity,
                             height: 60.h,
@@ -283,9 +286,6 @@ class _SignUpPage extends State<SignUpPage> {
                               ),
                             ),
                           ),
-                          onTap: () async {
-                            checkNetworkForGoogleSignUp(signUpController);
-                          },
                         ),
                         SizedBox(
                           height: 12.h,
@@ -398,14 +398,13 @@ class _SignUpPage extends State<SignUpPage> {
   checkNetworkForGoogleSignUp(SignUpController signUpController) async {
     bool isNetwork = await Functions.getNetwork();
     if (isNetwork) {
-      Get.offAndToNamed(AppRoutes.homeRoute);
-      // await signUpController.signInWithGoogle((retVal) {
-      //   if (retVal) {
-      //     Get.offAndToNamed(AppRoutes.homeRoute);
-      //   } else {
-      //     Functions.showToast("Failed to login with google.");
-      //   }
-      // });
+      await signUpController.signInWithGoogle((retVal) {
+        if (retVal) {
+          Get.offAndToNamed(AppRoutes.homeRoute);
+        } else {
+          Functions.showToast("Failed to login with google.");
+        }
+      });
     } else {
       Functions.showToast("Please turn on Internet");
     }

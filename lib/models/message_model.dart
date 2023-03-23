@@ -14,6 +14,7 @@ class MessageModel {
   String? senderImage;
   String? isFile;
   String? msg;
+  String? isRead;
 
   MessageModel({
     this.id = '',
@@ -23,6 +24,7 @@ class MessageModel {
     this.senderImage = '',
     this.isFile = '',
     this.msg = '',
+    this.isRead = '',
   });
 
   factory MessageModel.fromJson(Map<String, dynamic> json) => MessageModel(
@@ -33,6 +35,7 @@ class MessageModel {
         senderImage: json["senderImage"] ?? '',
         isFile: json["isFile"] ?? '',
         msg: json["msg"] ?? '',
+        isRead: json["isRead"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -43,6 +46,7 @@ class MessageModel {
         "senderImage": senderImage,
         "isFile": isFile,
         "msg": msg,
+        "isRead": isRead,
       };
 
   Widget messageCell({

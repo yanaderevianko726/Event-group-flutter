@@ -11,8 +11,6 @@ abstract class AppRoutes {
   static const eventHostingViewRoute = Paths.eventHostingViewPath;
   static const eventApprovedViewRoute = Paths.eventApprovedViewPath;
   static const eventInvitedViewRoute = Paths.eventInvitedViewPath;
-  static const browseVendorsRoute = Paths.browseVendorsPath;
-  static const appliedVendorViewRoute = Paths.appliedVendorViewPath;
   static const messagesPageRoute = Paths.messagesPagePath;
   static const hostProfileRoute = Paths.hostProfilePath;
   static const createEventRoute = Paths.createEventPath;
@@ -33,8 +31,6 @@ abstract class Paths {
   static const eventHostingViewPath = "/EventHostingView";
   static const eventApprovedViewPath = "/EventApprovedView";
   static const eventInvitedViewPath = "/EventInvitedView";
-  static const browseVendorsPath = "/BrowseVendors";
-  static const appliedVendorViewPath = "/AppliedVendorView";
   static const messagesPagePath = "/MessagesPage";
   static const hostProfilePath = "/HostProfilePage";
   static const createEventPath = "/CreateEventPage";

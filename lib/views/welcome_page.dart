@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/routes/app_routes.dart';
 import 'package:popuppros/utils/constants.dart';
-import '../../controllers/welcome_controller.dart';
-import '../../utils/constant_widgets.dart';
-import '../../utils/functions.dart';
-import '../../utils/my_colors.dart';
+import '../controllers/welcome_controller.dart';
+import '../utils/constant_widgets.dart';
+import '../utils/functions.dart';
+import '../utils/my_colors.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -17,11 +17,6 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePage extends State<WelcomePage> {
   WelcomeController welcomeController = Get.put(WelcomeController());
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +131,13 @@ class _WelcomePage extends State<WelcomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ConstantWidget.getTextWidget('Don\'t have an account?',
-                      Colors.black, TextAlign.center, FontWeight.w500, 20.sp),
+                  ConstantWidget.getTextWidget(
+                    'Don\'t have an account?',
+                    Colors.black,
+                    TextAlign.center,
+                    FontWeight.w500,
+                    20.sp,
+                  ),
                   InkWell(
                     onTap: () {
                       Get.toNamed(AppRoutes.signUpRoute);

@@ -1,13 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/controllers/events/create_event_controller.dart';
-
-import '../../models/tent_model.dart';
 import '../../utils/constant_widgets.dart';
 import '../../utils/constants.dart';
 import '../../utils/functions.dart';
@@ -806,43 +802,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              ConstantWidget.getVerSpace(32.h),
-              SizedBox(
-                width: double.infinity,
-                child: getButton(
-                  context,
-                  primaryColor,
-                  "Add Tent Slot",
-                  Colors.white,
-                  () async {
-                    if (priceController.text.isNotEmpty) {
-                      if (tentsController.text.isNotEmpty) {
-                        if (size1Controller.text.isNotEmpty) {
-                          if (size2Controller.text.isNotEmpty) {
-                            TentModel tentModel = TentModel();
-                            tentModel.price = priceController.text;
-                            tentModel.totalTents = tentsController.text;
-                            tentModel.size1 = size1Controller.text;
-                            tentModel.size2 = size2Controller.text;
-                          } else {
-                            showDialog1(context, 'Please enter size 2 value');
-                          }
-                        } else {
-                          showDialog1(context, 'Please enter size 1 value');
-                        }
-                      } else {
-                        showDialog1(context, 'Please enter total tents');
-                      }
-                    } else {
-                      showDialog1(context, 'Please enter price');
-                    }
-                  },
-                  20.sp,
-                  weight: FontWeight.w700,
-                  buttonHeight: 58.h,
-                  borderRadius: BorderRadius.circular(25),
                 ),
               ),
               ConstantWidget.getVerSpace(16.h),

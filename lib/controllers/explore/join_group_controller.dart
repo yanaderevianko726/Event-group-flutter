@@ -34,15 +34,6 @@ class JoinGroupController extends GetxController {
       Map<String, dynamic> userMap;
       userMap = jsonDecode(uDetails) as Map<String, dynamic>;
       userDetail = UserDetail.fromJson(userMap);
-
-      final snapshot = await dbRef.child(Constants.vendorsRef).child('${userDetail.userId}').get();
-      if (snapshot.exists) {
-        final objectMap = snapshot.value as Map<Object?, Object?>;
-        Map<String, dynamic> vendorMap = <String, dynamic>{};
-        objectMap.forEach((key, value) {
-          vendorMap['$key'] = value;
-        });
-      }
       update();
     }
   }

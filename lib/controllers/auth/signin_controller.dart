@@ -20,9 +20,9 @@ class SignInController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  bool isRemember = true;
   bool isLoading = false;
   String cUserId = '';
-  bool isRemember = true;
 
   @override
   void onInit() {
@@ -30,7 +30,7 @@ class SignInController extends GetxController {
     initController();
   }
 
-  initController(){
+  initController() {
     emailController.text = '';
     passwordController.text = '';
   }
@@ -50,7 +50,7 @@ class SignInController extends GetxController {
         userMap['$key'] = value;
       });
       UserDetail userData = UserDetail.fromJson(userMap);
-      if (userData.userId != null) {
+      if (userData.userId!.isNotEmpty) {
         userDetail = userData;
         cUserId = userDetail.userId!;
         await PrefData.setUserDetail(json.encode(userDetail));
@@ -92,18 +92,21 @@ class SignInController extends GetxController {
           } else {
             isLoading = false;
             update();
-            Constants.showToast('This email is not available, please try again with another email.');
+            Constants.showToast(
+                'This email is not available, please try again with another email.');
             callback(false);
           }
         } on FirebaseAuthException {
           isLoading = false;
           update();
-          Constants.showToast('This email is not available, please try again with another email.');
+          Constants.showToast(
+              'This email is not available, please try again with another email.');
           callback(false);
         } catch (e) {
           isLoading = false;
           update();
-          Constants.showToast('This email is not available, please try again with another email.');
+          Constants.showToast(
+              'This email is not available, please try again with another email.');
           callback(false);
         }
       } else {
@@ -146,7 +149,9 @@ class SignInController extends GetxController {
             userDetail.image = user.photoURL;
             userDetail.phoneVerified = "Verified";
 
-            await PrefData.setUserDetail(json.encode(userDetail));
+            await PrefData.setUserDetail(
+              json.encode(userDetail),
+            );
             await dbRef
                 .child(Constants.usersRef)
                 .child('${userDetail.userId}')
@@ -162,15 +167,6 @@ class SignInController extends GetxController {
         callback(false);
       }
     } else {
-      callback(false);
-    }
-  }
-
-  checkVendorProfile(Function callback) async {
-    final snapshot = await dbRef.child('${Constants.vendorsRef}/$cUserId').get();
-    if (snapshot.exists) {
-      callback(true);
-    }else{
       callback(false);
     }
   }

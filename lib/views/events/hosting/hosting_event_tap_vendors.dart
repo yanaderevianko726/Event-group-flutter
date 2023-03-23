@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:popuppros/routes/app_routes.dart';
-
 import '../../../controllers/explore/explore_event_view_controller.dart';
-import '../../../utils/my_colors.dart';
 import '../../../utils/widgets.dart';
 
 class HostingEventTapVendors extends StatefulWidget {
@@ -44,29 +41,6 @@ class _HostingEventTapVendors extends State<HostingEventTapVendors> {
               SizedBox(
                 height: 16.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.browseVendorsRoute, arguments: [
-                        eventController.eventModel,
-                      ]);
-                    },
-                    child: getCustomText(
-                      '+ Invite Vendors',
-                      primaryLightColor,
-                      1,
-                      TextAlign.start,
-                      FontWeight.w400,
-                      20.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 16.h,
-                  ),
-                ],
-              )
             ],
           ),
         ),

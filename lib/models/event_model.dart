@@ -18,7 +18,7 @@ class EventModel {
   String? lang;
   String? featured;
   String? bookMarked;
-  String? interestedIn;
+  String interestedIn = '0';
   String? eventDate;
   String? eventStartTime;
   String? eventEndTime;

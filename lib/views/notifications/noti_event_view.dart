@@ -1,13 +1,9 @@
-import 'dart:convert';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/controllers/notifications/noti_event_controller.dart';
 import 'package:popuppros/models/model.dart';
-import 'package:popuppros/models/tent_model.dart';
-
 import '../../utils/constant_widgets.dart';
 import '../../utils/constants.dart';
 import '../../utils/my_colors.dart';
@@ -25,31 +21,17 @@ class NotiEventViewPage extends StatefulWidget {
 
 class _NotiEventViewPageState extends State<NotiEventViewPage> {
   late DatabaseReference dbRef = FirebaseDatabase.instance.ref();
-  VendorModel vendorModel = VendorModel();
   EventModel eventModel = EventModel();
-  TentModel tentModel = TentModel();
+  UserDetail notiUser = UserDetail();
 
-  loadVendorModel() async {
-    final snapshot = await dbRef
-        .child(Constants.vendorsRef)
-        .child('${widget.notificationModel.fromId}')
-        .get();
-    if (snapshot.exists) {
-      Map<String, dynamic> vendorMap = <String, dynamic>{};
-      final objectMap = snapshot.value as Map<Object?, Object?>;
-      objectMap.forEach((key, value) {
-        vendorMap['$key'] = value;
-      });
-      setState(() {
-        vendorModel = VendorModel.fromJson(vendorMap);
-      });
-    }
+  initData() async {
+    await loadEventModel();
   }
 
   loadEventModel() async {
     final snapshot = await dbRef
         .child(Constants.allEventsRef)
-        .child('${widget.notificationModel.toId}')
+        .child('${widget.notificationModel.eventId}')
         .get();
     if (snapshot.exists) {
       Map<String, dynamic> eventMap = <String, dynamic>{};
@@ -57,12 +39,28 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
       objectMap.forEach((key, value) {
         eventMap['$key'] = value;
       });
+      loadUserModel();
     }
   }
 
-  initData() async {
-    await loadVendorModel();
-    await loadEventModel();
+  loadUserModel() async {
+    final snapshot = await dbRef
+        .child(Constants.usersRef)
+        .child('${widget.notificationModel.senderId}')
+        .get();
+    if (snapshot.exists) {
+      final objectMap = snapshot.value as Map<Object?, Object?>;
+      Map<String, dynamic> userMap = <String, dynamic>{};
+      objectMap.forEach((key, value) {
+        userMap['$key'] = value;
+      });
+      UserDetail userData = UserDetail.fromJson(userMap);
+      if (userData.userId!.isNotEmpty) {
+        setState(() {
+          notiUser = userData;
+        });
+      }
+    }
   }
 
   @override
@@ -157,18 +155,6 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
                                   )
                                 ],
                               ),
-                              ConstantWidget.getVerSpace(12.h),
-                              Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.only(left: 12.h),
-                                child: ConstantWidget.getTextWidget(
-                                  '\$${tentModel.price} ${tentModel.size1}x${tentModel.size2} ${tentModel.curTents}/${tentModel.totalTents}',
-                                  Colors.black87.withOpacity(0.7),
-                                  TextAlign.start,
-                                  FontWeight.w400,
-                                  18.sp,
-                                ),
-                              ),
                               ConstantWidget.getVerSpace(32.h),
                               Row(
                                 children: [
@@ -188,18 +174,6 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
                                     ),
                                   )
                                 ],
-                              ),
-                              ConstantWidget.getVerSpace(12.h),
-                              Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.only(left: 12.h),
-                                child: ConstantWidget.getTextWidget(
-                                  '${vendorModel.vendorName}',
-                                  Colors.black87.withOpacity(0.7),
-                                  TextAlign.start,
-                                  FontWeight.w400,
-                                  18.sp,
-                                ),
                               ),
                               ConstantWidget.getVerSpace(32.h),
                               Row(
@@ -221,18 +195,6 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
                                   )
                                 ],
                               ),
-                              ConstantWidget.getVerSpace(12.h),
-                              Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.only(left: 12.h),
-                                child: ConstantWidget.getTextWidget(
-                                  '${vendorModel.vendorType}',
-                                  Colors.black87.withOpacity(0.7),
-                                  TextAlign.start,
-                                  FontWeight.w400,
-                                  18.sp,
-                                ),
-                              ),
                               ConstantWidget.getVerSpace(32.h),
                               Row(
                                 children: [
@@ -252,18 +214,6 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
                                     ),
                                   )
                                 ],
-                              ),
-                              ConstantWidget.getVerSpace(12.h),
-                              Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.only(left: 12.h),
-                                child: ConstantWidget.getTextWidget(
-                                  '${vendorModel.location}',
-                                  Colors.black87.withOpacity(0.7),
-                                  TextAlign.start,
-                                  FontWeight.w400,
-                                  18.sp,
-                                ),
                               ),
                               ConstantWidget.getVerSpace(72.h),
                               Row(
@@ -379,8 +329,8 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
     BuildContext context,
     NotiEventController notiEventController,
   ) async {
-    notiEventController.rejectVendorRequest(
-        widget.notificationModel, eventModel, vendorModel, () {
+    notiEventController
+        .rejectVendorRequest(widget.notificationModel, eventModel, () {
       showSuccessDialog();
     });
   }
@@ -389,8 +339,8 @@ class _NotiEventViewPageState extends State<NotiEventViewPage> {
     BuildContext context,
     NotiEventController notiEventController,
   ) {
-    notiEventController.acceptVendorRequest(
-        widget.notificationModel, eventModel, vendorModel, () {
+    notiEventController
+        .acceptUserRequest(widget.notificationModel, eventModel, notiUser, () {
       showSuccessDialog();
     });
   }

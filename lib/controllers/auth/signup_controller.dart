@@ -29,6 +29,10 @@ class SignUpController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    initController();
+  }
+
+  initController() {
     fNameController.text = '';
     emailController.text = '';
     passwordController.text = '';
@@ -37,7 +41,7 @@ class SignUpController extends GetxController {
 
   getUserWithUserId(userId, Function callback) async {
     final snapshot =
-    await dbRef.child(Constants.usersRef).child('$userId').get();
+        await dbRef.child(Constants.usersRef).child('$userId').get();
     if (snapshot.exists) {
       final objectMap = snapshot.value as Map<Object?, Object?>;
       Map<String, dynamic> userMap = <String, dynamic>{};
@@ -63,11 +67,12 @@ class SignUpController extends GetxController {
     update();
     var md5Password = generateMd5(password);
     try {
-      UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential credential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailAddress,
         password: md5Password,
       );
-      if(credential.user != null){
+      if (credential.user != null) {
         User? user = credential.user;
         userDetail = UserDetail();
         cUserId = userDetail.userId!;
@@ -79,15 +84,16 @@ class SignUpController extends GetxController {
 
         await PrefData.setUserDetail(json.encode(userDetail));
         dbRef.child(Constants.usersRef).child('${userDetail.userId}').set(
-            userDetail.toJson()
-        );
+              userDetail.toJson(),
+            );
         isLoading = false;
         update();
         callback(true);
-      }else{
+      } else {
         isLoading = false;
         update();
-        Functions.showToast("This email is not valid, please try with another email.");
+        Functions.showToast(
+            "This email is not valid, please try with another email.");
         callback(false);
       }
     } on FirebaseAuthException {
@@ -105,18 +111,20 @@ class SignUpController extends GetxController {
 
   signInWithGoogle(Function callback) async {
     GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-    if(googleSignInAccount != null){
+    if (googleSignInAccount != null) {
       isLoading = true;
       update();
 
-      GoogleSignInAuthentication googleSignInAuth = await googleSignInAccount.authentication;
+      GoogleSignInAuthentication googleSignInAuth =
+          await googleSignInAccount.authentication;
       AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuth.accessToken,
         idToken: googleSignInAuth.idToken,
       );
-      UserCredential authResult = await _firebaseAuth.signInWithCredential(credential);
+      UserCredential authResult =
+          await _firebaseAuth.signInWithCredential(credential);
       User? user = authResult.user;
-      if(user != null){
+      if (user != null) {
         cUserId = user.uid;
         getUserWithUserId(user.uid, (retVal) async {
           if (retVal) {
@@ -128,7 +136,7 @@ class SignUpController extends GetxController {
             userDetail = UserDetail();
             userDetail.userId = user.uid;
             userDetail.firstName = name[0];
-            if(name.length>=2){
+            if (name.length >= 2) {
               userDetail.lastName = name[1];
             }
             userDetail.email = user.email;
@@ -137,51 +145,53 @@ class SignUpController extends GetxController {
             userDetail.phoneVerified = "Verified";
 
             await PrefData.setUserDetail(json.encode(userDetail));
-            await dbRef.child(Constants.usersRef).child('${userDetail.userId}').set(
-                userDetail.toJson()
-            );
+            await dbRef
+                .child(Constants.usersRef)
+                .child('${userDetail.userId}')
+                .set(userDetail.toJson());
             isLoading = false;
             update();
             callback(true);
           }
         });
-      }else{
+      } else {
         isLoading = false;
         update();
         Functions.showToast("Signup failed, please check your network.");
         callback(false);
       }
-    }else{
+    } else {
       callback(false);
     }
   }
 
   onClickSignup(Function callback) {
-    if(fNameController.text.isNotEmpty){
-      if(emailController.text.isNotEmpty){
-        if(passwordController.text.isNotEmpty){
-          if(confirmController.text.length>=6){
-            signUpWithEmailAndPassword(emailController.text, passwordController.text, (retVal){
-              if(retVal){
+    if (fNameController.text.isNotEmpty) {
+      if (emailController.text.isNotEmpty) {
+        if (passwordController.text.isNotEmpty) {
+          if (confirmController.text.length >= 6) {
+            signUpWithEmailAndPassword(
+                emailController.text, passwordController.text, (retVal) {
+              if (retVal) {
                 callback(7);
-              }else{
+              } else {
                 Functions.showToast("Signup failed, please try again.");
                 callback(6);
               }
             });
-          }else{
+          } else {
             Functions.showToast("Please confirm password.");
             callback(5);
           }
-        }else{
+        } else {
           Functions.showToast("Please enter password.");
           callback(4);
         }
-      }else{
+      } else {
         Functions.showToast("Please enter email.");
         callback(2);
       }
-    }else{
+    } else {
       Functions.showToast("Please enter full name.");
       callback(0);
     }
@@ -191,4 +201,3 @@ class SignUpController extends GetxController {
     return md5.convert(utf8.encode(input)).toString();
   }
 }
-

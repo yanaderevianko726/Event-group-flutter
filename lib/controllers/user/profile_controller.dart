@@ -11,7 +11,6 @@ class ProfileController extends GetxController {
   late DatabaseReference dbRef = FirebaseDatabase.instance.ref();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   UserDetail userDetail = UserDetail();
-  VendorModel vendorModel = VendorModel();
 
   @override
   void onInit() {
@@ -21,7 +20,6 @@ class ProfileController extends GetxController {
 
   initController() async {
     await getUserDetails();
-    await getVendorProfile();
   }
 
   getUserDetails() async {
@@ -30,19 +28,6 @@ class ProfileController extends GetxController {
       Map<String, dynamic> userMap;
       userMap = jsonDecode(uDetails) as Map<String, dynamic>;
       userDetail = UserDetail.fromJson(userMap);
-      update();
-    }
-  }
-
-  getVendorProfile() async {
-    final snapshot = await dbRef.child('${Constants.vendorsRef}/${userDetail.userId}').get();
-    if (snapshot.exists) {
-      Map<Object?, Object?> maps = snapshot.value as Map<Object?, Object?>;
-      Map<String, dynamic> mapJson = <String, dynamic>{};
-      maps.forEach((key, value) {
-        mapJson['$key'] = '$value';
-      });
-      vendorModel = VendorModel.fromJson(mapJson);
       update();
     }
   }

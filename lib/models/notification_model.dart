@@ -7,11 +7,11 @@ class NotificationModel {
   String? senderName;
   String? senderImage;
   String? isRead;
-  String? fromType; // Vendor or Event
-  String? fromId; // VendorId or EventId
-  String? toType; // Vendor or Event
-  String? toId; // VendorId or EventId
-  String? slotIndex;
+  String? fromId;
+  String? fromName;
+  String? fromImage;
+  String? type;
+  String? eventId;
 
   NotificationModel({
     this.id = '',
@@ -21,11 +21,11 @@ class NotificationModel {
     this.senderName = '',
     this.senderImage = '',
     this.isRead = 'Not',
-    this.fromType = '',
     this.fromId = '',
-    this.toType = '',
-    this.toId = '',
-    this.slotIndex = '0',
+    this.fromName = '',
+    this.fromImage = '',
+    this.type = '',
+    this.eventId = '',
   });
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) => NotificationModel(
@@ -36,11 +36,11 @@ class NotificationModel {
     senderName: json["senderName"] ?? '',
     senderImage: json["senderImage"] ?? '',
     isRead: json["isRead"] ?? '',
-    fromType: json["fromType"] ?? '',
     fromId: json["fromId"] ?? '',
-    toType: json["toType"] ?? '',
-    toId: json["toId"] ?? '',
-    slotIndex: json["slotIndex"] ?? '',
+    fromName: json["fromName"] ?? '',
+    fromImage: json["fromImage"] ?? '',
+    type: json["type"] ?? '',
+    eventId: json["eventId"] ?? '',
   );
 
   Map<String, dynamic> toJson() => {
@@ -51,10 +51,10 @@ class NotificationModel {
     "senderName": senderName,
     "senderImage": senderImage,
     "isRead": isRead,
-    "fromType": fromType,
     "fromId": fromId,
-    "toType": toType,
-    "toId": toId,
-    "slotIndex": slotIndex,
+    "fromName": fromName,
+    "fromImage": fromImage,
+    "type": type,
+    "eventId": eventId,
   };
 }

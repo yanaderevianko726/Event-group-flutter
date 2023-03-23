@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart' as geo;
 
 class WelcomeController extends GetxController {
-  bool isSignIn = false;
 
   @override
   void onInit() {

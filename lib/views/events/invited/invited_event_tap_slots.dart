@@ -32,21 +32,6 @@ class _InvitedEventTapSlots extends State<InvitedEventTapSlots> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  getCustomText(
-                    'Available Slots',
-                    Colors.black87,
-                    1,
-                    TextAlign.start,
-                    FontWeight.w400,
-                    20.sp,
-                  ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-                  for (var i = 0; i < eventController.tentModels.length; i++)
-                    slotCellUI(
-                      tentModel: eventController.tentModels[i],
-                    ),
                   SizedBox(
                     height: 132.h,
                   ),

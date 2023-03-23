@@ -27,7 +27,6 @@ class Constants {
   static String privacyURL = 'https://google.com';
 
   static String usersRef = 'Users';
-  static String vendorsRef = 'Vendors';
   static String allEventsRef = 'AllEvents';
   static String eventTypes = 'EventTypes';
   static String messagesRef = 'Messages';
@@ -38,8 +37,7 @@ class Constants {
   static String notificationsRef = 'Notifications';
   static String referredEventRef = 'ReferredEvents';
   static String referredGroupsRef = 'ReferredGroups';
-  static String referredVendorsRef = 'ReferredVendors';
-  static String approvedVendorsRef = 'ApprovedVendors';
+  static String approvedUsersRef = 'ApprovedUsers';
   static String approvedBy = 'approvedby_';
   static String invitedBy = 'invitedby_';
 
