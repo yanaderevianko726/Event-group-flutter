@@ -3,79 +3,87 @@ class UserDetail {
   String? userId;
   String? firstName;
   String? lastName;
-  String? username;
+  String? title;
   String? email;
   String? password;
   String? mobile;
-  String? age;
-  String? gender;
   String? image;
+  String? gender;
   String? address;
   String? city;
   String? country;
   String? state;
+  String? lat;
+  String? long;
   String? phoneVerified;
-  String? isVendor;
-  String? isHost;
+  String? posts;
+  String? followers;
+  String? followings;
 
   UserDetail({
     this.userId = '',
     this.firstName = '',
     this.lastName = '',
-    this.username = '',
+    this.title = '',
     this.email = '',
     this.password = '',
     this.mobile = '',
-    this.age = '',
-    this.gender = '',
     this.image = '',
+    this.gender = '',
     this.address = '',
     this.city = '',
     this.country = '',
     this.state = '',
+    this.lat = '',
+    this.long = '',
     this.phoneVerified = 'Not',
-    this.isVendor = 'Not',
-    this.isHost = 'Not',
+    this.posts = '0',
+    this.followers = '0',
+    this.followings = '0',
   });
 
   factory UserDetail.fromJson(Map<String, dynamic> json) => UserDetail(
     userId: json["userId"] ?? '',
     firstName: json["firstName"] ?? '',
     lastName: json["lastName"] ?? '',
-    username: json["username"] ?? '',
+    title: json["title"] ?? '',
     email: json["email"] ?? '',
     password: json["password"] ?? '',
     mobile: json["mobile"] ?? '',
-    age: json["age"] ?? '',
-    gender: json["gender"] ?? '',
     image: json["image"],
+    gender: json["gender"] ?? '',
     address: json["address"] ?? '',
     city: json["city"] ?? '',
     country: json["country"] ?? '',
     state: json["state"] ?? '',
+    lat: json["lat"] ?? '',
+    long: json["long"] ?? '',
     phoneVerified: json["phoneVerified"] ?? '',
-    isVendor: json["isVendor"] ?? '',
-    isHost: json["isHost"] ?? '',
+    posts: json["posts"] ?? '0',
+    followers: json["followers"] ?? '0',
+    followings: json["followings"] ?? '0',
   );
 
   Map<String, dynamic> toJson() => {
     "userId": userId,
     "firstName": firstName,
     "lastName": lastName,
-    "username": username,
+    "title": title,
     "email": email,
     "password": password,
     "mobile": mobile,
-    "age": age,
-    "gender": gender,
     "image": image,
+    "gender": gender,
     "address": address,
     "city": city,
     "country": country,
     "state": state,
+    "lat": lat,
+    "long": long,
     "phoneVerified": phoneVerified,
-    "isVendor": isVendor,
-    "isHost": isHost,
+    "posts": posts,
+    "followers": followers,
+    "followings": followings,
   };
 }
 

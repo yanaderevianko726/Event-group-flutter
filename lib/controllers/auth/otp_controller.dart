@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:popuppros/views/home_page.dart';
 
 import '../../models/userdetail_model.dart';
 import '../../utils/constants.dart';
 import '../../utils/pref_data.dart';
-import '../../views/wizards/usertype_wizard.dart';
 
 class OTPController extends GetxController {
   late DatabaseReference dbRef = FirebaseDatabase.instance.ref();
@@ -87,7 +87,7 @@ class OTPController extends GetxController {
       await dbRef.child(Constants.usersRef).child('${userDetail.userId}').set(
             userDetail.toJson(),
           );
-      Get.to(() => const UserTypesWizard());
+      Get.to(() => const HomePage());
     } else {
       Constants.showToast('Fill details...');
     }

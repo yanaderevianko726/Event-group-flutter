@@ -209,10 +209,9 @@ class ExploreController extends GetxController {
         eventImage: eventImgs[i],
         description: eDescs[i],
         eventDate: _dates[i],
-        eventTime: _times[i],
+        eventStartTime: _times[i],
         location: eLocations[i],
         userImage: 'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/users%2FImage.png?alt=media&token=8fb2587f-3467-4d32-ae61-6670af6c7a6f',
-        addressLine1: 'Ksaverivka City, Vulytsia Ukraine',
         interestedIn: eInterestes[i],
       );
       eventModels.add(eventModel);
@@ -224,10 +223,9 @@ class ExploreController extends GetxController {
         eventImage: featuredImgs[i],
         description: fDescs[i],
         eventDate: _dates[i],
-        eventTime: _times[i],
+        eventStartTime: _times[i],
         location: fLocations[i],
         userImage: 'https://firebasestorage.googleapis.com/v0/b/popuppros-d9cba.appspot.com/o/users%2FImage.png?alt=media&token=8fb2587f-3467-4d32-ae61-6670af6c7a6f',
-        addressLine1: 'Ksaverivka City, Vulytsia Ukraine',
         interestedIn: fInterestes[i],
       );
       featuredEvents.add(eventModel);

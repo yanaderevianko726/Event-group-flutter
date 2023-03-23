@@ -152,7 +152,7 @@ class _EventHostingViewWidget extends State<EventViewPage> {
                                 width: double.infinity,
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: ConstantWidget.getTextWidget(
-                                  '${eventViewController.eventModel.eventTime}',
+                                  '${eventViewController.eventModel.eventStartTime}',
                                   descriptionColor,
                                   TextAlign.start,
                                   FontWeight.w400,
@@ -199,7 +199,7 @@ class _EventHostingViewWidget extends State<EventViewPage> {
                                 width: double.infinity,
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: ConstantWidget.getTextWidget(
-                                  '${eventViewController.eventModel.addressLine1}',
+                                  '${eventViewController.eventModel.location}',
                                   textColor,
                                   TextAlign.start,
                                   FontWeight.w400,

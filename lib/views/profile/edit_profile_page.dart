@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +28,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   XFile? _image;
   String? imageUrl;
-  int age = 0;
   String? state;
   String gender = "Male";
   String address = "";
@@ -48,7 +46,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
     if (uDetails.isNotEmpty) {
       UserDetail userDetail = await Functions.getUserDetail();
       setState(() {
-        age = int.parse(userDetail.age!);
         gender = userDetail.gender!;
         address = userDetail.address!;
         city = userDetail.city!;

@@ -13,74 +13,74 @@ class EventModel {
   String? userId;
   String? username;
   String? userImage;
-  String? addressLine1;
   String? location;
   String? lat;
   String? lang;
-  String? interestedIn;
   String? featured;
-  String? bookMark;
+  String? bookMarked;
+  String? interestedIn;
   String? eventDate;
-  String? eventTime;
+  String? eventStartTime;
+  String? eventEndTime;
   String? createdAt;
 
   EventModel({
     this.eventId = '',
+    this.eventName = '',
+    this.eventImage = '',
+    this.description = '',
     this.userId = '',
     this.username = '',
-    this.eventName = '',
-    this.description = '',
     this.userImage = '',
-    this.eventImage = '',
-    this.addressLine1 = '',
     this.location = '',
     this.lat = '',
     this.lang = '',
-    this.interestedIn = '',
     this.featured = 'Not',
-    this.bookMark = 'Not',
+    this.bookMarked = 'Not',
+    this.interestedIn = '0',
     this.eventDate = '',
-    this.eventTime = '',
+    this.eventStartTime = '',
+    this.eventEndTime = '',
     this.createdAt = '',
   });
 
   factory EventModel.fromJson(Map<String, dynamic> json) => EventModel(
         eventId: json["eventId"] ?? '',
         eventName: json["eventName"] ?? '',
-        description: json["description"] ?? '',
         eventImage: json["eventImage"] ?? '',
+        description: json["description"] ?? '',
         userId: json["userId"] ?? '',
         username: json["username"] ?? '',
         userImage: json["userImage"] ?? '',
-        addressLine1: json["addressLine1"] ?? '',
         location: json["location"] ?? '',
         lat: json["lat"] ?? '',
         lang: json["lang"] ?? '',
-        interestedIn: json["interestedIn"] ?? '',
         featured: json["featured"] ?? 'Not',
-        bookMark: json["bookMark"] ?? 'Not',
+        bookMarked: json["bookMarked"] ?? 'Not',
+        interestedIn: json["interestedIn"] ?? '0',
         eventDate: json["eventDate"] ?? '',
-        eventTime: json["eventTime"] ?? '',
+        eventStartTime: json["eventStartTime"] ?? '',
+        eventEndTime: json["eventEndTime"] ?? '',
         createdAt: json["createdAt"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
         "eventId": eventId,
         "eventName": eventName,
-        "description": description,
         "eventImage": eventImage,
+        "description": description,
         "userId": userId,
         "username": username,
         "userImage": userImage,
-        "addressLine1": addressLine1,
         "location": location,
         "lat": lat,
         "lang": lang,
-        "interestedIn": interestedIn,
         "featured": featured,
-        "bookMark": bookMark,
+        "bookMark": bookMarked,
+        "interestedIn": interestedIn,
         "eventDate": eventDate,
-        "eventTime": eventTime,
+        "eventStartTime": eventStartTime,
+        "eventEndTime": eventEndTime,
         "createdAt": createdAt,
       };
 
