@@ -3,29 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/events/event_wizard_controller.dart';
+import '../../controllers/events/user_wizard_controller.dart';
 import '../../utils/constant_widgets.dart';
 import '../../utils/constants.dart';
 import '../../utils/functions.dart';
 import '../../utils/my_colors.dart';
 
-class EventHostWizard extends StatefulWidget {
-  const EventHostWizard({super.key});
+class UserDetailWizard extends StatefulWidget {
+  const UserDetailWizard({super.key});
 
   @override
-  _EventHostWizard createState() {
-    return _EventHostWizard();
+  _UserDetailWizard createState() {
+    return _UserDetailWizard();
   }
 }
 
-class _EventHostWizard extends State<EventHostWizard> {
-  EventWizardController eController = Get.put(EventWizardController());
+class _UserDetailWizard extends State<UserDetailWizard> {
+  UserWizardController userWizardController = Get.put(UserWizardController());
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return GetBuilder<EventWizardController>(
-      init: EventWizardController(),
-      builder: (eController) => WillPopScope(
+    return GetBuilder<UserWizardController>(
+      init: UserWizardController(),
+      builder: (uController) => WillPopScope(
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: bgDark,
@@ -118,8 +118,8 @@ class _EventHostWizard extends State<EventHostWizard> {
                       ConstantWidget.getVerSpace(12.h),
                       ConstantWidget.getDefaultTextFiledWithLabel(
                         context,
-                        "City",
-                        eController.cityController,
+                        "Title",
+                        uController.titleTC,
                         isEnable: false,
                         withPrefix: false,
                         validator: (city) {
@@ -139,7 +139,7 @@ class _EventHostWizard extends State<EventHostWizard> {
                         () async {
                           bool isNetwork = await Functions.getNetwork();
                           if (isNetwork) {
-                            eController.onClickContinue();
+                            uController.onClickContinue();
                           } else {
                             Functions.showToast("Please turn on Internet");
                           }
@@ -158,7 +158,7 @@ class _EventHostWizard extends State<EventHostWizard> {
                 SizedBox(
                   width: double.infinity,
                   height: double.infinity,
-                  child: eController.isLoading
+                  child: uController.isLoading
                       ? Center(
                           child: CircularProgressIndicator(
                             color: primaryLightColor,

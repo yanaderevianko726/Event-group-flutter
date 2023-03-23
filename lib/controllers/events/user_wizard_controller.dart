@@ -11,14 +11,11 @@ import '../../routes/app_routes.dart';
 import '../../utils/constants.dart';
 import '../../utils/pref_data.dart';
 
-class EventWizardController extends GetxController {
+class UserWizardController extends GetxController {
   late DatabaseReference dbRef = FirebaseDatabase.instance.ref();
   UserDetail userDetail = UserDetail();
-  EventHostModel hostModel = EventHostModel();
-
-  TextEditingController cityController = TextEditingController();
-
   bool isLoading = false;
+  TextEditingController titleTC = TextEditingController();
 
   @override
   void onInit() {
@@ -27,6 +24,7 @@ class EventWizardController extends GetxController {
   }
 
   initUser() async {
+    titleTC.text = '';
     String uDetails = await PrefData.getUserDetail();
     if (uDetails.isNotEmpty) {
       Map<String, dynamic> userMap;
@@ -37,19 +35,11 @@ class EventWizardController extends GetxController {
   }
 
   onClickContinue() async {
-    if (cityController.text.isNotEmpty) {
-      isLoading = true;
-      update();
-      hostModel.hostId = userDetail.userId;
-      hostModel.city = cityController.text;
-      await dbRef.child('EventHosts').child('${hostModel.hostId}').set(
-            hostModel.toJson(),
-          );
-      isLoading = false;
-      update();
-      Get.offAndToNamed(AppRoutes.homeRoute);
-    } else {
-      Constants.showToast('Please fill the city...');
-    }
+    isLoading = true;
+    update();
+
+    isLoading = false;
+    update();
+    Get.offAndToNamed(AppRoutes.homeRoute);
   }
 }

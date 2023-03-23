@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "653468750345-ad31cvr76s0srd6j9kj6257ofvji80hi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.events.meetoutpeople",
+            "certificate_hash": "acb0304e776798be0fbc2cc4719bbfcb31c9187c"
+          }
+        },
+        {
           "client_id": "653468750345-j2jt6qksv9ko241rl3k1a85m3u1udsjf.apps.googleusercontent.com",
           "client_type": 3
         }

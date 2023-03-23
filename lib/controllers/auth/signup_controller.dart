@@ -93,7 +93,8 @@ class SignUpController extends GetxController {
         isLoading = false;
         update();
         Functions.showToast(
-            "This email is not valid, please try with another email.");
+          "This email is not valid, please try with another email.",
+        );
         callback(false);
       }
     } on FirebaseAuthException {
@@ -165,31 +166,34 @@ class SignUpController extends GetxController {
     }
   }
 
-  onClickSignup(Function callback) {
+  signupWithEmailPassword(Function callback) {
     if (fNameController.text.isNotEmpty) {
       if (emailController.text.isNotEmpty) {
         if (passwordController.text.isNotEmpty) {
           if (confirmController.text.length >= 6) {
             signUpWithEmailAndPassword(
-                emailController.text, passwordController.text, (retVal) {
-              if (retVal) {
-                callback(7);
-              } else {
-                Functions.showToast("Signup failed, please try again.");
-                callback(6);
-              }
-            });
+              emailController.text,
+              passwordController.text,
+              (retVal) {
+                if (retVal) {
+                  callback(5);
+                } else {
+                  Functions.showToast("Signup failed, please try again.");
+                  callback(4);
+                }
+              },
+            );
           } else {
             Functions.showToast("Please confirm password.");
-            callback(5);
+            callback(3);
           }
         } else {
           Functions.showToast("Please enter password.");
-          callback(4);
+          callback(2);
         }
       } else {
         Functions.showToast("Please enter email.");
-        callback(2);
+        callback(1);
       }
     } else {
       Functions.showToast("Please enter full name.");

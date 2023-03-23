@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:popuppros/controllers/auth/signin_controller.dart';
+import 'package:popuppros/views/wizards/userdetail_wizard.dart';
 
 import '../../../routes/app_routes.dart';
 import '../../../utils/constant_widgets.dart';
@@ -150,12 +151,15 @@ class _SignInPage extends State<SignInPage> {
                           onTap: () async {
                             bool isNetwork = await Functions.getNetwork();
                             if (isNetwork) {
-                              Get.offAndToNamed(AppRoutes.homeRoute);
-                              // signInController.onClickSignIn((val) {
-                              //   if (val) {
-                              //     Get.offAndToNamed(AppRoutes.homeRoute);
-                              //   }
-                              // });
+                              signInController.signinWithEmailPassword((val) {
+                                if (val) {
+                                  if(signInController.userDetail.title!.isNotEmpty){
+                                    Get.offAndToNamed(AppRoutes.homeRoute);
+                                  }else{
+                                    Get.to(() => const UserDetailWizard());
+                                  }
+                                }
+                              });
                             } else {
                               Functions.showToast(
                                 "Please turn on Internet",
@@ -378,20 +382,17 @@ class _SignInPage extends State<SignInPage> {
   checkNetworkForGoogleSignIn(SignInController signInController) async {
     bool isNetwork = await Functions.getNetwork();
     if (isNetwork) {
-      Get.offAndToNamed(AppRoutes.homeRoute);
-      // await signInController.signInWithGoogle((retVal) {
-      //   if (retVal) {
-      //     signInController.checkVendorProfile((val) {
-      //       if (val) {
-      //         Get.offAndToNamed(AppRoutes.homeRoute);
-      //       } else {
-      //         Get.to(() => const UserTypesWizard());
-      //       }
-      //     });
-      //   } else {
-      //     Functions.showToast("Failed to login with google.");
-      //   }
-      // });
+      await signInController.signInWithGoogle((retVal) {
+        if (retVal) {
+          if(signInController.userDetail.title!.isNotEmpty){
+            Get.offAndToNamed(AppRoutes.homeRoute);
+          }else{
+            Get.to(() => const UserDetailWizard());
+          }
+        } else {
+          Functions.showToast("Failed to login with google.");
+        }
+      });
     } else {
       Functions.showToast("Please turn on Internet");
     }

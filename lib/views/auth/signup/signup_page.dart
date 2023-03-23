@@ -10,6 +10,7 @@ import '../../../utils/constants.dart';
 import '../../../utils/functions.dart';
 import '../../../utils/my_colors.dart';
 import '../../../utils/widgets.dart';
+import '../../wizards/userdetail_wizard.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -175,7 +176,7 @@ class _SignUpPage extends State<SignUpPage> {
                           onTap: () async {
                             bool isNetwork = await Functions.getNetwork();
                             if (isNetwork) {
-                              onClickSignUp(signUpController);
+                              signUpWithEmailPassword(signUpController);
                             } else {
                               Functions.showToast(
                                 "Please turn on Internet",
@@ -400,7 +401,11 @@ class _SignUpPage extends State<SignUpPage> {
     if (isNetwork) {
       await signUpController.signInWithGoogle((retVal) {
         if (retVal) {
-          Get.offAndToNamed(AppRoutes.homeRoute);
+          if(signUpController.userDetail.title!.isNotEmpty){
+            Get.offAndToNamed(AppRoutes.homeRoute);
+          }else{
+            Get.to(() => const UserDetailWizard());
+          }
         } else {
           Functions.showToast("Failed to login with google.");
         }
@@ -410,12 +415,16 @@ class _SignUpPage extends State<SignUpPage> {
     }
   }
 
-  onClickSignUp(SignUpController signUpController) {
+  signUpWithEmailPassword(SignUpController signUpController) {
     Get.offAndToNamed(AppRoutes.homeRoute);
-    // signUpController.onClickSignup((retVal) {
-    //   if (retVal >= 7) {
-    //     Get.offAndToNamed(AppRoutes.homeRoute);
-    //   }
-    // });
+    signUpController.signupWithEmailPassword((retVal) {
+      if (retVal >= 5) {
+        if(signUpController.userDetail.title!.isNotEmpty){
+          Get.offAndToNamed(AppRoutes.homeRoute);
+        }else{
+          Get.to(() => const UserDetailWizard());
+        }
+      }
+    });
   }
 }

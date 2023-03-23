@@ -63,12 +63,11 @@ class SignInController extends GetxController {
     }
   }
 
-  onClickSignIn(Function callback) async {
+  signinWithEmailPassword(Function callback) async {
     checkEmptyEntry((val) async {
-      if (val >= 2) {
+      if (val) {
         isLoading = true;
         update();
-
         var md5Password = generateMd5(passwordController.text);
         try {
           UserCredential credential =
@@ -79,34 +78,31 @@ class SignInController extends GetxController {
           if (credential.user != null) {
             User? user = credential.user;
             getUserWithUserId(user!.uid, (retVal) async {
-              if (retVal) {
-                isLoading = false;
-                update();
-                callback(true);
-              } else {
-                isLoading = false;
-                update();
-                callback(false);
-              }
+              isLoading = false;
+              update();
+              callback(retVal);
             });
           } else {
             isLoading = false;
             update();
             Constants.showToast(
-                'This email is not available, please try again with another email.');
+              'This email is not available, please try again with another email.',
+            );
             callback(false);
           }
         } on FirebaseAuthException {
           isLoading = false;
           update();
           Constants.showToast(
-              'This email is not available, please try again with another email.');
+            'This email is not available, please try again with another email.',
+          );
           callback(false);
         } catch (e) {
           isLoading = false;
           update();
           Constants.showToast(
-              'This email is not available, please try again with another email.');
+            'This email is not available, please try again with another email.',
+          );
           callback(false);
         }
       } else {
@@ -174,14 +170,14 @@ class SignInController extends GetxController {
   checkEmptyEntry(Function callback) {
     if (emailController.text.isNotEmpty) {
       if (passwordController.text.isNotEmpty) {
-        callback(2);
+        callback(true);
       } else {
         Functions.showToast("Please enter password.");
-        callback(1);
+        callback(false);
       }
     } else {
       Functions.showToast("Please enter email.");
-      callback(0);
+      callback(false);
     }
   }
 
