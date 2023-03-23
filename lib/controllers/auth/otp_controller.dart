@@ -82,7 +82,6 @@ class OTPController extends GetxController {
   checkValidation() async {
     if (Constants.isNotEmpty(pinNumber)) {
       userDetail.phoneVerified = 'Verified';
-      await PrefData.setIsSignIn(true);
       await PrefData.setUserDetail(json.encode(userDetail));
       await dbRef.child(Constants.usersRef).child('${userDetail.userId}').set(
             userDetail.toJson(),

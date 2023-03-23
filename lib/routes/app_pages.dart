@@ -7,7 +7,6 @@ import 'package:popuppros/views/events/invited/invited_event_viewall.dart';
 import 'package:popuppros/views/messages/messages_page.dart';
 import 'package:popuppros/views/notifications/notifications_page.dart';
 import 'package:popuppros/views/profile/host_profile.dart';
-import 'package:popuppros/views/profile/vendor_profile.dart';
 import 'package:popuppros/views/vendor/browse_vendors.dart';
 import 'package:popuppros/views/welcome/welcome_page.dart';
 import '../views/auth/signin/signin_page.dart';
@@ -39,7 +38,6 @@ class AppPages {
     AppRoutes.browseVendorsRoute: (context) => const BrowseVendorsPage(),
     AppRoutes.appliedVendorViewRoute: (context) => const AppliedVendorViewPage(),
     AppRoutes.messagesPageRoute: (context) => const MessagesPage(),
-    AppRoutes.vendorProfileRoute: (context) => const VendorProfilePage(),
     AppRoutes.hostProfileRoute: (context) => const HostProfilePage(),
     AppRoutes.createEventRoute: (context) => const CreateEventPage(),
     AppRoutes.notificationRoute: (context) => const NotificationsPage(),

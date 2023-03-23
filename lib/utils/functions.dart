@@ -10,7 +10,7 @@ import '../routes/app_routes.dart';
 import 'pref_data.dart';
 
 class Functions {
-  static String constPrefix = 'popuppros';
+  static String constPrefix = 'eventhub';
   static String paramUserId = "${constPrefix}_userId";
   static String paramFirstName = "${constPrefix}_firstName";
   static String paramLastName = "${constPrefix}_lastName";
@@ -30,10 +30,6 @@ class Functions {
   static String paramNewPassword = "${constPrefix}_newPassword";
   static String paramDeviceId = "${constPrefix}_deviceId";
   static String termsAndCondition = "https://www.google.com";
-
-  static Future<bool> isLogin() async {
-    return await PrefData.getIsSignIn();
-  }
 
   static Future<String> getDeviceId() async {
     String? deviceId = "";
@@ -63,11 +59,10 @@ class Functions {
   }
 
   static Future<Map> getCommonParams() async {
-    bool isSignIn = await PrefData.getIsSignIn();
     String uDetails = await PrefData.getUserDetail();
     String deviceId = await getDeviceId();
 
-    if (isSignIn && uDetails.isNotEmpty) {
+    if (uDetails.isNotEmpty) {
       Map<String, dynamic> userMap;
       userMap = jsonDecode(uDetails) as Map<String, dynamic>;
       final UserDetail user = UserDetail.fromJson(userMap);
@@ -79,9 +74,6 @@ class Functions {
         Functions.paramDeviceId: deviceId,
       };
     } else {
-      if (kDebugMode) {
-        print("isSignIN------$isSignIn");
-      }
       return {
         Functions.paramUserId: '',
         Functions.paramDeviceId: '',
@@ -89,10 +81,12 @@ class Functions {
     }
   }
 
-  static getCallService(BuildContext context,
-      {required String serviceName,
-      Map? data,
-      required Function function}) async {
+  static getCallService(
+    BuildContext context, {
+    required String serviceName,
+    Map? data,
+    required Function function,
+  }) async {
     bool isNetwork = await getNetwork();
     if (isNetwork) {
       Map commonData = await getCommonParams();
@@ -102,7 +96,6 @@ class Functions {
       function(commonData);
       return commonData;
     } else {
-      // ignore: use_build_context_synchronously
       Functions.showToast("Please turn on Internet");
       return null;
     }
@@ -110,28 +103,21 @@ class Functions {
 
   static Future<UserDetail> getUserDetail() async {
     String uDetails = await PrefData.getUserDetail();
-    if (kDebugMode) {
-      print("service---1$uDetails");
-    }
     if (uDetails.isNotEmpty) {
       Map<String, dynamic> userMap;
       userMap = jsonDecode(uDetails) as Map<String, dynamic>;
       final UserDetail user = UserDetail.fromJson(userMap);
-      if (kDebugMode) {
-        print(user);
-        print("service---$user");
-      }
       return user;
     } else {
       return UserDetail();
     }
   }
 
-  static void sendLoginPage(BuildContext context,
-      {Function? function, Function? returnPage}) {
-    if (kDebugMode) {
-      print("function-----$returnPage");
-    }
+  static void sendLoginPage(
+    BuildContext context, {
+    Function? function,
+    Function? returnPage,
+  }) {
     Navigator.pushNamed(context, AppRoutes.signInRoute, arguments: returnPage)
         .then((value) {
       if (function != null) {
@@ -143,13 +129,14 @@ class Functions {
   static showToast(String s) {
     if (s.isNotEmpty) {
       Fluttertoast.showToast(
-          msg: s,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.black,
-          textColor: Colors.white,
-          fontSize: 12);
+        msg: s,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 12,
+      );
     }
   }
 }

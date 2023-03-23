@@ -14,7 +14,6 @@ abstract class AppRoutes {
   static const browseVendorsRoute = Paths.browseVendorsPath;
   static const appliedVendorViewRoute = Paths.appliedVendorViewPath;
   static const messagesPageRoute = Paths.messagesPagePath;
-  static const vendorProfileRoute = Paths.vendorProfilePath;
   static const hostProfileRoute = Paths.hostProfilePath;
   static const createEventRoute = Paths.createEventPath;
   static const notificationRoute = Paths.notificationPath;
@@ -37,7 +36,6 @@ abstract class Paths {
   static const browseVendorsPath = "/BrowseVendors";
   static const appliedVendorViewPath = "/AppliedVendorView";
   static const messagesPagePath = "/MessagesPage";
-  static const vendorProfilePath = "/VendorProfilePage";
   static const hostProfilePath = "/HostProfilePage";
   static const createEventPath = "/CreateEventPage";
   static const notificationPath = "/NotificationPage";

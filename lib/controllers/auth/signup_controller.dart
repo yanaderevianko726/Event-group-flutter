@@ -48,7 +48,6 @@ class SignUpController extends GetxController {
       if (userData.userId != null) {
         userDetail = userData;
         cUserId = userDetail.userId!;
-        await PrefData.setIsSignIn(true);
         await PrefData.setUserDetail(json.encode(userDetail));
         callback(true);
       } else {
@@ -78,9 +77,7 @@ class SignUpController extends GetxController {
         userDetail.password = password;
         userDetail.phoneVerified = "Not";
 
-        await PrefData.setIsSignIn(true);
         await PrefData.setUserDetail(json.encode(userDetail));
-
         dbRef.child(Constants.usersRef).child('${userDetail.userId}').set(
             userDetail.toJson()
         );
@@ -139,9 +136,7 @@ class SignUpController extends GetxController {
             userDetail.image = user.photoURL;
             userDetail.phoneVerified = "Verified";
 
-            await PrefData.setIsSignIn(true);
             await PrefData.setUserDetail(json.encode(userDetail));
-
             await dbRef.child(Constants.usersRef).child('${userDetail.userId}').set(
                 userDetail.toJson()
             );

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -31,11 +30,8 @@ class ProfileController extends GetxController {
       Map<String, dynamic> userMap;
       userMap = jsonDecode(uDetails) as Map<String, dynamic>;
       userDetail = UserDetail.fromJson(userMap);
-      if (kDebugMode) {
-        print('userId--->${userDetail.userId}');
-      }
+      update();
     }
-    update();
   }
 
   getVendorProfile() async {
@@ -47,14 +43,13 @@ class ProfileController extends GetxController {
         mapJson['$key'] = '$value';
       });
       vendorModel = VendorModel.fromJson(mapJson);
+      update();
     }
-    update();
   }
 
   Future<bool> logOut() async {
     await _googleSignIn.signOut();
     userDetail = UserDetail();
-    PrefData.setIsSignIn(false);
     PrefData.setUserDetail("");
     return true;
   }
